@@ -1,0 +1,160 @@
+body {
+    justify-content: center;
+    font-family: "Noto Sans KR", sans-serif;
+    background-color: #F4F5F7;
+}
+
+header {
+    display: flex;
+}
+
+.title-image {
+    display: block;
+    margin: 10px auto;
+    width: 150px;
+}
+
+.profile-image {
+    width: 30px;
+    position: absolute;
+    left: calc(50% + 200px);
+    margin: 10px auto;
+}
+
+.back-button {
+    color: black;
+    margin-top: 15px;
+    font-size: 20px;
+    position: absolute;
+    /* back-button 요소를 절대 위치로 설정합니다. */
+    left: calc(50% - 200px);
+    /* title-image의 왼쪽에 50px 떨어뜨리려면, title-image의 가로 너비의 절반을 빼고, 50px를 더해야 합니다. */
+}
+
+a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    /* 밑줄 제거 */
+    color: black;
+    /* 글자색을 검정색으로 변경 */
+}
+
+.title-create-post {
+    text-align: center;
+    font-size: 24px;
+    margin: 30px 0;
+}
+
+.create-post-form {
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    width: 400px;
+}
+
+.title-input-title,
+.title-input-content,
+.title-input-image {
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+.input-title {
+    border: none;
+    border-top: 0.5px solid #D9D9D9;
+    /* 위쪽 가로선 스타일 */
+    border-bottom: 0.5px solid #D9D9D9;
+    /* 아래쪽 가로선 스타일 */
+    padding: 10px;
+    /* 텍스트와 테두리 사이 여백 */
+    width: 100%;
+    /* 너비 */
+    box-sizing: border-box;
+    /* 테두리를 포함한 요소의 크기 지정 */
+    outline: none;
+    /* 포커스 효과 제거 */
+    background-color: transparent;
+}
+
+.input-content {
+    border: none;
+    border-top: 0.5px solid #D9D9D9;
+    /* 위쪽 가로선 스타일 */
+    border-bottom: 0.5px solid #D9D9D9;
+    /* 아래쪽 가로선 스타일 */
+    padding: 10px;
+    /* 텍스트와 테두리 사이 여백 */
+    width: 100%;
+    /* 너비 */
+    height: 200px;
+    box-sizing: border-box;
+    /* 테두리를 포함한 요소의 크기 지정 */
+    outline: none;
+    /* 포커스 효과 제거 */
+    background-color: transparent;
+}
+
+.complete-button {
+    width: 60%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    text-align: center;
+    color: white;
+    background-color: #ACA0EB;
+    height: 30px;
+    border: none;
+    /* 테두리 제거 */
+    box-shadow: none;
+    /* 그림자 제거 */
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+button,
+a {
+    cursor: pointer;
+    /* 마우스 커서를 포인터로 변경하여 버튼임을 나타냄 */
+}
+
+.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    /* 부모 요소 .dropdown을 기준으로 절대 위치로 설정합니다. */
+    background-color: #D9D9D9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 10%;
+    /* 부모 요소 .dropdown 바로 아래에 나타나도록 설정합니다. */
+    left: 55%;
+    /* 부모 요소 .dropdown과 왼쪽 정렬됩니다. */
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.show {
+    display: block;
+}
+
+#createPostHelperText {
+    color: red;
+    visibility: hidden;
+    /* position: fixed; */
+}

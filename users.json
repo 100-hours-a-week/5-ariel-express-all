@@ -1,0 +1,92 @@
+[
+    {
+        "email": "1225yj50@nad.cdca",
+        "password": "Abcd1234!",
+        "nickname": "abc",
+        "profile_picture": {
+            "fieldname": "profile_picture",
+            "originalname": "photo_1.jpeg",
+            "encoding": "7bit",
+            "mimetype": "image/jpeg",
+            "destination": "uploads/",
+            "filename": "1c50ef02f0e6cadb139b3b2145c5e828",
+            "path": "uploads/1c50ef02f0e6cadb139b3b2145c5e828",
+            "size": 712726
+        }
+    },
+    {
+        "email": "1225yj50@naver.c",
+        "password": "Yj1213455*",
+        "nickname": "yj",
+        "profile_picture": {
+            "fieldname": "profile_picture",
+            "originalname": "photo_2.jpeg",
+            "encoding": "7bit",
+            "mimetype": "image/jpeg",
+            "destination": "uploads/",
+            "filename": "0e65f3a44633825c14e2259712871755",
+            "path": "uploads/0e65f3a44633825c14e2259712871755",
+            "size": 338236
+        }
+    },
+    {
+        "email": "test@naver.com",
+        "password": "Test1234*",
+        "nickname": "test",
+        "profile_picture": {
+            "fieldname": "profile_picture",
+            "originalname": "IMG_2678.JPG",
+            "encoding": "7bit",
+            "mimetype": "image/jpeg",
+            "destination": "uploads/",
+            "filename": "2fa40efeba21f5c5c5d00588c3908016",
+            "path": "uploads/2fa40efeba21f5c5c5d00588c3908016",
+            "size": 509097
+        }
+    },
+    {
+        "email": "test@naver.comㅁ",
+        "password": "Yj11234344*",
+        "nickname": "djfakl",
+        "profile_picture": {
+            "fieldname": "profile_picture",
+            "originalname": "_ (3).jpeg",
+            "encoding": "7bit",
+            "mimetype": "image/jpeg",
+            "destination": "uploads/",
+            "filename": "574d123298ae6bb723bae33ac3ad9cba",
+            "path": "uploads/574d123298ae6bb723bae33ac3ad9cba",
+            "size": 26128
+        }
+    },
+    {
+        "email": "test1@naver.com",
+        "password": "Test1234*",
+        "nickname": "test11",
+        "profile_picture": {
+            "fieldname": "profile_picture",
+            "originalname": "403023_avatar_user_woman_female_person_icon.png",
+            "encoding": "7bit",
+            "mimetype": "image/png",
+            "destination": "uploads/",
+            "filename": "ae1fda4070ed96da5a9148ef36eefb00",
+            "path": "uploads/ae1fda4070ed96da5a9148ef36eefb00",
+            "size": 5809
+        }
+    },
+    {
+        "email": "test@naver.com1",
+        "password": "Test1234*",
+        "nickname": "te",
+        "profile_picture": {
+            "fieldname": "profile_picture",
+            "originalname": "20394773.jpg",
+            "encoding": "7bit",
+            "mimetype": "image/jpeg",
+            "destination": "uploads/",
+            "filename": "a08223e2536bfcd8eff45eb33ae413f2",
+            "path": "uploads/a08223e2536bfcd8eff45eb33ae413f2",
+            "size": 10783
+        }
+    }
+]

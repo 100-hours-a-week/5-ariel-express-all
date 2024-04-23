@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="update-profile.css">
+    <title>회원정보수정</title>
+</head>
+
+<body>
+    <header>
+        <img src="../images/title.png" class="title-image" alt="title-image">
+        <div class="dropdown">
+            <img src="../images/profile-image.png" class="profile-image" alt="profile-image" onclick="toggleDropdown()">
+            <div class="dropdown-content" id="dropdownContent">
+                <a href="update-profile.html">회원정보수정</a>
+                <a href="update-password.html">비밀번호수정</a>
+                <a href="../auth/sign-in.html">로그아웃</a>
+            </div>
+        </div>
+    </header>
+    <hr>
+    <section class="modify-profile-form">
+        <h1 class="title-modify-profile">회원정보수정</h1>
+        <form>
+            <p class="input-titles"><b>프로필 사진*</b></p>
+
+            <label class="profile-image-button">
+                <img id="profileImage" src="../images/modify-profile-image.png" class="modify-profile-image"
+                    alt="modify-profile-image">
+                <input id="profileImageInput" type="file" accept="image/*" style="display: none;">
+            </label>
+
+            <p class="input-titles"><b>이메일</b>
+            <div>startupcode@gmail.com</div>
+            <p class="input-titles" id="nickname"><b>닉네임</b>
+                <input type="text" class="input-name" placeholder="스타트업코드" onblur="validate()">
+                <small class="helper-text" id="updateProfileHelperText">* helper text</small>
+                <button class="modify-button" type="button" onclick="updateProfile()">수정하기</button>
+                <p id="withdrawText"><small onclick="showWithdrawModal()">회원 탈퇴</small></p>
+        </form>
+    </section>
+
+    <!-- 회원 탈퇴 모달 -->
+    <div class="modal-background" id="withdrawModalBackground">
+        <section class="dialog" id="withdrawModal">
+            <h3>회원탈퇴 하시겠습니까?</h3>
+            <p>작성된 게시글과 댓글은 삭제됩니다.</p>
+            <section class="buttons">
+                <button class="cancel-button" onclick="hideWithdrawModal()">취소</button>
+                <button class="ok-button" onclick="hideWithdrawModal(), redirectToSignIn()">확인</button>
+            </section>
+        </section>
+    </div>
+
+    <!-- 회원 정보 수정 토스트 메시지 -->
+    <div id="toastMessage">Message</div>
+
+    <script src="update-profile.js"></script>
+
+</body>
+
+</html>

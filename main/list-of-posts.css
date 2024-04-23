@@ -1,0 +1,173 @@
+/* 스크롤바 숨기기 */
+html::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    justify-content: center;
+    font-family: "Noto Sans KR", sans-serif;
+    background-color: #F4F5F7;
+}
+
+header {
+    display: flex;
+}
+
+.title-image {
+    display: block;
+    margin: 10px auto;
+    width: 150px;
+}
+
+.profile-image {
+    width: 30px;
+    position: absolute;
+    left: calc(50% + 200px);
+    margin: 10px auto;
+}
+
+.greeting {
+    text-align: center;
+    font-size: 20px;
+}
+
+.create-post {
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translate(-30%, -50%);
+    width: 350px;
+}
+
+.posts {
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: 43%;
+    transform: translate(-30%, 5%);
+}
+
+.post {
+    background-color: white;
+    margin-bottom: 20px;
+    width: 500px;
+    border-radius: 10px;
+}
+
+.create-post-button {
+    width: 100px;
+    color: white;
+    background-color: #ACA0EB;
+    height: 30px;
+    border: none;
+    /* 테두리 제거 */
+    box-shadow: none;
+    /* 그림자 제거 */
+    border-radius: 10px;
+    position: absolute;
+    right: 0;
+}
+
+button,
+a {
+    cursor: pointer;
+    /* 마우스 커서를 포인터로 변경하여 버튼임을 나타냄 */
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.post-title {
+    display: block;
+    text-align: left;
+    padding-top: 15px;
+    margin-left: 15px;
+    font-size: 20px;
+}
+
+.post-information {
+    font-size: 14px;
+}
+
+.post-reaction {
+    text-align: left;
+    margin-left: 15px;
+}
+
+.post-date {
+    position: absolute;
+    right: 0;
+    margin-right: 15px;
+}
+
+.author-profile {
+    width: 30px;
+    height: 30px;
+    background-color: #D9D9D9;
+    border-radius: 50%;
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
+
+.author {
+    display: flex;
+}
+
+.author-name {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+hr {
+    border-color: #D9D9D9;
+    border-width: 0.5px;
+}
+
+.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    /* 부모 요소 .dropdown을 기준으로 절대 위치로 설정합니다. */
+    background-color: #D9D9D9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 10%;
+    /* 부모 요소 .dropdown 바로 아래에 나타나도록 설정합니다. */
+    left: 55%;
+    /* 부모 요소 .dropdown과 왼쪽 정렬됩니다. */
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.show {
+    display: block;
+}
+
+.author-profile {
+    width: 30px; /* 원하는 너비로 조정 */
+    height: 30px; /* 원하는 높이로 조정 */
+    background-size: cover; /* 배경 이미지를 영역에 꽉 채우도록 설정 */
+    background-position: center; /* 배경 이미지를 가운데 정렬 */
+    border-radius: 50%; /* 원형으로 이미지 모양을 만듭니다. */
+}
+
+/* 버튼에 마우스를 올렸을 때 */
+.create-post-button:hover {
+    background-color: #7F6AEE;
+}

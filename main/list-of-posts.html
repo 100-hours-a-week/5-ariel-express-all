@@ -1,0 +1,43 @@
+<!-- list-of-posts.html -->
+
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="list-of-posts.css">
+    <title>게시글 목록 조회</title>
+</head>
+
+<body>
+    <header>
+        <img src="../images/title.png" class="title-image" alt="title-image">
+        <div class="dropdown">
+            <img src="../images/profile-image.png" class="profile-image" alt="profile-image" onclick="toggleDropdown()">
+            <div class="dropdown-content" id="dropdownContent">
+                <a href="update-profile.html">회원정보수정</a>
+                <a href="update-password.html">비밀번호수정</a>
+                <a href="../auth/sign-in.html">로그아웃</a>
+            </div>
+        </div>
+    </header>
+    <hr>
+
+    <section class="main">
+        <section class="greeting">
+            <p>안녕하세요,<br>아무 말 대잔치 <b>게시판</b> 입니다.</p>
+        </section>
+        <section class="create-post">
+            <a href="create-post.html"><button class="create-post-button" type="submit">게시글 작성</button></a>
+        </section>
+        <section class="posts" id="postList">
+            <!-- 게시글 목록이 여기에 동적으로 삽입 -->
+        </section>
+    </section>
+
+    <script src="list-of-posts.js"></script>
+
+</body>
+
+</html>

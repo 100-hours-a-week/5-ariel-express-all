@@ -1,0 +1,81 @@
+body {
+    justify-content: center;
+    font-family: "Noto Sans KR", sans-serif;
+    background-color: #F4F5F7;
+}
+
+header {
+    display: flex;
+}
+
+.title-image {
+    display: block;
+    margin: 10px auto;
+    width: 150px;
+}
+
+.login-form {
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+}
+
+.title-login {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    font-size: 25px;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+}
+
+.input-text {
+    height: 25px;
+    margin-top: 5px;
+    background-color: transparent;
+    border-radius: 5px;
+    border: 1px solid;
+}
+
+.input-titles {
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+#loginButton {
+    width: 100%;
+    color: white;
+    background-color: #ACA0EB;
+    height: 30px;
+    border: none;
+    /* 테두리 제거 */
+    box-shadow: none;
+    /* 그림자 제거 */
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    /* 밑줄 제거 */
+    color: black;
+    /* 글자색을 검정색으로 변경 */
+}
+
+button {
+    cursor: pointer;
+    /* 마우스 커서를 포인터로 변경하여 버튼임을 나타냄 */
+}
+
+.helper-text {
+    color: red;
+    visibility: hidden; /* 기본적으로 숨김 처리 */
+}

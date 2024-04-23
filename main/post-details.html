@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="post-details.css">
+    <title>게시글 상세 조회</title>
+</head>
+
+<body>
+    <header>
+        <a href="#" onclick="history.back()">
+            <div class="back-button">&lt;</div>
+        </a>
+        <img src="../images/title.png" class="title-image" alt="title-image">
+        <div class="dropdown">
+            <img src="../images/profile-image.png" class="profile-image" alt="profile-image" onclick="toggleDropdown()">
+            <div class="dropdown-content" id="dropdownContent">
+                <a href="update-profile.html">회원정보수정</a>
+                <a href="update-password.html">비밀번호수정</a>
+                <a href="../auth/sign-in.html">로그아웃</a>
+            </div>
+        </div>
+    </header>
+    <hr>
+    <section class="main">
+        <section class="text" id="postDetails">
+            <!-- 게시글 상세 정보가 여기에 동적으로 삽입 -->
+        </section>
+    </section>
+
+    <!-- 게시글 삭제 모달 -->
+    <div class="modal-background" id="postDeleteModalBackground">
+        <section class="dialog" id="postDeleteModal">
+            <h3>게시글을 삭제하시겠습니까?</h3>
+            <p>삭제한 내용은 복구 할 수 없습니다.</p>
+            <section class="buttons">
+                <button class="cancel-button" onclick="hidePostDeleteModal()">취소</button>
+                <button class="ok-button" onclick="hidePostDeleteModal(), showToast('게시글이 삭제되었습니다.')">확인</button>
+            </section>
+        </section>
+    </div>
+
+    <!-- 댓글 삭제 모달 -->
+    <div class="modal-background" id="commentDeleteModalBackground">
+        <section class="dialog" id="commentDeleteModal">
+            <h3>댓글을 삭제하시겠습니까?</h3>
+            <p>삭제한 내용은 복구할 수 없습니다.</p>
+            <section class="buttons">
+                <button class="cancel-button" onclick="hideCommentDeleteModal()">취소</button>
+                <button class="ok-button" onclick="hideCommentDeleteModal(), showToast('댓글이 삭제되었습니다.')">확인</button>
+            </section>
+        </section>
+    </div>
+
+    <!-- 모달 창에 대한 토스트 메시지 -->
+    <div id="toastMessage">Message</div>
+
+    <script src="post-details.js"></script>
+</body>
+
+</html>

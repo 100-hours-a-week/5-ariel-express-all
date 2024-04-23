@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="sign-up.css">
+    <title>회원가입</title>
+</head>
+
+<body>
+    <header>
+        <a href="#" onclick="history.back()">
+            <div class="back-button">&lt;</div>
+        </a>
+        <img src="../images/title.png" class="title-image" alt="title-image">
+    </header>
+    <hr>
+
+    <section class="signup-form">
+        <h1 class="title-signup">회원가입</h1>
+        <form action="/signup" method="post" id="signupForm" enctype="multipart/form-data">
+            <!-- 프로필 사진 입력 -->
+            <div class="input-titles" id="titleProfileImage"><b>프로필 사진*</b></div>
+            <small class="helper-text" id="profileImageHelperText">* 프로필 사진을 추가해주세요.</small>
+            <label class="circle-button" id="profileImage" for="profileImageInput">
+                <img id="profilePreview" src="../images/button-add-profile-image.png" class="plus-sign" alt="plus-sign">
+                <input id="profileImageInput" type="file" accept="image/*" style="display: none;"
+                    name="profile_picture">
+            </label>
+            <!-- 이메일 입력 -->
+            <p class="input-titles" id="titleEmail"><b>이메일*</b>
+                <input type="text" class="input-text" placeholder="이메일을 입력하세요" id="emailInput" name="email">
+                <small class="helper-text" id="emailHelperText">* 이메일을 입력해주세요.</small>
+            </p>
+            <!-- 비밀번호 입력 -->
+            <p class="input-titles"><b>비밀번호*</b>
+                <input type="password" class="input-text" id="passwordInput" placeholder="비밀번호를 입력하세요" name="password">
+                <small class="helper-text" id="passwordHelperText">* 비밀번호는 8자 이상, 20자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 합니다.</small>
+            </p>
+            <!-- 비밀번호 확인 입력 -->
+            <p class="input-titles"><b>비밀번호 확인*</b>
+                <input type="password" class="input-text" id="confirmPasswordInput" placeholder="비밀번호를 한번 더 입력하세요"
+                    name="confirmPassword">
+                <small class="helper-text" id="confirmPasswordHelperText">* 비밀번호를 한번 더 입력해주세요.</small>
+            </p>
+            <!-- 닉네임 입력 -->
+            <p class="input-titles"><b>닉네임*</b>
+                <input type="text" class="input-text" placeholder="닉네임을 입력하세요" id="nicknameInput" name="nickname">
+                <small class="helper-text" id="nicknameHelperText">* 닉네임을 입력해주세요.</small>
+            </p>
+            <!-- 회원가입 버튼 -->
+            <button class="signup-button" type="submit" id="signupButton" disabled>회원가입</button>
+            <a href="sign-in.html">
+                <p><small>로그인하러 가기</small></p>
+            </a>
+        </form>
+
+    </section>
+
+    <script src="sign-up.js"></script>
+
+</body>
+
+</html>

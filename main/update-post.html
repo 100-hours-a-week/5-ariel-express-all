@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="update-post.css">
+    <title>게시글 수정</title>
+</head>
+
+<body>
+    <header>
+        <a href="#" onclick="history.back()">
+            <div class="back-button">&lt;</div>
+        </a>
+        <img src="../images/title.png" class="title-image" alt="title-image">
+        <div class="dropdown">
+            <img src="../images/profile-image.png" class="profile-image" alt="profile-image" onclick="toggleDropdown()">
+            <div class="dropdown-content" id="dropdownContent">
+                <a href="update-profile.html">회원정보수정</a>
+                <a href="update-password.html">비밀번호수정</a>
+                <a href="../auth/sign-in.html">로그아웃</a>
+            </div>
+        </div>
+    </header>
+    <hr>
+    <section class="create-post-form">
+        <h1 class="title-create-post">게시글 수정</h1>
+        <form id="updateForm">
+            <input type="hidden" id="postId">
+            <p class="title-input-title"><b>제목*</b></p>
+            <!-- 제목 입력란 최대 26자 제한 -->
+            <textarea class="input-title" id="titleInput" maxlength="26"></textarea>
+            <p class="title-input-content"><b>내용*</b></p>
+            <textarea class="input-content" id="contentInput"></textarea>
+            <p class="title-input-image"><b>이미지</b></p>
+            <!-- 파일 선택 버튼 -->
+            <p><button onclick="document.getElementById('fileInput').click()">파일 선택</button>&nbsp;&nbsp;<small id="fileName">기존 파일명</small></p>
+            <!-- 이미지 파일 입력란 -->
+            <input type="file" id="fileInput" style="display: none;" onchange="displayFileName()">
+            <a href="#" onclick="history.back()"><button class="complete-button">수정하기</button></a>
+        </form>
+    </section>
+
+    <script src="update-post.js"></script>
+</body>
+
+</html>
