@@ -12,7 +12,7 @@ profileImageInput.addEventListener("change", function (event) {
         }
         reader.readAsDataURL(file);
     } else {
-        profileImage.src = "../images/modify-profile-image.png"; // 기본 이미지로 복원
+        profileImage.src = "/public/assets/images/modify-profile-image.png"; // 기본 이미지로 복원
     }
 });
 
@@ -34,7 +34,7 @@ async function validate() {
     }
     else {
         try {
-            const response = await fetch("../users.json");
+            const response = await fetch("/backend/model/users.json");
             const data = await response.json();
             const existingNickname = data.find(user => user.nickname === nicknameValue);
             if (existingNickname) {
@@ -125,5 +125,5 @@ function hideWithdrawModal() {
 
 // 로그인 화면으로 이동
 function redirectToSignIn() {
-    window.location.href = "../auth/sign-in.html";
+    window.location.href = "sign-in";
 }

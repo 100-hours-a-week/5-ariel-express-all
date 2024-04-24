@@ -14,7 +14,7 @@ profileImageInput.addEventListener("change", function (event) {
         reader.readAsDataURL(file); // 파일을 읽어 data URL로 변환하여 반환. (파일의 내용을 문자열로 표현)
         profileImageHelperText.style.visibility = 'hidden';
     } else {
-        profilePreview.src = "../images/button-add-profile-image.png"; // 파일이 선택되지 않았다면 기본 이미지로 복원
+        profilePreview.src = "../assets/images/button-add-profile-image.png"; // 파일이 선택되지 않았다면 기본 이미지로 복원
     }
 });
 
@@ -50,7 +50,7 @@ async function validateEmail(tf) {
         return false;
     } else {
         try {
-            const response = await fetch("../users.json"); // 사용자 정보 fetch
+            const response = await fetch("/backend/model/users.json"); // 사용자 정보 fetch
             const data = await response.json();
             const existingEmail = data.find(user => user.email === emailValue);
             if (existingEmail) {
@@ -177,7 +177,7 @@ async function validateNickname(tf) {
         return false;
     } else {
         try {
-            const response = await fetch("../users.json"); // 사용자 정보 fetch
+            const response = await fetch("/backend/model/users.json");// 사용자 정보 fetch
             const data = await response.json();
             const existingNickname = data.find(user => user.nickname === nicknameValue);
             if (existingNickname) {

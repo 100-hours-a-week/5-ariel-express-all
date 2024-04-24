@@ -86,7 +86,7 @@ function formatDateTime(date, time) {
 }
 
 // posts.json fetch
-fetch('../posts.json')
+fetch('/backend/model/posts.json')
     .then(response => response.json())
     .then(data => renderPosts(data.posts))
     .catch(error => console.error('Error fetching posts:', error));
