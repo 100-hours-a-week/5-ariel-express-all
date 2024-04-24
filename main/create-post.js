@@ -67,5 +67,5 @@ function displayFileName() {
 
 // 게시글 목록 페이지로 이동
 function redirectToPostList() {
-    window.location.href = "list-of-posts.html";
+    window.location.href = "list-of-posts";
 }

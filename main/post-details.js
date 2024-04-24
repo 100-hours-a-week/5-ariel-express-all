@@ -43,7 +43,7 @@ function renderPostDetails(post) {
             <div class="post-date"><small>${formatDateTime(post.date, post.time)}</small></div>
 
             <div class="edit-buttons">
-                <a href="update-post.html?id=${post.id}"><button class="modify-button">수정</button></a>
+                <a href="update-post?id=${post.id}"><button class="modify-button">수정</button></a>
                 <button class="delete-button" onclick="showPostDeleteModal()">삭제</button>
             </div>
         </div>

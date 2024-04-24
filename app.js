@@ -19,12 +19,33 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // 정적 파일 제공을 위한 경로 설정
+// app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(path.join(__dirname)));
 
 // 루트 경로에 대한 요청 처리
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'auth', 'sign-in.html')); // 로그인 페이지에서 시작
 });
+
+// 로그인 페이지
+app.get('/auth/sign-in', (req, res) => {
+    res.sendFile(path.join(__dirname, 'auth', 'sign-in.html'));
+});
+
+// 회원가입 페이지
+app.get('/auth/sign-up', (req, res) => {
+    res.sendFile(path.join(__dirname, 'auth', 'sign-up.html'));
+});
+
+// app.get('/auth/sign-in.js', (req, res) => {
+//     res.set('Content-Type', 'text/javascript');
+//     res.sendFile(path.join(__dirname, 'auth', 'sign-in.js'));
+// });
+
+// app.get('/auth/sign-in.css', (req, res) => {
+//     res.set('Content-Type', 'text/css');
+//     res.sendFile(path.join(__dirname, 'auth', 'sign-in.css'));
+// });
 
 // 회원가입 요청 처리
 app.post('/signup', upload.single('profile_picture'), (req, res) => {
@@ -61,7 +82,7 @@ app.post('/signup', upload.single('profile_picture'), (req, res) => {
                 return;
             }
             //console.log('New user added successfully!');
-            res.redirect('./auth/sign-in.html'); // 회원가입 성공 시 로그인 페이지로 이동
+            res.redirect('./auth/sign-in'); // 회원가입 성공 시 로그인 페이지로 이동
             // 회원가입 성공 시 HTML 코드를 생성하여 프로필 사진을 표시합니다.
             // const profileImageHTML = profile_picture ? `<img src="/${profile_picture.path}" alt="profile-picture">` : '';
             // const successHTML = `
@@ -73,6 +94,35 @@ app.post('/signup', upload.single('profile_picture'), (req, res) => {
     });
 });
 
+// 게시글 목록 조회 페이지
+app.get('/main/list-of-posts', (req, res) => {
+    res.sendFile(path.join(__dirname, 'main', 'list-of-posts.html'));
+});
+
+// 게시글 작성 페이지
+app.get('/main/create-post', (req, res) => {
+    res.sendFile(path.join(__dirname, 'main', 'create-post.html'));
+});
+
+// 게시글 상세 조회 페이지
+app.get('/main/post-details', (req, res) => {
+    res.sendFile(path.join(__dirname, 'main', 'post-details.html'));
+});
+
+// 게시글 수정 페이지
+app.get('/main/update-post', (req, res) => {
+    res.sendFile(path.join(__dirname, 'main', 'update-post.html'));
+});
+
+// 회원정보 수정 페이지
+app.get('/main/update-profile', (req, res) => {
+    res.sendFile(path.join(__dirname, 'main', 'update-profile.html'));
+});
+
+// 비밀번호 수정 페이지
+app.get('/main/update-password', (req, res) => {
+    res.sendFile(path.join(__dirname, 'main', 'update-password.html'));
+});
 
 app.listen(3000, () => {
     console.log('서버가 실행 중입니다.');
