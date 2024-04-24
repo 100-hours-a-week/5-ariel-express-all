@@ -32,7 +32,7 @@ function renderPosts(posts) {
 
         const postHTML = `
             <section class="post">
-                <a href="post-details.html?id=${post.id}">
+                <a href="post-details?id=${post.id}">
                     <h1 class="post-title">${post.title}</h1>
                     <p class="post-information"><span class="post-reaction">좋아요 ${formattedLikes} 댓글 ${formattedComments} 조회수 ${formattedViews}</span><span
                             class="post-date">${formatDateTime(post.date, post.time)}</span></p>

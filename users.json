@@ -88,5 +88,20 @@
             "path": "uploads/a08223e2536bfcd8eff45eb33ae413f2",
             "size": 10783
         }
+    },
+    {
+        "email": "test@naver.com3dk",
+        "password": "Test1234*",
+        "nickname": "test2",
+        "profile_picture": {
+            "fieldname": "profile_picture",
+            "originalname": "_ (3).jpeg",
+            "encoding": "7bit",
+            "mimetype": "image/jpeg",
+            "destination": "uploads/",
+            "filename": "47ffb39ebae725ca396e893f9f904ba0",
+            "path": "uploads/47ffb39ebae725ca396e893f9f904ba0",
+            "size": 26128
+        }
     }
 ]
