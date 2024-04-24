@@ -28,7 +28,7 @@ window.onload = function () {
 
 function fetchPostDetails() {
     const postId = getPostIdFromUrl(); // 게시글 id를 가져옴
-    fetch('../posts.json')
+    fetch('/backend/model/posts.json')
         .then(response => response.json())
         .then(data => {
             const post = data.posts.find(post => post.id === parseInt(postId));
@@ -66,7 +66,7 @@ document.getElementById('updateForm').addEventListener('submit', function (event
     const content = document.getElementById('contentInput').value;
 
     // 수정할 내용을 서버에 전송하고, 성공적으로 처리되면 페이지를 다시 불러옴
-    fetch(`../update-post?id=${postId}`, {
+    fetch(`update-post?id=${postId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -95,7 +95,7 @@ function displayFileName() {
     } else {
         // 파일 선택이 취소된 경우 기존 파일명 표시
         const postId = document.getElementById('postId').value;
-        fetch('../posts.json')
+        fetch('/backend/model/posts.json')
             .then(response => response.json())
             .then(data => {
                 const post = data.posts.find(post => post.id === parseInt(postId));

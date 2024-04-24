@@ -105,7 +105,7 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
                 helperText.style.visibility = 'visible'; // helper text를 보이도록 변경
                 // 로그인 성공 후 3초 후 페이지 이동
                 setTimeout(function () {
-                    window.location.href = "../main/list-of-posts";
+                    window.location.href = "list-of-posts";
                 }, 3000);
             } else {
                 // 로그인 실패 시 helper-text 변경

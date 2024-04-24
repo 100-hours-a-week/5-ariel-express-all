@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="create-post.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/create-post.css">
     <title>게시글 작성</title>
 </head>
 
@@ -13,13 +13,13 @@
         <a href="#" onclick="history.back()">
             <div class="back-button">&lt;</div>
         </a>
-        <img src="../images/title.png" class="title-image" alt="title-image">
+        <img src="/public/assets/images/title.png" class="title-image" alt="title-image">
         <div class="dropdown">
-            <img src="../images/profile-image.png" class="profile-image" alt="profile-image" onclick="toggleDropdown()">
+            <img src="/public/assets/images/profile-image.png" class="profile-image" alt="profile-image" onclick="toggleDropdown()">
             <div class="dropdown-content" id="dropdownContent">
-                <a href="../main/update-profile">회원정보수정</a>
-                <a href="../main/update-password">비밀번호수정</a>
-                <a href="../auth/sign-in">로그아웃</a>
+                <a href="update-profile">회원정보수정</a>
+                <a href="update-password">비밀번호수정</a>
+                <a href="sign-in">로그아웃</a>
             </div>
         </div>
     </header>
@@ -44,7 +44,7 @@
         </form>
     </section>
 
-    <script src="create-post.js"></script>
+    <script src="/public/js/create-post.js"></script>
 </body>
 
 </html>

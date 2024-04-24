@@ -82,7 +82,7 @@ function renderPostDetails(post) {
 // 게시글 ID를 가져와서 해당 게시글 정보를 요청하는 함수
 function fetchPostDetails() {
     const postId = getPostIdFromUrl(); // 게시글 id를 가져옴
-    fetch('../posts.json') // 게시글 정보 fetch
+    fetch('/backend/model/posts.json') // 게시글 정보 fetch
         .then(response => response.json())
         .then(data => {
             const post = data.posts.find(post => post.id === parseInt(postId));

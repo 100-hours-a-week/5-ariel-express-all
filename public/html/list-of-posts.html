@@ -6,19 +6,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="list-of-posts.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/list-of-posts.css">
     <title>게시글 목록 조회</title>
 </head>
 
 <body>
     <header>
-        <img src="../images/title.png" class="title-image" alt="title-image">
+        <img src="/public/assets/images/title.png" class="title-image" alt="title-image">
         <div class="dropdown">
-            <img src="../images/profile-image.png" class="profile-image" alt="profile-image" onclick="toggleDropdown()">
+            <img src="/public/assets/images/profile-image.png" class="profile-image" alt="profile-image" onclick="toggleDropdown()">
             <div class="dropdown-content" id="dropdownContent">
-                <a href="../main/update-profile">회원정보수정</a>
-                <a href="../main/update-password">비밀번호수정</a>
-                <a href="../auth/sign-in">로그아웃</a>
+                <a href="update-profile">회원정보수정</a>
+                <a href="update-password">비밀번호수정</a>
+                <a href="sign-in">로그아웃</a>
             </div>
         </div>
     </header>
@@ -36,7 +36,7 @@
         </section>
     </section>
 
-    <script src="list-of-posts.js"></script>
+    <script src="/public/js/list-of-posts.js"></script>
 
 </body>
 
