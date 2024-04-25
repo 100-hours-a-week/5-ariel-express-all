@@ -23,7 +23,7 @@
                     },
                     "date": "2024-04-15",
                     "time": "12:10",
-                    "content": "완전 듣는 영화잖아..!"
+                    "content": "완전 듣는 영화네"
                 },
                 {
                     "id": 2,
@@ -59,7 +59,7 @@
                     },
                     "date": "2024-04-16",
                     "time": "16:12",
-                    "content": "양다일 버전도 좋네용가리"
+                    "content": "양다일 버전도 좋네용용용가리"
                 },
                 {
                     "id": 2,
@@ -68,8 +68,8 @@
                         "nickname": "test"
                     },
                     "date": "2024-04-25",
-                    "time": "22:32:34",
-                    "content": "슬퍼요ㅜㅜ"
+                    "time": "23:46:56",
+                    "content": "날 사랑했잖아 원했었잖아.."
                 }
             ]
         },
@@ -116,6 +116,26 @@
                     "date": "2024-04-17",
                     "time": "12:33",
                     "content": "노래가 발랄하고 예쁜데 들으면 눈물이 나요"
+                },
+                {
+                    "id": 4,
+                    "author": {
+                        "profile_picture": "../../public/assets/images/user1.png",
+                        "nickname": "test"
+                    },
+                    "date": "2024-04-25",
+                    "time": "23:43:58",
+                    "content": "ㅎ무"
+                },
+                {
+                    "id": 5,
+                    "author": {
+                        "profile_picture": "../../public/assets/images/user1.png",
+                        "nickname": "test"
+                    },
+                    "date": "2024-04-25",
+                    "time": "23:45:12",
+                    "content": "dhdld"
                 }
             ]
         },

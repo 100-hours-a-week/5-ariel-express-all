@@ -108,7 +108,7 @@ function fetchComments(comments) {
                 <div class="post-date"><small>${formatDateTime(comment.date, comment.time)}</small></div>
                 <div class="edit-buttons">
                     <button class="modify-button" onclick="editComment('${comment.id}', '${comment.content}')">수정</button>
-                    <button class="delete-button" onclick="showCommentDeleteModal()">삭제</button>
+                    <button class="delete-button" onclick="showCommentDeleteModal('${comment.id}')">삭제</button>
                 </div>
             </section>
             <section class="current-comment-text">
@@ -164,16 +164,26 @@ function hidePostDeleteModal() {
 }
 
 // 댓글 삭제 모달 보이기
-function showCommentDeleteModal() {
+function showCommentDeleteModal(commentId) {
     var modalBackground = document.getElementById('commentDeleteModalBackground');
     var deleteModal = document.getElementById('commentDeleteModal');
 
     modalBackground.style.display = 'block';
     deleteModal.style.display = 'block';
 
+    // 삭제할 댓글의 ID를 모달에 설정
+    deleteModal.dataset.commentId = commentId;
+
+    // 게시글 ID 가져오기
+    const postId = getPostIdFromUrl();
+
     // 백그라운드 스크롤 방지
     document.body.style.overflow = 'hidden';
+
+    // confirmDeleteComment 함수 호출
+    confirmDeleteComment(postId);
 }
+
 
 // 댓글 삭제 모달 숨기기
 function hideCommentDeleteModal() {
@@ -187,47 +197,43 @@ function hideCommentDeleteModal() {
     document.body.style.overflow = '';
 }
 
-// // 댓글 수정
-// function editComment(commentId, commentContent) {
-//     const inputComment = document.querySelector('.input-comment');
-//     const registerButton = document.querySelector('.comment-register-button');
+// 댓글 삭제 확인 모달에서 삭제 버튼 클릭 시 실행되는 함수
+function confirmDeleteComment(postId) {
+    // 삭제할 댓글의 ID를 모달에서 가져옴
+    const commentId = document.getElementById('commentDeleteModal').dataset.commentId;
 
-//     inputComment.value = commentContent;
-//     registerButton.textContent = '댓글 수정';
+    // 삭제 버튼을 클릭했을 때만 삭제 요청을 보냄
+    const deleteButton = document.getElementById('deleteCommentButton');
+    deleteButton.onclick = function() {
+        // 서버에 해당 댓글을 삭제하는 요청을 보냄
+        fetch('/delete-comment', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ postId, commentId }) // 게시글 ID와 삭제할 댓글의 ID를 전송
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // 삭제가 성공했을 경우 화면에서 해당 댓글을 제거
+                //removeCommentFromUI(commentId);
+                // 댓글 삭제 모달을 숨김
+                hideCommentDeleteModal();
 
-//     registerButton.onclick = function () {
+                location.reload();
+                fetchComments(postId.comments);
+                showToast('댓글이 삭제되었습니다.');
+            } else {
+                console.error('Failed to delete comment:', data.error);
+            }
+        })
+        .catch(error => console.error('Error deleting comment:', error));
+    };
+}
 
-//         // 입력란 비우기
-//         inputComment.value = '';
-//         registerButton.textContent = '댓글 등록';
-//     };
-// }
-
-
-// // 댓글 등록
-// function registerComment() {
-//     const inputComment = document.querySelector('.input-comment');
-//     // const registerButton = document.querySelector('.comment-register-button');
-//     // const postId = getPostIdFromUrl();
-
-//     // // 새로운 댓글을 posts.json 파일에 저장하고, 성공적으로 처리되면 댓글 목록을 다시 렌더링합니다.
-//     // fetch('../posts.json', {
-//     //     method: 'POST',
-//     //     headers: {
-//     //         'Content-Type': 'application/json'
-//     //     },
-//     //     body: JSON.stringify({ postId, content: inputComment.value }) // 새로운 댓글 내용과 게시글 ID를 전송
-//     // })
-//     //     .then(response => response.json())
-//     //     .then(data => {
-//     //         fetchComments(data.posts.find(post => post.id === parseInt(postId)).comments);
-//     //     })
-//     //     .catch(error => console.error('Error registering comment:', error));
-
-//     // 입력란 비우기
-//     inputComment.value = '';
-// }
-
+// 댓글 삭제 모달에서 삭제 버튼 클릭 시 confirmDeleteComment 함수 호출
+document.getElementById('commentDeleteModalBackground').addEventListener('click', confirmDeleteComment);
 
 // 댓글 수정
 function editComment(commentId, commentContent) {

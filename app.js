@@ -165,6 +165,55 @@ function getCurrentDateTime() {
     return { currentDate, currentTime };
 }
 
+// DELETE 요청 처리: 댓글 삭제
+app.delete('/delete-comment', (req, res) => {
+    const { postId, commentId } = req.body;
+
+    // posts.json 파일을 읽어와서 해당 게시글을 찾고 댓글을 삭제합니다.
+    fs.readFile('backend/model/posts.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading file:', err);
+            res.status(500).json({ success: false, error: 'Failed to read file' });
+            return;
+        }
+
+        let posts = JSON.parse(data);
+
+        // postId를 가진 게시글을 찾습니다.
+        const postIndex = posts.posts.findIndex(post => post.id === parseInt(postId));
+        if (postIndex !== -1) {
+            // postId를 가진 게시글 안에서 commentId를 가진 댓글을 찾습니다.
+            const commentIndex = posts.posts[postIndex].comments.findIndex(comment => comment.id === parseInt(commentId));
+            if (commentIndex !== -1) {
+                // 댓글을 삭제합니다.
+                posts.posts[postIndex].comments.splice(commentIndex, 1);
+
+                // 모든 댓글의 id를 재설정합니다.
+                posts.posts[postIndex].comments.forEach((comment, index) => {
+                    comment.id = index + 1;
+                });
+
+                // 수정된 내용을 다시 JSON 파일에 씁니다.
+                fs.writeFile('backend/model/posts.json', JSON.stringify(posts, null, 4), 'utf8', (err) => {
+                    if (err) {
+                        console.error('Error writing file:', err);
+                        res.status(500).json({ success: false, error: 'Failed to write file' });
+                        return;
+                    }
+                    // 댓글 삭제가 성공했음을 클라이언트에게 응답합니다.
+                    res.json({ success: true });
+                });
+            } else {
+                // 해당 postId를 가진 게시글 안에서 commentId를 가진 댓글을 찾지 못한 경우
+                res.status(404).json({ success: false, error: 'Comment not found' });
+            }
+        } else {
+            // 해당 postId를 가진 게시글을 찾지 못한 경우
+            res.status(404).json({ success: false, error: 'Post not found' });
+        }
+    });
+});
+
 
 // 게시글 목록 조회 페이지
 app.get('/list-of-posts', (req, res) => {
