@@ -46,7 +46,6 @@ function renderPostDetails(post) {
     document.getElementById('titleInput').value = post.title;
     document.getElementById('contentInput').value = post.content;
     document.getElementById('fileName').innerText = post.image.split('/').pop(); // 기존 파일 명 표시
-    // ex) https://example.com/images/photo.jpg -> ['https:', '', 'example.com', 'images', 'photo.jpg'] -> photo.jpg
 }
 
 // URL에서 게시글 ID를 가져오는 함수
@@ -56,28 +55,30 @@ function getPostIdFromUrl() {
     return urlParams.get('id');
 }
 
-// 수정 폼 제출 시 동작
-// 여기 아직 구현 안 함
+// 수정하기 버튼 클릭 시 동작
 document.getElementById('updateForm').addEventListener('submit', function (event) {
     event.preventDefault(); // 폼 기본 동작 방지
 
     const postId = document.getElementById('postId').value;
     const title = document.getElementById('titleInput').value;
     const content = document.getElementById('contentInput').value;
+    const imageFile = document.getElementById('fileInput').files[0]; // 이미지 파일
+
+    const formData = new FormData(); // FormData 객체 생성
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('image', imageFile); // 이미지 파일 추가
 
     // 수정할 내용을 서버에 전송하고, 성공적으로 처리되면 페이지를 다시 불러옴
-    fetch(`update-post?id=${postId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ title, content }) // 수정된 제목과 내용을 전송
+    fetch(`update-post?id=${postId}`, { // PUT에서 POST로 수정
+        method: 'POST', // PUT에서 POST로 수정
+        body: formData
     })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                // 성공적으로 수정되었을 때 메시지 표시
-                console.log('게시글이 수정되었습니다.');
+                // 성공적으로 수정되었을 때 해당 게시글 상세 조회 페이지로 이동
+                window.location.href = `post-details?id=${postId}`;
             } else {
                 console.error('Failed to update post:', data.error);
             }
@@ -85,9 +86,11 @@ document.getElementById('updateForm').addEventListener('submit', function (event
         .catch(error => console.error('Error updating post:', error));
 });
 
+
+
 // 이미지 파일 선택 시 파일명 표시
 function displayFileName() {
-    //console.log('함수 실행됨');
+    console.log('함수 실행됨');
     const fileInput = document.getElementById('fileInput');
     const fileName = document.getElementById('fileName');
     if (fileInput.files.length > 0) {

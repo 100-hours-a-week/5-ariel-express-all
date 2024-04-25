@@ -1,4 +1,3 @@
-// 일단 테스트용 app.js
 const express = require('express');
 const session = require('express-session');
 const app = express();
@@ -22,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 // 정적 파일 제공을 위한 경로 설정
 // app.use(express.static(path.join(__dirname, 'public')));
 // app.use(express.static(path.join(__dirname)));
-const publicPath = path.join(__dirname, 'public');
+const publicPath = path.join(__dirname);
 
 app.use(express.static(__dirname))
 
@@ -117,58 +116,6 @@ app.get('/post-details', (req, res) => {
 app.get('/update-post', (req, res) => {
     res.sendFile(path.join(publicPath, 'html', 'update-post.html'));
 });
-
-// POST 요청 처리
-app.post('/update-post', upload.single('image'), (req, res) => {
-    const postId = req.query.id;
-    const { title, content } = req.body;
-
-    // 클라이언트로부터 전송된 파일 처리
-    const imageFile = req.file; // 이미지 파일
-
-    // posts.json 파일을 읽어와서 해당 게시글을 찾고 업데이트합니다.
-    fs.readFile('backend/model/posts.json', 'utf8', (err, data) => {
-        if (err) {
-            console.error('Error reading file:', err);
-            res.status(500).json({ success: false, error: 'Failed to read file' });
-            return;
-        }
-
-        let posts = JSON.parse(data);
-
-        // 해당 postId를 가진 게시글을 찾아서 내용을 업데이트합니다.
-        const index = posts.posts.findIndex(post => post.id === parseInt(postId));
-        if (index !== -1) {
-            posts.posts[index].title = title;
-            posts.posts[index].content = content;
-            
-            // 파일이 첨부되었을 경우에만 이미지 경로 업데이트
-            if (imageFile) {
-                posts.posts[index].image = imageFile.path; // 이미지 경로 업데이트
-            }
-
-            // 수정된 내용을 다시 JSON 파일에 씁니다.
-            fs.writeFile('backend/model/posts.json', JSON.stringify(posts, null, 4), 'utf8', (err) => {
-                if (err) {
-                    console.error('Error writing file:', err);
-                    res.status(500).json({ success: false, error: 'Failed to write file' });
-                    return;
-                }
-                // 업데이트가 성공했음을 클라이언트에게 응답합니다.
-                
-                res.json({ success: true });
-            });
-        } else {
-            // 해당 postId를 가진 게시글을 찾지 못한 경우
-            res.status(404).json({ success: false, error: 'Post not found' });
-        }
-    });
-});
-
-
-
-
-
 
 // 회원정보 수정 페이지
 app.get('/update-profile', (req, res) => {

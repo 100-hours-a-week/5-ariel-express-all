@@ -1,3 +1,4 @@
+<!-- update-post.html -->
 <!DOCTYPE html>
 <html lang="kr">
 
@@ -15,7 +16,8 @@
         </a>
         <img src="/public/assets/images/title.png" class="title-image" alt="title-image">
         <div class="dropdown">
-            <img src="/public/assets/images/profile-image.png" class="profile-image" alt="profile-image" onclick="toggleDropdown()">
+            <img src="/public/assets/images/profile-image.png" class="profile-image" alt="profile-image"
+                onclick="toggleDropdown()">
             <div class="dropdown-content" id="dropdownContent">
                 <a href="update-profile">회원정보수정</a>
                 <a href="pdate-password">비밀번호수정</a>
@@ -26,7 +28,7 @@
     <hr>
     <section class="create-post-form">
         <h1 class="title-create-post">게시글 수정</h1>
-        <form id="updateForm">
+        <form id="updateForm" method="POST">
             <input type="hidden" id="postId">
             <p class="title-input-title"><b>제목*</b></p>
             <!-- 제목 입력란 최대 26자 제한 -->
@@ -35,10 +37,11 @@
             <textarea class="input-content" id="contentInput"></textarea>
             <p class="title-input-image"><b>이미지</b></p>
             <!-- 파일 선택 버튼 -->
-            <p><button onclick="document.getElementById('fileInput').click()">파일 선택</button>&nbsp;&nbsp;<small id="fileName">기존 파일명</small></p>
+            <p><button onclick="document.getElementById('fileInput').click()">파일 선택</button>&nbsp;&nbsp;<small
+                    id="fileName">기존 파일명</small></p>
             <!-- 이미지 파일 입력란 -->
             <input type="file" id="fileInput" style="display: none;" onchange="displayFileName()">
-            <a href="#" onclick="history.back()"><button class="complete-button">수정하기</button></a>
+            <button id="updateButton" class="complete-button">수정하기</button>
         </form>
     </section>
 
