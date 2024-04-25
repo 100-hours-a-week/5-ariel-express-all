@@ -94,7 +94,7 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
     }
 
     // JSON 파일에서 사용자 정보 가져오기
-    fetch("../users.json")
+    fetch("/backend/model/users.json")
         .then(response => response.json())
         .then(data => {
             // 사용자 정보 확인

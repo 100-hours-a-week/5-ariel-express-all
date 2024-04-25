@@ -103,5 +103,35 @@
             "path": "uploads/47ffb39ebae725ca396e893f9f904ba0",
             "size": 26128
         }
+    },
+    {
+        "email": "test@naver.com2",
+        "password": "Test1234*",
+        "nickname": "test22",
+        "profile_picture": {
+            "fieldname": "profile_picture",
+            "originalname": "403021_avatar_girl_user_young_child_icon.png",
+            "encoding": "7bit",
+            "mimetype": "image/png",
+            "destination": "uploads/",
+            "filename": "3343d949fe0ca32acb400b0a107f6182",
+            "path": "uploads/3343d949fe0ca32acb400b0a107f6182",
+            "size": 6923
+        }
+    },
+    {
+        "email": "test@naver.com3",
+        "password": "Test1234*",
+        "nickname": "test3",
+        "profile_picture": {
+            "fieldname": "profile_picture",
+            "originalname": "403023_avatar_user_woman_female_person_icon.png",
+            "encoding": "7bit",
+            "mimetype": "image/png",
+            "destination": "uploads/",
+            "filename": "f22209801ad0f3996f1e12ea5f0939a7",
+            "path": "uploads/f22209801ad0f3996f1e12ea5f0939a7",
+            "size": 5809
+        }
     }
 ]
