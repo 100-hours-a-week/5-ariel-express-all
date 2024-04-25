@@ -187,68 +187,236 @@ function hideCommentDeleteModal() {
     document.body.style.overflow = '';
 }
 
+// // 댓글 수정
+// function editComment(commentId, commentContent) {
+//     const inputComment = document.querySelector('.input-comment');
+//     const registerButton = document.querySelector('.comment-register-button');
+
+//     inputComment.value = commentContent;
+//     registerButton.textContent = '댓글 수정';
+
+//     registerButton.onclick = function () {
+
+//         // 입력란 비우기
+//         inputComment.value = '';
+//         registerButton.textContent = '댓글 등록';
+//     };
+// }
+
+
+// // 댓글 등록
+// function registerComment() {
+//     const inputComment = document.querySelector('.input-comment');
+//     // const registerButton = document.querySelector('.comment-register-button');
+//     // const postId = getPostIdFromUrl();
+
+//     // // 새로운 댓글을 posts.json 파일에 저장하고, 성공적으로 처리되면 댓글 목록을 다시 렌더링합니다.
+//     // fetch('../posts.json', {
+//     //     method: 'POST',
+//     //     headers: {
+//     //         'Content-Type': 'application/json'
+//     //     },
+//     //     body: JSON.stringify({ postId, content: inputComment.value }) // 새로운 댓글 내용과 게시글 ID를 전송
+//     // })
+//     //     .then(response => response.json())
+//     //     .then(data => {
+//     //         fetchComments(data.posts.find(post => post.id === parseInt(postId)).comments);
+//     //     })
+//     //     .catch(error => console.error('Error registering comment:', error));
+
+//     // 입력란 비우기
+//     inputComment.value = '';
+// }
+
+
 // 댓글 수정
 function editComment(commentId, commentContent) {
     const inputComment = document.querySelector('.input-comment');
     const registerButton = document.querySelector('.comment-register-button');
+    const postId = getPostIdFromUrl(); // 게시글 id를 가져옴
 
     inputComment.value = commentContent;
     registerButton.textContent = '댓글 수정';
 
     registerButton.onclick = function () {
-        // // 수정된 내용을 변수에 저장
-        // const newCommentContent = inputComment.value;
-
-        // // 수정된 내용을 서버에 전송하고, 성공적으로 처리되면 댓글 목록을 다시 불러옴
-        // fetch('../update-comment', {
-        //     method: 'PUT',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({ commentId, newCommentContent }) // 수정된 내용과 댓글 ID를 전송
-        // })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         fetchComments(data.comments);
-        //     })
-        //     .catch(error => console.error('Error updating comment:', error));
-
-        // 입력란 비우기
-        inputComment.value = '';
-        registerButton.textContent = '댓글 등록';
+        // 댓글 수정 버튼 클릭 시 동작
+        const updatedCommentContent = inputComment.value;
+        updateComment(postId, commentId, updatedCommentContent); // postId를 함께 전달
     };
+}
+
+
+// 댓글 업데이트
+// function updateComment(postId, commentId, updatedCommentContent) {
+//     // 댓글 업데이트 로직 추가
+//     const commentListSpace = document.querySelector('.comment-list-space');
+//     const commentToUpdate = commentListSpace.querySelector(`[data-comment-id="${commentId}"]`);
+
+
+//     // 댓글 업데이트 API 호출 및 성공 시 댓글 목록 다시 렌더링
+//     // 예시로 fetch를 사용하며, 실제로는 백엔드와의 통신 로직에 맞게 수정 필요
+//     // fetch('/update-comment', {
+//     //     method: 'PUT',
+//     //     headers: {
+//     //         'Content-Type': 'application/json'
+//     //     },
+//     //     body: JSON.stringify({ commentId, content: updatedCommentContent })
+//     // })
+//     // .then(response => response.json())
+//     // .then(data => {
+//     //     if (data.success) {
+//     //         // 성공적으로 댓글이 업데이트된 경우
+//     //         // 댓글 목록을 다시 가져와서 렌더링
+//     //         fetchComments(data.updatedComments);
+//     //     } else {
+//     //         console.error('Failed to update comment:', data.error);
+//     //     }
+//     // })
+//     // .catch(error => console.error('Error updating comment:', error));
+//     console.log(postId, commentId, updatedCommentContent)
+// }
+
+// 댓글 업데이트
+function updateComment(postId, commentId, updatedCommentContent) {
+    // /backend/model/posts.json에서 댓글 정보 가져오기
+    fetch('/backend/model/posts.json')
+        .then(response => response.json())
+        .then(data => {
+            // postId에 해당하는 게시글 찾기
+            const post = data.posts.find(post => post.id === parseInt(postId));
+            if (post) {
+                // 댓글 목록에서 commentId에 해당하는 댓글 찾기
+                const comment = post.comments.find(comment => comment.id === parseInt(commentId));
+                if (comment) {
+                    // 찾은 댓글의 내용 업데이트
+                    comment.content = updatedCommentContent;
+                    // 콘솔에 댓글 내용 출력
+                    console.log("게시글 ID:", postId);
+                    console.log("댓글 ID:", commentId);
+                    console.log("업데이트된 댓글 내용:", updatedCommentContent);
+
+                    // 서버에 댓글 업데이트를 요청합니다.
+                    fetch('/update-comment', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ postId, commentId, content: updatedCommentContent })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                // 성공적으로 댓글이 업데이트된 경우
+                                // 리로드 & 댓글 목록을 다시 가져와서 렌더링
+                                location.reload();
+                                fetchComments(data.updatedComments);
+                            } else {
+                                console.error('Failed to update comment:', data.error);
+                            }
+                        })
+                        .catch(error => console.error('Error updating comment:', error));
+                } else {
+                    console.error('Comment not found');
+                }
+            } else {
+                console.error('Post not found');
+            }
+        })
+        .catch(error => console.error('Error updating comment:', error));
 }
 
 
 // 댓글 등록
 function registerComment() {
     const inputComment = document.querySelector('.input-comment');
-    // const registerButton = document.querySelector('.comment-register-button');
-    // const postId = getPostIdFromUrl();
+    const registerButton = document.querySelector('.comment-register-button');
+    const postId = getPostIdFromUrl();
 
-    // // 새로운 댓글을 posts.json 파일에 저장하고, 성공적으로 처리되면 댓글 목록을 다시 렌더링합니다.
-    // fetch('../posts.json', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({ postId, content: inputComment.value }) // 새로운 댓글 내용과 게시글 ID를 전송
-    // })
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         fetchComments(data.posts.find(post => post.id === parseInt(postId)).comments);
-    //     })
-    //     .catch(error => console.error('Error registering comment:', error));
+    // 댓글 수정 버튼이 댓글 등록 버튼으로 변경되었을 때
+    if (registerButton.textContent === '댓글 수정') {
+        // 수정 중인 댓글을 업데이트합니다.
+        const updatedCommentContent = inputComment.value;
+        // 수정된 댓글 내용과 함께 댓글 업데이트 함수를 호출합니다.
+        updateComment(commentId, updatedCommentContent);
+    } else {
+        // 기존의 댓글 등록 로직을 그대로 사용합니다.
+        // fetch('/backend/model/posts.json', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({ postId, content: inputComment.value }) // 새로운 댓글 내용과 게시글 ID를 전송
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     fetchComments(data.posts.find(post => post.id === parseInt(postId)).comments);
+        // })
+        // .catch(error => console.error('Error registering comment:', error));
 
-    // 입력란 비우기
-    inputComment.value = '';
+        // // 입력란 비우기
+        // inputComment.value = '';
+        // 현재 시간을 가져오는 함수
+        function getCurrentDateTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = (now.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
+            const day = now.getDate().toString().padStart(2, '0');
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        }
+
+        // 새로운 댓글 객체 생성
+        const newComment = {
+            id: null, // 서버에서 설정될 것이므로 일단 null로 설정
+            author: {
+                profile_picture: "../../public/assets/images/user1.png",
+                nickname: "test"
+            },
+            date: getCurrentDateTime().split(' ')[0], // 현재 날짜
+            time: getCurrentDateTime().split(' ')[1], // 현재 시간
+            content: inputComment.value // 입력한 댓글 내용
+        };
+
+        // 서버에 새로운 댓글 등록 요청 보내기
+        fetch('/add-comment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ postId, content: newComment.content }) // 게시글 ID와 새로운 댓글 데이터 전송
+        })
+            .then(response => response.json())
+            .then(data => {
+                // 새로운 댓글 ID를 서버에서 받아와서 설정
+                newComment.id = data.commentId;
+                // 화면에 새로운 댓글 추가
+                // fetchComments(postId.comments);
+                // 입력란 비우기
+                inputComment.value = '';
+
+                location.reload();
+                fetchComments(postId.comments);
+            })
+            .catch(error => console.error('Error registering comment:', error));
+
+    }
 }
 
 // 날짜와 시간을 형식에 맞게 변환하는 함수
 function formatDateTime(date, time) {
-    const dateTime = new Date(date + 'T' + time);
+    // 날짜와 시간을 공백으로 구분하여 ISO 8601 형식의 문자열로 변환
+    const isoDateTimeString = `${date}T${time}`;
+    const dateTime = new Date(isoDateTimeString);
+    // 만약 날짜와 시간이 유효하지 않다면 빈 문자열 반환
+    if (isNaN(dateTime.getTime())) {
+        return '';
+    }
+    // ISO 8601 형식에서 시간 정보를 추출하여 반환
     return dateTime.toISOString().slice(0, 19).replace('T', ' ');
 }
+
 
 function showToast(message) {
     const toast = document.getElementById('toastMessage');

@@ -2,7 +2,7 @@
     "posts": [
         {
             "id": 1,
-            "title": "Hollywood~~!",
+            "title": "Hollywood",
             "author": {
                 "profile_picture": "../../public/assets/images/author1.webp",
                 "image": "../../public/assets/images/post1.jpeg",
@@ -23,7 +23,7 @@
                     },
                     "date": "2024-04-15",
                     "time": "12:10",
-                    "content": "듣는 영화"
+                    "content": "완전 듣는 영화잖아..!"
                 },
                 {
                     "id": 2,
@@ -33,7 +33,7 @@
                     },
                     "date": "2024-04-15",
                     "time": "12:20",
-                    "content": "여기 노래 맛집이네..."
+                    "content": "여기 노래 맛집이네... 맛꿀마네 거의"
                 }
             ]
         },
@@ -59,7 +59,17 @@
                     },
                     "date": "2024-04-16",
                     "time": "16:12",
-                    "content": "양다일 버전도 좋네요"
+                    "content": "양다일 버전도 좋네용가리"
+                },
+                {
+                    "id": 2,
+                    "author": {
+                        "profile_picture": "../../public/assets/images/user1.png",
+                        "nickname": "test"
+                    },
+                    "date": "2024-04-25",
+                    "time": "22:32:34",
+                    "content": "슬퍼요ㅜㅜ"
                 }
             ]
         },
@@ -172,6 +182,16 @@
                     "date": "2024-04-19",
                     "time": "00:59",
                     "content": "너 때문에 난 새 사랑 못해"
+                },
+                {
+                    "id": 6,
+                    "author": {
+                        "profile_picture": "../../public/assets/images/user1.png",
+                        "nickname": "test"
+                    },
+                    "date": "2024-04-25",
+                    "time": "22:32:59",
+                    "content": "알레프,,  그는 '장르'다"
                 }
             ]
         },
