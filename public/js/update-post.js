@@ -111,3 +111,9 @@ function displayFileName() {
             .catch(error => console.error('Error fetching post details:', error));
     }
 }
+
+// 파일 선택 버튼 클릭 시 파일 선택 input 열기
+document.getElementById('fileButton').addEventListener('click', function(event) {
+    event.preventDefault(); // 기본 동작 방지
+    document.getElementById('fileInput').click(); // 파일 선택 input 열기
+});

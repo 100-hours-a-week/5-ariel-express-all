@@ -10,7 +10,7 @@
             },
             "date": "2024-04-15",
             "time": "12:00",
-            "image": "../../public/assets/images/post1.jpeg",
+            "image": "uploads/af90a4398ba3f539e2e7fdb1f0277375",
             "content": "오 지금 밟고 있는 땅이 꺼질 것만 같아 내 손을 놓는 순간 녹아 없어질걸요 넌 영화 속에 살고 그런 너를 지켜보네 조명을 내려줘요 잔털 하나 없는 너의 가느다란 목에 숨 쉴 때 나 몸이 떨려와 그 만큼이나 좋아 하얀 마음 때 묻으면 안 되니까 사랑해줘요 처음만 있구요 끝은 아득하네요 Baby I just don't know what to say You were my dream and now it all feels so real You're real, yeah Heavy drinks and light hearted jokes Quit my day job just to stay up all night with you We are going to Hollywood and never coming back, coming back Maybe we'll turn to gold 붉은 머리칼이 일렁이며 내게 손짓했어요 겁내지 말라고 어서 뛰어들래요 타버리면 어때요 다 바스러져 없어질 텐데 나 안 돌아가 여기 남겨두세요 오오오 Don't stop action friction Live in a fiction baby Hollywood Don't stop action friction Live in a fiction baby Hollywood",
             "likes": 1530,
             "views": 20000,
@@ -23,7 +23,7 @@
                     },
                     "date": "2024-04-15",
                     "time": "12:10",
-                    "content": "완전 듣는 영화네"
+                    "content": "듣는 영화"
                 },
                 {
                     "id": 2,
@@ -34,6 +34,16 @@
                     "date": "2024-04-15",
                     "time": "12:20",
                     "content": "여기 노래 맛집이네... 맛꿀마네 거의"
+                },
+                {
+                    "id": 3,
+                    "author": {
+                        "profile_picture": "../../public/assets/images/user1.png",
+                        "nickname": "test"
+                    },
+                    "date": "2024-04-26",
+                    "time": "23:48:07",
+                    "content": "새벽 갬성 on"
                 }
             ]
         },
