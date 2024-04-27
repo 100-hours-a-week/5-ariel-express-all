@@ -165,6 +165,50 @@ function getCurrentDateTime() {
     return { currentDate, currentTime };
 }
 
+// DELETE 요청 처리: 게시글 삭제
+app.delete('/delete-post', (req, res) => {
+    const { postId } = req.body;
+
+    // posts.json 파일을 읽어옵니다.
+    fs.readFile('backend/model/posts.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading file:', err);
+            res.status(500).json({ success: false, error: 'Failed to read file' });
+            return;
+        }
+
+        let posts = JSON.parse(data);
+
+        // postId를 가진 게시글을 찾습니다.
+        const postIndex = posts.posts.findIndex(post => post.id === parseInt(postId));
+        if (postIndex !== -1) {
+            // 게시글을 삭제합니다.
+            posts.posts.splice(postIndex, 1);
+
+            // 삭제된 게시글 이후의 게시글들의 ID를 변경합니다.
+            for (let i = postIndex; i < posts.posts.length; i++) {
+                posts.posts[i].id = i + 1; // 순서대로 1, 2, 3, ... 으로 변경합니다.
+            }
+
+            // 수정된 내용을 다시 JSON 파일에 씁니다.
+            fs.writeFile('backend/model/posts.json', JSON.stringify(posts, null, 4), 'utf8', (err) => {
+                if (err) {
+                    console.error('Error writing file:', err);
+                    res.status(500).json({ success: false, error: 'Failed to write file' });
+                    return;
+                }
+                // 게시글 삭제가 성공했음을 클라이언트에게 응답합니다.
+                res.json({ success: true });
+            });
+        } else {
+            // 해당 postId를 가진 게시글을 찾지 못한 경우
+            res.status(404).json({ success: false, error: 'Post not found' });
+        }
+    });
+});
+
+
+
 // DELETE 요청 처리: 댓글 삭제
 app.delete('/delete-comment', (req, res) => {
     const { postId, commentId } = req.body;

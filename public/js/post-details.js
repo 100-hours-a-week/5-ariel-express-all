@@ -157,6 +157,11 @@ function showPostDeleteModal() {
 
     // 백그라운드 스크롤 방지
     document.body.style.overflow = 'hidden';
+
+    // 삭제 버튼 클릭 시 confirmDeletePost 함수 호출
+    document.getElementById('deletePostButton').addEventListener('click', function() {
+        confirmDeletePost();
+    });
 }
 
 // 게시글 삭제 모달 숨기기
@@ -205,6 +210,36 @@ function hideCommentDeleteModal() {
     document.body.style.overflow = '';
 }
 
+function confirmDeletePost() {
+    const postId = getPostIdFromUrl(); // 게시글 ID 가져오기
+
+    // 삭제 요청을 보냄
+    fetch('/delete-post', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ postId }) // 게시글 ID를 전송
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // 삭제가 성공했을 경우 화면에서 해당 게시글을 제거
+            // 여기에는 화면에서 게시글을 삭제하는 로직을 추가하세요
+            // 예를 들어, 삭제 후에는 해당 게시글의 DOM 요소를 제거하는 방식으로 화면 갱신
+            // 이후에는 페이지를 새로고침하거나, 다른 방법을 사용하여 게시글 목록을 다시 가져올 수 있습니다.
+            // removePostFromUI(postId);
+            hidePostDeleteModal();
+            // location.reload(); // 예시로 페이지를 새로고침하는 방식 사용
+            window.location.href = "list-of-posts";
+            showToast('게시글이 삭제되었습니다.');
+        } else {
+            console.error('Failed to delete post:', data.error);
+        }
+    })
+    .catch(error => console.error('Error deleting post:', error));
+}
+
 // 댓글 삭제 확인 모달에서 삭제 버튼 클릭 시 실행되는 함수
 function confirmDeleteComment(postId) {
     // 삭제할 댓글의 ID를 모달에서 가져옴
@@ -212,7 +247,7 @@ function confirmDeleteComment(postId) {
 
     // 삭제 버튼을 클릭했을 때만 삭제 요청을 보냄
     const deleteButton = document.getElementById('deleteCommentButton');
-    deleteButton.onclick = function() {
+    deleteButton.onclick = function () {
         // 서버에 해당 댓글을 삭제하는 요청을 보냄
         fetch('/delete-comment', {
             method: 'DELETE',
@@ -221,22 +256,22 @@ function confirmDeleteComment(postId) {
             },
             body: JSON.stringify({ postId, commentId }) // 게시글 ID와 삭제할 댓글의 ID를 전송
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // 삭제가 성공했을 경우 화면에서 해당 댓글을 제거
-                //removeCommentFromUI(commentId);
-                // 댓글 삭제 모달을 숨김
-                hideCommentDeleteModal();
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // 삭제가 성공했을 경우 화면에서 해당 댓글을 제거
+                    //removeCommentFromUI(commentId);
+                    // 댓글 삭제 모달을 숨김
+                    hideCommentDeleteModal();
 
-                location.reload();
-                fetchComments(postId.comments);
-                showToast('댓글이 삭제되었습니다.');
-            } else {
-                console.error('Failed to delete comment:', data.error);
-            }
-        })
-        .catch(error => console.error('Error deleting comment:', error));
+                    location.reload();
+                    fetchComments(postId.comments);
+                    showToast('댓글이 삭제되었습니다.');
+                } else {
+                    console.error('Failed to delete comment:', data.error);
+                }
+            })
+            .catch(error => console.error('Error deleting comment:', error));
     };
 }
 
