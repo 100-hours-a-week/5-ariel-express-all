@@ -263,13 +263,7 @@ app.delete('/delete-comment', (req, res) => {
     });
 });
 
-
-// 게시글 목록 조회 페이지
-// app.get('/list-of-posts', (req, res) => {
-//     res.sendFile(path.join(publicPath, 'html', 'list-of-posts.html'));
-// });
-
-// 게시글 목록 페이지
+// // 게시글 목록 페이지
 app.get('/list-of-posts', (req, res) => {
     // 쿠키에서 현재 로그인한 이메일 정보를 읽어옴
     const loggedInUser = req.cookies.loggedInUser;
@@ -283,6 +277,29 @@ app.get('/list-of-posts', (req, res) => {
     console.log(`현재 로그인한 이메일: ${loggedInUser}`);
     res.sendFile(path.join(publicPath, 'html', 'list-of-posts.html'));
 });
+
+// 프사 요청
+app.get('/get-profile-image', (req, res) => {
+    // 쿠키에서 현재 로그인한 이메일 정보를 읽어옴
+    const loggedInUser = req.cookies.loggedInUser;
+    if (loggedInUser) {
+        // 현재 로그인한 사용자의 정보를 users.json 파일에서 찾음
+        const users = require('./backend/model/users.json');
+        const currentUser = users.find(user => user.email === loggedInUser);
+        if (currentUser) {
+            // 현재 로그인한 사용자의 프로필 이미지 경로를 생성
+            const profileImagePath = currentUser.profile_picture.path;
+            console.log(`현재 로그인한 사용자 프사 경로: ${profileImagePath}`);
+
+            // JSON 형식으로 프로필 이미지 경로를 클라이언트에게 전달
+            res.json({ profileImagePath });
+            return;
+        }
+    }
+    // 로그인되지 않은 사용자 또는 사용자 정보를 찾을 수 없는 경우, 로그인 페이지로 리다이렉트
+    res.redirect('/sign-in');
+});
+
 
 // 게시글 작성 페이지
 app.get('/create-post', (req, res) => {

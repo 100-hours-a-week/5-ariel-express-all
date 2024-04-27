@@ -27,10 +27,12 @@ header {
 }
 
 .profile-image {
-    width: 30px;
+    width: 35px;
+    height: 35px;
     position: absolute;
     left: calc(50% + 200px);
     margin: 10px auto;
+    border-radius: 50%;
 }
 
 .back-button {
