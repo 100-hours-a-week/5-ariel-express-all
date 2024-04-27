@@ -77,8 +77,38 @@ function validation(email, password) {
     return '';
 }
 
-// 폼 제출 이벤트 핸들러
-document.getElementById("loginForm").addEventListener("submit", function (event) {
+// 게시글 목록 페이지로 이동하는 함수
+function redirectToPostListPage() {
+    window.location.href = "/list-of-posts";
+}
+
+// 사용자 로그인 함수
+function loginUser(email, password) {
+    // 서버로 POST 요청을 보냄
+    fetch("/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email: email, password: password })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // 로그인 성공 시 게시글 목록 페이지로 이동
+            redirectToPostListPage();
+        } else {
+            // 로그인 실패 시 메시지 출력
+            console.log("로그인 실패");
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+}
+
+// 로그인 폼 제출 이벤트 핸들러
+document.getElementById("loginForm").addEventListener("submit", function(event) {
     event.preventDefault(); // 폼 제출 방지
 
     // 사용자가 입력한 이메일과 비밀번호 가져오기 (앞뒤 공백 제거)
@@ -93,28 +123,19 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
         return;
     }
 
-    // JSON 파일에서 사용자 정보 가져오기
-    fetch("/backend/model/users.json")
-        .then(response => response.json())
-        .then(data => {
-            // 사용자 정보 확인
-            const user = data.find(user => user.email === email && user.password === password);
-            if (user) {
-                helperText.style.color = "blue";
-                helperText.textContent = "* 성공";
-                helperText.style.visibility = 'visible'; // helper text를 보이도록 변경
-                // 로그인 성공 후 3초 후 페이지 이동
-                setTimeout(function () {
-                    window.location.href = "list-of-posts";
-                }, 3000);
-            } else {
-                // 로그인 실패 시 helper-text 변경
-                helperText.style.color = "red";
-                helperText.textContent = "* 이메일 또는 비밀번호를 다시 확인해주세요.";
-                helperText.style.visibility = 'visible'; // helper text를 보이도록 변경
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
+    // 사용자 로그인 함수 호출
+    loginUser(email, password);
+});
+
+// 페이지 로드 시 실행되는 함수
+window.addEventListener("load", function() {
+    // 쿠키에서 현재 로그인한 이메일 정보를 가져옴
+    const loggedInUser = document.cookie.split(";").find(cookie => cookie.trim().startsWith("loggedInUser="));
+    if (loggedInUser) {
+        // 현재 로그인한 사용자에 대한 추가 작업을 수행
+        console.log("현재 로그인한 이메일:", loggedInUser.split("=")[1]);
+    } else {
+        // 로그인되지 않은 사용자에 대한 처리
+        console.log("로그인되지 않음");
+    }
 });
