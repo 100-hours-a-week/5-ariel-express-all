@@ -1,6 +1,6 @@
 // 일단 테스트용 app.js
 const express = require('express');
-const session = require('express-session');
+const cookieParser = require('cookie-parser'); // 쿠키 파싱을 위한 미들웨어 추가
 const app = express();
 const path = require('path');
 const fs = require('fs');
@@ -8,16 +8,11 @@ const fs = require('fs');
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' }); // 업로드된 파일을 저장할 디렉토리를 설정합니다.
 
-// 세션 설정
-// app.use(session({
-//     secret: 'secret-key', // 세션을 암호화하기 위한 비밀 키
-//     resave: false,
-//     saveUninitialized: true
-// }));
-
 // body-parser 미들웨어 추가
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// cookie-parser 미들웨어 사용 설정
+app.use(cookieParser());
 
 // 정적 파일 제공을 위한 경로 설정
 // app.use(express.static(path.join(__dirname, 'public')));
@@ -35,6 +30,16 @@ app.get('/', (req, res) => {
 app.get('/sign-in', (req, res) => {
     res.sendFile(path.join(publicPath, 'html', 'sign-in.html'));
 });
+
+// 로그인 성공 시 쿠키 설정
+app.post('/login', (req, res) => {
+    const { email } = req.body;
+    // 쿠키 설정 (이메일 정보)
+    res.cookie('loggedInUser', email, { maxAge: 900000, httpOnly: true }); // 쿠키 만료 시간: 15분
+    res.json({ success: true });
+});
+
+
 
 // 회원가입 페이지
 app.get('/sign-up', (req, res) => {
@@ -260,7 +265,22 @@ app.delete('/delete-comment', (req, res) => {
 
 
 // 게시글 목록 조회 페이지
+// app.get('/list-of-posts', (req, res) => {
+//     res.sendFile(path.join(publicPath, 'html', 'list-of-posts.html'));
+// });
+
+// 게시글 목록 페이지
 app.get('/list-of-posts', (req, res) => {
+    // 쿠키에서 현재 로그인한 이메일 정보를 읽어옴
+    const loggedInUser = req.cookies.loggedInUser;
+    // if (loggedInUser) {
+    //     // 현재 로그인한 사용자에 대한 게시글 목록을 반환하거나, 필요한 처리를 수행
+    //     res.send(`현재 로그인한 이메일: ${loggedInUser}`);
+    // } else {
+    //     // 로그인되지 않은 사용자에 대한 처리
+    //     res.redirect('/sign-in'); // 로그인 페이지로 리다이렉트
+    // }
+    console.log(`현재 로그인한 이메일: ${loggedInUser}`);
     res.sendFile(path.join(publicPath, 'html', 'list-of-posts.html'));
 });
 
