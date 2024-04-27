@@ -35,6 +35,13 @@ function renderPostDetails(post) {
     const formattedViews = formatNumber(post.views);
     const formattedComments = formatNumber(post.comments.length);
 
+    let postImageHTML = ''; // 이미지 HTML 초기화
+
+    // post.image가 null이 아닌 경우에만 이미지 HTML을 생성
+    if (post.image !== null) {
+        postImageHTML = `<img src="${post.image}" class="post-image" alt="post-image">`;
+    }
+
     const postHTML = `
         <h1 class="post-title">${post.title}</h1>
         <div class="info1">
@@ -49,7 +56,7 @@ function renderPostDetails(post) {
         </div>
         <hr>
         <section class="body">
-            <img src="${post.image}" class="post-image" alt="post-image">
+            ${postImageHTML} <!-- 이미지 HTML 삽입 -->
             <div class="post-text">${post.content}</div>
         </section>
         <section class="info2">
@@ -78,6 +85,7 @@ function renderPostDetails(post) {
     // 댓글 목록을 가져오는 함수 호출
     fetchComments(post.comments);
 }
+
 
 // 게시글 ID를 가져와서 해당 게시글 정보를 요청하는 함수
 function fetchPostDetails() {

@@ -66,6 +66,35 @@ function displayFileName() {
 }
 
 // 게시글 목록 페이지로 이동
-function redirectToPostList() {
+// function redirectToPostList() {
+//     window.location.href = "list-of-posts";
+// }
+
+// 게시글 작성 완료 시 호출되는 함수
+function createPost() {
+    const title = titleInput.value.trim();
+    const content = contentInput.value.trim();
+    const imageFile = document.getElementById('fileInput').files[0]; // 이미지 파일
+
+    // FormData 객체 생성
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('image', imageFile);
+
+    // 서버에 새 게시글 정보 전송
+    fetch('/create-post', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        // 서버에서의 응답 처리 (예: 성공 메시지 출력, 페이지 이동 등)
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Error creating post:', error);
+    });
+
     window.location.href = "list-of-posts";
 }

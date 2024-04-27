@@ -225,6 +225,57 @@ app.get('/create-post', (req, res) => {
     res.sendFile(path.join(publicPath, 'html', 'create-post.html'));
 });
 
+// 게시글 작성 요청 처리
+app.post('/create-post', upload.single('image'), (req, res) => {
+    const { title, content } = req.body;
+    const imageFile = req.file; // 이미지 파일
+    // 현재 날짜와 시간 가져오기
+    const { currentDate, currentTime } = getCurrentDateTime();
+
+    // posts.json 파일을 읽어옵니다.
+    fs.readFile('backend/model/posts.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading file:', err);
+            res.status(500).send('Error reading file');
+            return;
+        }
+
+        let posts = JSON.parse(data);
+
+        // 새로운 게시글 객체 생성
+        const newPost = {
+            id: posts.posts.length + 1, // 현재 게시글 개수 + 1
+            title: title,
+            author: {
+                profile_picture: "../../public/assets/images/user2.png",
+                nickname: "test"
+            },
+            date: currentDate,
+            time: currentTime,
+            image: imageFile ? imageFile.path : null, // 파일 첨부 여부에 따라 이미지 경로 설정
+            content: content,
+            likes: 0,
+            views: 0,
+            comments: []
+        };
+
+        // 새로운 게시글을 posts.json 파일에 추가합니다.
+        posts.posts.push(newPost);
+
+        // 수정된 데이터를 파일에 저장합니다.
+        fs.writeFile('backend/model/posts.json', JSON.stringify(posts, null, 4), 'utf8', (err) => {
+            if (err) {
+                console.error('Error writing file:', err);
+                res.status(500).send('Error writing file');
+                return;
+            }
+            // 클라이언트에게 게시글 작성 성공을 응답합니다.
+            res.json({ success: true, message: '게시글이 성공적으로 작성되었습니다.' });
+        });
+    });
+});
+
+
 // 게시글 상세 조회 페이지
 app.get('/post-details', (req, res) => {
     res.sendFile(path.join(publicPath, 'html', 'post-details.html'));
