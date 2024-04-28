@@ -1,5 +1,6 @@
 // 일단 테스트용 app.js
 const express = require('express');
+const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser'); // 쿠키 파싱을 위한 미들웨어 추가
 const app = express();
 const path = require('path');
@@ -11,6 +12,9 @@ const upload = multer({ dest: 'uploads/' }); // 업로드된 파일을 저장할
 // body-parser 미들웨어 추가
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// body-parser 미들웨어 추가
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 // cookie-parser 미들웨어 사용 설정
 app.use(cookieParser());
 
@@ -56,50 +60,44 @@ app.get('/sign-up', (req, res) => {
 //     res.sendFile(path.join(__dirname, 'auth', 'sign-in.css'));
 // });
 
-// 회원가입 요청 처리
-app.post('/signup', upload.single('profile_picture'), (req, res) => {
-    const { email, password, confirmPassword, nickname } = req.body;
-    const profile_picture = req.file; // 업로드된 파일은 req.file에서 참조할 수 있습니다.
+app.post('/update-profile', upload.single('profileImage'), (req, res) => {
+    const loggedInUser = req.cookies.loggedInUser;
+    const newNickname = req.body.newNickname;
+    const profileImage = req.file; // 업로드된 프로필 이미지 파일
 
-    // 기존 사용자 정보를 읽어옵니다.
+    console.log(`회원 정보 수정 페이지! 새 닉네임: ${newNickname}, 프로필 이미지: ${profileImage}`);
+
     fs.readFile('backend/model/users.json', 'utf8', (err, data) => {
         if (err) {
             console.error('Error reading file:', err);
-            res.status(500).send('Error reading file');
+            res.status(500).json({ success: false, error: 'Failed to read file' });
             return;
         }
 
         let users = JSON.parse(data);
 
-        // 새로운 사용자 정보를 추가합니다.
-        const newUser = {
-            email,
-            password,
-            nickname,
-            profile_picture // 프로필 사진 추가
-        };
-        users.push(newUser);
+        const userIndex = users.findIndex(user => user.email === loggedInUser);
+        if (userIndex !== -1) {
+            users[userIndex].nickname = newNickname;
 
-        // 갱신된 사용자 정보를 JSON 형식으로 다시 작성합니다.
-        const updatedUsers = JSON.stringify(users, null, 4);
-
-        // 파일에 새로운 정보를 씁니다.
-        fs.writeFile('backend/model/users.json', updatedUsers, 'utf8', (err) => {
-            if (err) {
-                console.error('Error writing file:', err);
-                res.status(500).send('Error writing file');
-                return;
+            // 프로필 이미지가 존재하는 경우에만 업데이트
+            if (profileImage) {
+                // 프로필 이미지의 경로를 사용하여 업로드된 파일을 저장하거나 처리하는 로직을 추가해야 합니다.
+                // 여기서는 파일의 경로를 바로 저장합니다.
+                users[userIndex].profile_picture = profileImage.path;
             }
-            //console.log('New user added successfully!');
-            res.redirect('sign-in'); // 회원가입 성공 시 로그인 페이지로 이동
-            // 회원가입 성공 시 HTML 코드를 생성하여 프로필 사진을 표시합니다.
-            // const profileImageHTML = profile_picture ? `<img src="/${profile_picture.path}" alt="profile-picture">` : '';
-            // const successHTML = `
-            //     <h1>New user added successfully!</h1>
-            //     ${profileImageHTML}
-            // `;
-            // res.status(200).send(successHTML);
-        });
+
+            fs.writeFile('backend/model/users.json', JSON.stringify(users, null, 4), 'utf8', (err) => {
+                if (err) {
+                    console.error('Error writing file:', err);
+                    res.status(500).json({ success: false, error: 'Failed to write file' });
+                    return;
+                }
+                res.json({ success: true });
+            });
+        } else {
+            res.status(404).json({ success: false, error: 'User not found' });
+        }
     });
 });
 
@@ -278,27 +276,40 @@ app.get('/list-of-posts', (req, res) => {
     res.sendFile(path.join(publicPath, 'html', 'list-of-posts.html'));
 });
 
-// 프사 요청
+// 게시글 목록 페이지에서 프사 요청
 app.get('/get-profile-image', (req, res) => {
     // 쿠키에서 현재 로그인한 이메일 정보를 읽어옴
     const loggedInUser = req.cookies.loggedInUser;
     if (loggedInUser) {
         // 현재 로그인한 사용자의 정보를 users.json 파일에서 찾음
-        const users = require('./backend/model/users.json');
-        const currentUser = users.find(user => user.email === loggedInUser);
-        if (currentUser) {
-            // 현재 로그인한 사용자의 프로필 이미지 경로를 생성
-            const profileImagePath = currentUser.profile_picture.path;
-            console.log(`현재 로그인한 사용자 프사 경로: ${profileImagePath}`);
+        fs.readFile('backend/model/users.json', 'utf8', (err, data) => {
+            if (err) {
+                console.error('Error reading file:', err);
+                res.status(500).json({ error: 'Failed to read file' });
+                return;
+            }
 
-            // JSON 형식으로 프로필 이미지 경로를 클라이언트에게 전달
-            res.json({ profileImagePath });
-            return;
-        }
+            const users = JSON.parse(data);
+            const currentUser = users.find(user => user.email === loggedInUser);
+            if (currentUser) {
+                // 현재 로그인한 사용자의 프로필 이미지 경로를 생성
+                const profileImagePath = currentUser.profile_picture;
+                console.log(`현재 로그인한 사용자 프사 경로: ${profileImagePath}`);
+
+                // JSON 형식으로 프로필 이미지 경로를 클라이언트에게 전달
+                res.json({ profileImagePath });
+                return;
+            } else {
+                // 사용자 정보를 찾을 수 없는 경우
+                res.status(404).json({ error: 'User not found' });
+            }
+        });
+    } else {
+        // 로그인되지 않은 사용자인 경우
+        res.redirect('/sign-in');
     }
-    // 로그인되지 않은 사용자 또는 사용자 정보를 찾을 수 없는 경우, 로그인 페이지로 리다이렉트
-    res.redirect('/sign-in');
 });
+
 
 
 // 게시글 작성 페이지
@@ -463,6 +474,50 @@ app.post('/update-comment', (req, res) => {
         }
     });
 });
+
+app.post('/update-profile', upload.single('profileImage'), (req, res) => {
+    const loggedInUser = req.cookies.loggedInUser;
+    const newNickname = req.body.newNickname;
+    const profileImage = req.file; // 업로드된 프로필 이미지 파일
+
+    console.log(`회원 정보 수정 페이지! 새 닉네임: ${newNickname}, 프로필 이미지: ${profileImage.path}`);
+
+    fs.readFile('backend/model/users.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading file:', err);
+            res.status(500).json({ success: false, error: 'Failed to read file' });
+            return;
+        }
+
+        let users = JSON.parse(data);
+
+        const userIndex = users.findIndex(user => user.email === loggedInUser);
+        if (userIndex !== -1) {
+            users[userIndex].nickname = newNickname;
+
+            // 프로필 이미지가 존재하는 경우에만 업데이트
+            if (profileImage) {
+                // 파일 경로를 포함한 객체로 저장합니다.
+                users[userIndex].profile_picture.path = profileImage.path;
+            }
+
+            fs.writeFile('backend/model/users.json', JSON.stringify(users, null, 4), 'utf8', (err) => {
+                if (err) {
+                    console.error('Error writing file:', err);
+                    res.status(500).json({ success: false, error: 'Failed to write file' });
+                    return;
+                }
+                res.json({ success: true });
+            });
+        } else {
+            res.status(404).json({ success: false, error: 'User not found' });
+        }
+    });
+});
+
+
+
+
 
 
 

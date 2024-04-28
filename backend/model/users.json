@@ -32,17 +32,8 @@
     {
         "email": "test@naver.com",
         "password": "Test1234*",
-        "nickname": "test",
-        "profile_picture": {
-            "fieldname": "profile_picture",
-            "originalname": "IMG_2678.JPG",
-            "encoding": "7bit",
-            "mimetype": "image/jpeg",
-            "destination": "uploads/",
-            "filename": "2fa40efeba21f5c5c5d00588c3908016",
-            "path": "uploads/2fa40efeba21f5c5c5d00588c3908016",
-            "size": 509097
-        }
+        "nickname": "또다른나",
+        "profile_picture": "uploads/91d181cefc4d77eb1c3eff6f0a2155b4"
     },
     {
         "email": "test@naver.comㅁ",
