@@ -90,3 +90,24 @@ fetch('/backend/model/posts.json')
     .then(response => response.json())
     .then(data => renderPosts(data.posts))
     .catch(error => console.error('Error fetching posts:', error));
+
+// 페이지 로드 시 실행되는 함수
+window.addEventListener("load", function() {
+    fetch('/get-profile-image') // 서버에 요청을 보냄
+        .then(response => response.json()) // 응답을 JSON으로 변환
+        .then(data => {
+            // 서버에서 전달받은 프로필 이미지 경로를 콘솔에 출력
+            console.log("서버에서 전달받은 profileImagePath:", data.profileImagePath);
+
+            // 프로필 이미지를 업데이트
+            const userProfileImage = document.getElementById("userProfileImage");
+            userProfileImage.src = data.profileImagePath;
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+});
+
+
+
+

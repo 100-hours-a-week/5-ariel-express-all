@@ -118,3 +118,55 @@ function showToast(message) {
         console.error('Toast message element not found.');
     }
 }
+
+// update-password.js
+// 사용자가 비밀번호를 수정하고 수정하기 버튼을 클릭했을 때 실행되는 함수
+async function updatePassword() {
+
+    if (passwordHelperText.textContent === "* 통과" && confirmPasswordHelperText.textContent === '* 통과') {
+        newPassword = passwordInput.value;
+        console.log(`변경된 비밀번호: ${newPassword}`);
+
+        // 서버로 비밀번호 업데이트 요청 전송
+        try {
+            const response = await fetch('/update-password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ newPassword })
+            });
+            const data = await response.json();
+            if (data.success) {
+                showToast("비밀번호가 성공적으로 업데이트되었습니다.");
+                passwordInput.value = '';
+                confirmPasswordInput.value = '';
+            } else {
+                showToast("비밀번호 업데이트 실패: " + data.error);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            showToast("오류가 발생했습니다.");
+        }
+    }
+}
+
+// 다른 코드들 생략
+
+
+// 페이지 로드 시 실행되는 함수
+window.addEventListener("load", function () {
+    fetch('/get-profile-image') // 서버에 요청을 보냄
+        .then(response => response.json()) // 응답을 JSON으로 변환
+        .then(data => {
+            // 서버에서 전달받은 프로필 이미지 경로를 콘솔에 출력
+            console.log("서버에서 전달받은 profileImagePath:", data.profileImagePath);
+
+            // 프로필 이미지를 업데이트
+            const userProfileImage = document.getElementById("userProfileImage");
+            userProfileImage.src = data.profileImagePath;
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+});

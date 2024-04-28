@@ -12,7 +12,7 @@
     <header>
         <img src="/public/assets/images/title.png" class="title-image" alt="title-image">
         <div class="dropdown">
-            <img src="/public/assets/images/profile-image.png" class="profile-image" alt="profile-image" onclick="toggleDropdown()">
+            <img src="/public/assets/images/profile-image.png" class="profile-image" alt="profile-image" id="userProfileImage" onclick="toggleDropdown()">
             <div class="dropdown-content" id="dropdownContent">
                 <a href="update-profile">회원정보수정</a>
                 <a href="update-password">비밀번호수정</a>
@@ -34,8 +34,8 @@
 
             <p class="input-titles"><b>이메일</b>
             <div>startupcode@gmail.com</div>
-            <p class="input-titles" id="nickname"><b>닉네임</b>
-                <input type="text" class="input-name" placeholder="스타트업코드" onblur="validate()">
+            <p class="input-titles" id="title-nickname"><b>닉네임</b>
+                <input type="text" class="input-name" id="nickname" placeholder="스타트업코드" onblur="validate()">
                 <small class="helper-text" id="updateProfileHelperText">* helper text</small>
                 <button class="modify-button" type="button" onclick="updateProfile()">수정하기</button>
                 <p id="withdrawText"><small onclick="showWithdrawModal()">회원 탈퇴</small></p>
@@ -49,7 +49,7 @@
             <p>작성된 게시글과 댓글은 삭제됩니다.</p>
             <section class="buttons">
                 <button class="cancel-button" onclick="hideWithdrawModal()">취소</button>
-                <button class="ok-button" onclick="hideWithdrawModal(), redirectToSignIn()">확인</button>
+                <button class="ok-button" onclick="hideWithdrawModal(), confirmWithdraw()">확인</button>
             </section>
         </section>
     </div>

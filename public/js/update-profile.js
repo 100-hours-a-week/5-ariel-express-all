@@ -12,7 +12,15 @@ profileImageInput.addEventListener("change", function (event) {
         }
         reader.readAsDataURL(file);
     } else {
-        profileImage.src = "/public/assets/images/modify-profile-image.png"; // 기본 이미지로 복원
+        fetch('/get-profile-image') // 서버에 요청을 보냄
+        .then(response => response.json()) // 응답을 JSON으로 변환
+        .then(data => {
+            // 기본 이미지로 복원
+            profileImage.src = data.profileImagePath;
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
     }
 });
 
@@ -54,12 +62,50 @@ async function validate() {
     }
 }
 
-// 유효성 검사에 통과한 경우에만 프로필 수정
-function updateProfile() {
+// 사용자가 수정하기 버튼을 클릭할 때 프로필을 업데이트하는 함수
+async function updateProfile() {
+    // 유효성 검사를 통과한 경우에만 업데이트 수행
     if (updateProfileHelperText.textContent === "* 통과") {
-        showToast('수정완료');
+        showToast('프로필 업데이트 완료');
+
+        // 변경된 닉네임 가져오기
+        const newNickname = document.getElementById("nickname").value.trim();
+
+        // 변경된 프로필 이미지 가져오기
+        const profileImageFile = document.getElementById("profileImageInput").files[0];
+
+        // FormData 객체 생성
+        const formData = new FormData();
+
+        // FormData에 변경된 닉네임 추가
+        formData.append('newNickname', newNickname);
+
+        // FormData에 변경된 프로필 이미지 추가
+        if (profileImageFile) {
+            // 파일 객체를 직접 추가합니다.
+            formData.append('profileImage', profileImageFile);
+        }
+        // 서버로 업데이트 요청 전송
+        try {
+            const response = await fetch('/update-profile', {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+            if (data.success) {
+                console.log("프로필이 성공적으로 업데이트되었습니다.");
+                location.reload();
+            } else {
+                console.error("프로필 업데이트 실패:", data.message);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+        }
     }
 }
+
+
+
 
 // 드롭다운 메뉴
 function toggleDropdown() {
@@ -127,3 +173,41 @@ function hideWithdrawModal() {
 function redirectToSignIn() {
     window.location.href = "sign-in";
 }
+
+// 사용자가 회원 탈퇴 확인 버튼을 클릭할 때 호출되는 함수
+async function confirmWithdraw() {
+    try {
+        const response = await fetch('/withdraw', {
+            method: 'DELETE'
+        });
+        const data = await response.json();
+        if (data.success) {
+            console.log("회원 탈퇴가 성공적으로 처리되었습니다.");
+            // 회원 탈퇴 후 로그인 화면으로 이동
+            redirectToSignIn();
+        } else {
+            console.error("회원 탈퇴 실패:", data.error);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+// 페이지 로드 시 실행되는 함수
+window.addEventListener("load", function() {
+    fetch('/get-profile-image') // 서버에 요청을 보냄
+        .then(response => response.json()) // 응답을 JSON으로 변환
+        .then(data => {
+            // 서버에서 전달받은 프로필 이미지 경로를 콘솔에 출력
+            console.log("서버에서 전달받은 profileImagePath:", data.profileImagePath);
+
+            // 프로필 이미지를 업데이트
+            const userProfileImage = document.getElementById("userProfileImage");
+            const profileImage = document.getElementById("profileImage");
+            userProfileImage.src = data.profileImagePath;
+            profileImage.src = data.profileImagePath;
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+});
