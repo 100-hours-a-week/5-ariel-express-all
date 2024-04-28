@@ -26,6 +26,7 @@ header {
     left: calc(50% + 200px);
     margin: 10px auto;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .greeting {
