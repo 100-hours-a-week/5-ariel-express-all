@@ -14,8 +14,8 @@
     {
         "email": "test@naver.com",
         "password": "Abcd123**",
-        "nickname": "이상한표정의예지예요",
-        "profile_picture": "uploads/99345426318c0eb0f898391cf000cebc"
+        "nickname": "인어공주",
+        "profile_picture": "uploads/5dbddda32b48f01b6d40f0ac6e3d01aa"
     },
     {
         "email": "test@naver.comㅁ",
@@ -46,11 +46,5 @@
         "password": "Test1234*",
         "nickname": "test22",
         "profile_picture": "uploads/3343d949fe0ca32acb400b0a107f6182"
-    },
-    {
-        "email": "test@naver.com3",
-        "password": "Test1234*",
-        "nickname": "test3",
-        "profile_picture": "uploads/f22209801ad0f3996f1e12ea5f0939a7"
     }
 ]
