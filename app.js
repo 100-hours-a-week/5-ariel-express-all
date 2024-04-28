@@ -590,6 +590,38 @@ app.post('/update-password', (req, res) => {
     });
 });
 
+// DELETE 요청을 처리하는 엔드포인트
+app.delete('/withdraw', (req, res) => {
+    // 사용자 정보를 users.json 파일에서 읽어옴
+    fs.readFile('backend/model/users.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading file:', err);
+            return res.status(500).json({ success: false, error: 'Failed to read file' });
+        }
+
+        let users = JSON.parse(data);
+
+        // 현재 로그인한 사용자의 이메일을 통해 사용자 정보를 찾음
+        const loggedInUserEmail = req.cookies.loggedInUser;
+        const userIndex = users.findIndex(user => user.email === loggedInUserEmail);
+
+        if (userIndex === -1) {
+            return res.status(404).json({ success: false, error: 'User not found' });
+        }
+
+        // 사용자를 삭제하고 users.json 파일에 저장
+        users.splice(userIndex, 1);
+
+        fs.writeFile('backend/model/users.json', JSON.stringify(users, null, 4), 'utf8', (err) => {
+            if (err) {
+                console.error('Error writing file:', err);
+                return res.status(500).json({ success: false, error: 'Failed to write file' });
+            }
+            res.json({ success: true });
+        });
+    });
+});
+
 app.listen(3000, () => {
     console.log('서버가 실행 중입니다.');
 });

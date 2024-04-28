@@ -174,6 +174,25 @@ function redirectToSignIn() {
     window.location.href = "sign-in";
 }
 
+// 사용자가 회원 탈퇴 확인 버튼을 클릭할 때 호출되는 함수
+async function confirmWithdraw() {
+    try {
+        const response = await fetch('/withdraw', {
+            method: 'DELETE'
+        });
+        const data = await response.json();
+        if (data.success) {
+            console.log("회원 탈퇴가 성공적으로 처리되었습니다.");
+            // 회원 탈퇴 후 로그인 화면으로 이동
+            redirectToSignIn();
+        } else {
+            console.error("회원 탈퇴 실패:", data.error);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
 // 페이지 로드 시 실행되는 함수
 window.addEventListener("load", function() {
     fetch('/get-profile-image') // 서버에 요청을 보냄
