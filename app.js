@@ -84,25 +84,9 @@ app.post('/signup', upload.single('profile_picture'), (req, res) => {
             }
             //console.log('New user added successfully!');
             res.redirect('/sign-in');
-            // 회원가입 성공 시 HTML 코드를 생성하여 프로필 사진을 표시합니다.
-            // const profileImageHTML = profile_picture ? `<img src="/${profile_picture.path}" alt="profile-picture">` : '';
-            // const successHTML = `
-            //     <h1>New user added successfully!</h1>
-            //     ${profileImageHTML}
-            // `;
-            // res.status(200).send(successHTML);
         });
     });
 });
-// app.get('/auth/sign-in.js', (req, res) => {
-//     res.set('Content-Type', 'text/javascript');
-//     res.sendFile(path.join(__dirname, 'auth', 'sign-in.js'));
-// });
-
-// app.get('/auth/sign-in.css', (req, res) => {
-//     res.set('Content-Type', 'text/css');
-//     res.sendFile(path.join(__dirname, 'auth', 'sign-in.css'));
-// });
 
 app.post('/update-profile', upload.single('profileImage'), (req, res) => {
     const loggedInUser = req.cookies.loggedInUser;
@@ -560,11 +544,6 @@ app.post('/update-profile', upload.single('profileImage'), (req, res) => {
 });
 
 
-
-
-
-
-
 // 회원정보 수정 페이지
 app.get('/update-profile', (req, res) => {
     res.sendFile(path.join(publicPath, 'html', 'update-profile.html'));
@@ -573,6 +552,42 @@ app.get('/update-profile', (req, res) => {
 // 비밀번호 수정 페이지
 app.get('/update-password', (req, res) => {
     res.sendFile(path.join(publicPath, 'html', 'update-password.html'));
+});
+
+// 비밀번호 업데이트 요청 처리
+app.post('/update-password', (req, res) => {
+    const { newPassword } = req.body;
+
+    console.log(`비밀번호 변경 페이지: ${newPassword}`);
+
+    // 사용자 정보를 users.json 파일에서 읽어옴
+    fs.readFile('backend/model/users.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading file:', err);
+            return res.status(500).json({ success: false, error: 'Failed to read file' });
+        }
+
+        let users = JSON.parse(data);
+
+        // 현재 로그인한 사용자의 이메일을 통해 사용자 정보를 찾음
+        const loggedInUserEmail = req.cookies.loggedInUser;
+        const userIndex = users.findIndex(user => user.email === loggedInUserEmail);
+
+        if (userIndex === -1) {
+            return res.status(404).json({ success: false, error: 'User not found' });
+        }
+
+        // 사용자의 비밀번호를 업데이트하고 users.json 파일에 저장
+        users[userIndex].password = newPassword;
+
+        fs.writeFile('backend/model/users.json', JSON.stringify(users, null, 4), 'utf8', (err) => {
+            if (err) {
+                console.error('Error writing file:', err);
+                return res.status(500).json({ success: false, error: 'Failed to write file' });
+            }
+            res.json({ success: true });
+        });
+    });
 });
 
 app.listen(3000, () => {
