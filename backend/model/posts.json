@@ -279,6 +279,93 @@
                     "content": "토일 그는... 도대체"
                 }
             ]
+        },
+        {
+            "id": 6,
+            "title": "ㅁ",
+            "author": {
+                "profile_picture": "../../public/assets/images/user2.png",
+                "nickname": "test"
+            },
+            "date": "2024-04-29",
+            "time": "17:39:24",
+            "image": null,
+            "content": "ㅇ",
+            "likes": 0,
+            "views": 0,
+            "comments": [
+                {
+                    "id": 1,
+                    "author": {
+                        "profile_picture": "uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
+                        "nickname": "인어공주"
+                    },
+                    "date": "2024-04-29",
+                    "time": "17:39:36",
+                    "content": "ㅗㅑ"
+                },
+                {
+                    "id": 2,
+                    "author": {
+                        "profile_picture": "uploads/3343d949fe0ca32acb400b0a107f6182",
+                        "nickname": "test22"
+                    },
+                    "date": "2024-04-29",
+                    "time": "17:53:33",
+                    "content": "엥"
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "title": "test",
+            "author": {
+                "profile_picture": "uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
+                "nickname": "인어공주"
+            },
+            "date": "2024-04-29",
+            "time": "20:44:46",
+            "image": "uploads/371a1a16e7081219f89799ac470e8969",
+            "content": "사진도 올라가셈요!!!",
+            "likes": 0,
+            "views": 0,
+            "comments": [
+                {
+                    "id": 1,
+                    "author": {
+                        "profile_picture": "uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
+                        "nickname": "인어공주"
+                    },
+                    "date": "2024-04-29",
+                    "time": "20:46:24",
+                    "content": "에리얼이다"
+                },
+                {
+                    "id": 2,
+                    "author": {
+                        "profile_picture": "uploads/dc572a1cf738d2bf645513019745cfc3",
+                        "nickname": "yeji"
+                    },
+                    "date": "2024-04-29",
+                    "time": "20:47:40",
+                    "content": "어 나다"
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "title": "저 예 요",
+            "author": {
+                "profile_picture": "uploads/dc572a1cf738d2bf645513019745cfc3",
+                "nickname": "yeji"
+            },
+            "date": "2024-04-29",
+            "time": "20:47:18",
+            "image": null,
+            "content": "저 프사 바꿨어요\r\n닉네임두",
+            "likes": 0,
+            "views": 0,
+            "comments": []
         }
     ]
 }
