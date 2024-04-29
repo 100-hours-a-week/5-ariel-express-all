@@ -42,7 +42,17 @@
                     },
                     "date": "2024-04-26",
                     "time": "23:48:07",
-                    "content": "새벽 갬성 off"
+                    "content": "새벽 갬성 on"
+                },
+                {
+                    "id": 4,
+                    "author": {
+                        "profile_picture": "uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
+                        "nickname": "인어공주"
+                    },
+                    "date": "2024-04-29",
+                    "time": "10:30:09",
+                    "content": "ㅎㅎㅎ"
                 }
             ]
         },
@@ -68,17 +78,17 @@
                     },
                     "date": "2024-04-16",
                     "time": "16:12",
-                    "content": "양다일 버전도 좋네용용용가리"
+                    "content": "양다일 버전도 좋네용용용가리 맛있겟다.."
                 },
                 {
                     "id": 2,
                     "author": {
-                        "profile_picture": "../../public/assets/images/user1.png",
-                        "nickname": "test"
+                        "profile_picture": "uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
+                        "nickname": "인어공주"
                     },
-                    "date": "2024-04-25",
-                    "time": "23:46:56",
-                    "content": "날 사랑했잖아 원했었잖아.."
+                    "date": "2024-04-29",
+                    "time": "17:14:57",
+                    "content": "날 사랑했잖아 원했었잖아"
                 }
             ]
         },
@@ -129,22 +139,12 @@
                 {
                     "id": 4,
                     "author": {
-                        "profile_picture": "../../public/assets/images/user1.png",
-                        "nickname": "test"
+                        "profile_picture": "uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
+                        "nickname": "인어공주"
                     },
-                    "date": "2024-04-25",
-                    "time": "23:43:58",
-                    "content": "ㅎ무"
-                },
-                {
-                    "id": 5,
-                    "author": {
-                        "profile_picture": "../../public/assets/images/user1.png",
-                        "nickname": "test"
-                    },
-                    "date": "2024-04-25",
-                    "time": "23:45:12",
-                    "content": "dhdld"
+                    "date": "2024-04-29",
+                    "time": "10:56:10",
+                    "content": "왜 왜 자꾸 놓아주려 해"
                 }
             ]
         },

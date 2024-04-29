@@ -136,51 +136,82 @@ app.post('/add-comment', (req, res) => {
     // 현재 날짜와 시간 가져오기
     const { currentDate, currentTime } = getCurrentDateTime();
 
-    // posts.json 파일을 읽어와서 해당 게시글을 찾고 댓글을 추가합니다.
-    fs.readFile('backend/model/posts.json', 'utf8', (err, data) => {
+    // 현재 로그인된 사용자의 이메일 정보 가져오기
+    const loggedInUserEmail = req.cookies.loggedInUser;
+
+    // 사용자 이메일 정보를 이용하여 해당 사용자의 닉네임과 프로필 정보를 users.json 파일에서 찾아옵니다.
+    fs.readFile('backend/model/users.json', 'utf8', (err, data) => {
         if (err) {
             console.error('Error reading file:', err);
             res.status(500).json({ success: false, error: 'Failed to read file' });
             return;
         }
 
-        let posts = JSON.parse(data);
+        let users = JSON.parse(data);
 
-        // postId를 가진 게시글을 찾습니다.
-        const postIndex = posts.posts.findIndex(post => post.id === parseInt(postId));
-        if (postIndex !== -1) {
-            // 새로운 댓글의 속성 설정
-            const newCommentId = posts.posts[postIndex].comments.length + 1;
-            const newComment = {
-                id: newCommentId,
-                author: {
-                    profile_picture: "../../public/assets/images/user1.png",
-                    nickname: "test"
-                },
-                date: currentDate,
-                time: currentTime,
-                content: content
-            };
+        // 이메일을 이용하여 해당 사용자 정보를 찾습니다.
+        const loggedInUser = users.find(user => user.email === loggedInUserEmail);
 
-            // 댓글을 해당 게시글의 댓글 목록에 추가합니다.
-            posts.posts[postIndex].comments.push(newComment);
-
-            // 수정된 내용을 다시 JSON 파일에 씁니다.
-            fs.writeFile('backend/model/posts.json', JSON.stringify(posts, null, 4), 'utf8', (err) => {
-                if (err) {
-                    console.error('Error writing file:', err);
-                    res.status(500).json({ success: false, error: 'Failed to write file' });
-                    return;
-                }
-                // 댓글 등록이 성공했음을 클라이언트에게 응답합니다.
-                res.json({ success: true, updatedComments: posts.posts[postIndex].comments });
-            });
-        } else {
-            // 해당 postId를 가진 게시글을 찾지 못한 경우
-            res.status(404).json({ success: false, error: 'Post not found' });
+        // 사용자 정보를 찾지 못한 경우
+        if (!loggedInUser) {
+            console.error('User not found');
+            res.status(404).json({ success: false, error: 'User not found' });
+            return;
         }
+
+        // 새로운 댓글의 속성 설정
+        let newCommentId;
+
+        // posts.json 파일을 읽어와서 해당 게시글을 찾고 댓글을 추가합니다.
+        fs.readFile('backend/model/posts.json', 'utf8', (err, postData) => {
+            if (err) {
+                console.error('Error reading file:', err);
+                res.status(500).json({ success: false, error: 'Failed to read file' });
+                return;
+            }
+
+            let posts = JSON.parse(postData);
+
+            // postId를 가진 게시글을 찾습니다.
+            const postIndex = posts.posts.findIndex(post => post.id === parseInt(postId));
+            if (postIndex !== -1) {
+                // 새로운 댓글의 ID 설정
+                newCommentId = posts.posts[postIndex].comments.length + 1;
+
+                // 댓글을 해당 게시글의 댓글 목록에 추가합니다.
+                const newComment = {
+                    id: newCommentId,
+                    author: {
+                        profile_picture: loggedInUser.profile_picture,
+                        nickname: loggedInUser.nickname
+                    },
+                    date: currentDate,
+                    time: currentTime,
+                    content: content
+                };
+
+                posts.posts[postIndex].comments.push(newComment);
+
+                // 수정된 내용을 다시 JSON 파일에 씁니다.
+                fs.writeFile('backend/model/posts.json', JSON.stringify(posts, null, 4), 'utf8', (err) => {
+                    if (err) {
+                        console.error('Error writing file:', err);
+                        res.status(500).json({ success: false, error: 'Failed to write file' });
+                        return;
+                    }
+                    // 댓글 등록이 성공했음을 클라이언트에게 응답합니다.
+                    res.json({ success: true, updatedComments: posts.posts[postIndex].comments });
+                });
+            } else {
+                // 해당 postId를 가진 게시글을 찾지 못한 경우
+                res.status(404).json({ success: false, error: 'Post not found' });
+            }
+        });
     });
 });
+
+
+
 
 // 현재 날짜와 시간을 가져오는 함수
 function getCurrentDateTime() {
