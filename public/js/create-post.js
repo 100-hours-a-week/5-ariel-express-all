@@ -89,15 +89,14 @@ function createPost() {
     })
     .then(response => response.json())
     .then(data => {
-        // 서버에서의 응답 처리 (예: 성공 메시지 출력, 페이지 이동 등)
-        console.log(data);
+        // 게시글 작성 성공 후 페이지 이동
+        window.location.href = "list-of-posts";
     })
     .catch(error => {
         console.error('Error creating post:', error);
     });
-
-    window.location.href = "list-of-posts";
 }
+
 
 // 페이지 로드 시 실행되는 함수
 window.addEventListener("load", function() {

@@ -49,9 +49,10 @@ header {
 .post-author-profile, .comment-author-profile {
     width: 30px;
     height: 30px;
-    background-color: #D9D9D9;
-    border-radius: 50%;
+    background-color: #F4F5F7;
+    border-radius: 50%; /* 원형으로 프로필 이미지를 표시 */
     margin-bottom: 10px;
+    object-fit: cover;
 }
 
 .post-author-profile img {

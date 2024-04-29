@@ -111,7 +111,7 @@ function fetchComments(comments) {
     comments.forEach(comment => {
         const commentHTML = `
             <section class="current-comment-info">
-                <div class="comment-author-profile"><img src="${comment.author.profile_picture}" width="30px" height="30px"></div>
+                <div class="comment-author-profile"><img src="${comment.author.profile_picture}" style="border-radius: 50%; width: 30px; height: 30px;"></div>
                 <div class="author-name"><small><b>${comment.author.nickname}</b></small></div>
                 <div class="post-date"><small>${formatDateTime(comment.date, comment.time)}</small></div>
                 <div class="edit-buttons">
@@ -388,22 +388,10 @@ function registerComment() {
         // 수정된 댓글 내용과 함께 댓글 업데이트 함수를 호출합니다.
         updateComment(commentId, updatedCommentContent);
     } else {
-        // 기존의 댓글 등록 로직을 그대로 사용합니다.
-        // fetch('/backend/model/posts.json', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({ postId, content: inputComment.value }) // 새로운 댓글 내용과 게시글 ID를 전송
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //     fetchComments(data.posts.find(post => post.id === parseInt(postId)).comments);
-        // })
-        // .catch(error => console.error('Error registering comment:', error));
+        // 현재 로그인된 사용자의 정보 가져오기
+        const loggedInUserNickname = getLoggedInUserNickname();
+        const loggedInUserProfile = getLoggedInUserProfile();
 
-        // // 입력란 비우기
-        // inputComment.value = '';
         // 현재 시간을 가져오는 함수
         function getCurrentDateTime() {
             const now = new Date();
@@ -420,8 +408,8 @@ function registerComment() {
         const newComment = {
             id: null, // 서버에서 설정될 것이므로 일단 null로 설정
             author: {
-                profile_picture: "../../public/assets/images/user1.png",
-                nickname: "test"
+                profile_picture: loggedInUserProfile, // 현재 로그인된 사용자의 프로필 이미지
+                nickname: loggedInUserNickname // 현재 로그인된 사용자의 닉네임
             },
             date: getCurrentDateTime().split(' ')[0], // 현재 날짜
             time: getCurrentDateTime().split(' ')[1], // 현재 시간
@@ -450,10 +438,22 @@ function registerComment() {
             })
             .catch(error => console.error('Error registering comment:', error));
 
+        // 입력란 비우기
+        inputComment.value = '';
     }
 }
 
-// 날짜와 시간을 형식에 맞게 변환하는 함수
+// 현재 로그인된 사용자의 닉네임 가져오기
+function getLoggedInUserNickname() {
+    return document.cookie.replace(/(?:(?:^|.*;\s*)loggedInUserNickname\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+}
+
+// 현재 로그인된 사용자의 프로필 이미지 가져오기
+function getLoggedInUserProfile() {
+    return document.cookie.replace(/(?:(?:^|.*;\s*)loggedInUserProfile\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+}
+
+
 function formatDateTime(date, time) {
     // 날짜와 시간을 공백으로 구분하여 ISO 8601 형식의 문자열로 변환
     const isoDateTimeString = `${date}T${time}`;
@@ -463,8 +463,16 @@ function formatDateTime(date, time) {
         return '';
     }
     // ISO 8601 형식에서 시간 정보를 추출하여 반환
-    return dateTime.toISOString().slice(0, 19).replace('T', ' ');
+    const year = dateTime.getFullYear();
+    const month = String(dateTime.getMonth() + 1).padStart(2, '0');
+    const day = String(dateTime.getDate()).padStart(2, '0');
+    const hours = String(dateTime.getHours()).padStart(2, '0');
+    const minutes = String(dateTime.getMinutes()).padStart(2, '0');
+    const seconds = String(dateTime.getSeconds()).padStart(2, '0');
+    // YYYY-MM-DD HH:MM:SS 형식으로 반환
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
+
 
 
 function showToast(message) {
