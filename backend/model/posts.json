@@ -52,7 +52,7 @@
                     },
                     "date": "2024-04-29",
                     "time": "10:30:09",
-                    "content": "쪼아"
+                    "content": "쪼아쪼아"
                 }
             ]
         },
@@ -89,6 +89,16 @@
                     "date": "2024-04-29",
                     "time": "17:14:57",
                     "content": "날 사랑했잖아 원했었잖아"
+                },
+                {
+                    "id": 3,
+                    "author": {
+                        "profile_picture": "http://localhost:3001/uploads/d74b63018570b61f59f9fc8a722a7da0",
+                        "nickname": "apple"
+                    },
+                    "date": "2024-04-30",
+                    "time": "14:24:25",
+                    "content": "과연!!"
                 }
             ]
         },
@@ -282,42 +292,6 @@
         },
         {
             "id": 6,
-            "title": "ㅁ",
-            "author": {
-                "profile_picture": "http://localhost:3001/images/user2.png",
-                "nickname": "test"
-            },
-            "date": "2024-04-29",
-            "time": "17:39:24",
-            "image": null,
-            "content": "ㅇ",
-            "likes": 0,
-            "views": 0,
-            "comments": [
-                {
-                    "id": 1,
-                    "author": {
-                        "profile_picture": "http://localhost:3001/uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
-                        "nickname": "인어공주"
-                    },
-                    "date": "2024-04-29",
-                    "time": "17:39:36",
-                    "content": "ㅗㅑ"
-                },
-                {
-                    "id": 2,
-                    "author": {
-                        "profile_picture": "http://localhost:3001/uploads/3343d949fe0ca32acb400b0a107f6182",
-                        "nickname": "test22"
-                    },
-                    "date": "2024-04-29",
-                    "time": "17:53:33",
-                    "content": "엥"
-                }
-            ]
-        },
-        {
-            "id": 7,
             "title": "test",
             "author": {
                 "profile_picture": "http://localhost:3001/uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
@@ -353,7 +327,7 @@
             ]
         },
         {
-            "id": 8,
+            "id": 7,
             "title": "저 예 요",
             "author": {
                 "profile_picture": "http://localhost:3001/uploads/dc572a1cf738d2bf645513019745cfc3",
@@ -366,6 +340,32 @@
             "likes": 0,
             "views": 0,
             "comments": []
+        },
+        {
+            "id": 8,
+            "title": "안녕하시오리까",
+            "author": {
+                "profile_picture": "http://localhost:3001/uploads/d74b63018570b61f59f9fc8a722a7da0",
+                "nickname": "apple"
+            },
+            "date": "2024-04-30",
+            "time": "14:26:21",
+            "image": "http://localhost:3001/uploads/d1ee9e8f0fa088252531851e2a487b0e",
+            "content": "사과예여",
+            "likes": 0,
+            "views": 0,
+            "comments": [
+                {
+                    "id": 1,
+                    "author": {
+                        "profile_picture": "http://localhost:3001/uploads/d74b63018570b61f59f9fc8a722a7da0",
+                        "nickname": "apple"
+                    },
+                    "date": "2024-04-30",
+                    "time": "14:26:55",
+                    "content": "어? 나다"
+                }
+            ]
         }
     ]
 }

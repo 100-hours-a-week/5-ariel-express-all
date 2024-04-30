@@ -79,10 +79,23 @@ function formatNumber(number) {
     }
 }
 
-// 날짜와 시간을 형식에 맞게 변환하는 함수
 function formatDateTime(date, time) {
-    const dateTime = new Date(date + 'T' + time);
-    return dateTime.toISOString().slice(0, 19).replace('T', ' ');
+    // 날짜와 시간을 공백으로 구분하여 ISO 8601 형식의 문자열로 변환
+    const isoDateTimeString = `${date}T${time}`;
+    const dateTime = new Date(isoDateTimeString);
+    // 만약 날짜와 시간이 유효하지 않다면 빈 문자열 반환
+    if (isNaN(dateTime.getTime())) {
+        return '';
+    }
+    // ISO 8601 형식에서 시간 정보를 추출하여 반환
+    const year = dateTime.getFullYear();
+    const month = String(dateTime.getMonth() + 1).padStart(2, '0');
+    const day = String(dateTime.getDate()).padStart(2, '0');
+    const hours = String(dateTime.getHours()).padStart(2, '0');
+    const minutes = String(dateTime.getMinutes()).padStart(2, '0');
+    const seconds = String(dateTime.getSeconds()).padStart(2, '0');
+    // YYYY-MM-DD HH:MM:SS 형식으로 반환
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
 // posts.json fetch

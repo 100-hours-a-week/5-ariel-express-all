@@ -387,6 +387,7 @@ function registerComment() {
 
         // 서버에 새로운 댓글 등록 요청 보내기
         fetch('http://localhost:3001/add-comment', {
+            credentials: 'include',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

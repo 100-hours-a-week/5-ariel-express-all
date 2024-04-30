@@ -296,7 +296,7 @@ app.post('/add-comment', (req, res) => {
                 const newComment = {
                     id: newCommentId,
                     author: {
-                        profile_picture: loggedInUser.profile_picture,
+                        profile_picture: getServerUrl(req) + '/' + loggedInUser.profile_picture,
                         nickname: loggedInUser.nickname
                     },
                     date: currentDate,
@@ -419,7 +419,7 @@ app.post('/create-post', upload.single('image'), (req, res) => {
                 id: posts.posts.length + 1, // 현재 게시글 개수 + 1
                 title: title,
                 author: {
-                    profile_picture: loggedInUser.profile_picture,
+                    profile_picture: getServerUrl(req) + '/' + loggedInUser.profile_picture,
                     nickname: loggedInUser.nickname
                 },
                 date: currentDate,

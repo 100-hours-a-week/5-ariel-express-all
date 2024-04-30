@@ -130,6 +130,7 @@ async function updatePassword() {
         // 서버로 비밀번호 업데이트 요청 전송
         try {
             const response = await fetch('http://localhost:3001/update-password', {
+                credentials: 'include',
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

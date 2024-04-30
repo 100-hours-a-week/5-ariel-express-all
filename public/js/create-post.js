@@ -84,6 +84,7 @@ function createPost() {
 
     // 서버에 새 게시글 정보 전송
     fetch('http://localhost:3001/create-post', {
+        credentials: 'include',
         method: 'POST',
         body: formData
     })
