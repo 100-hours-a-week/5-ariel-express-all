@@ -93,19 +93,9 @@ fetch('http://localhost:3001/posts')
 
 // 페이지 로드 시 실행되는 함수
 window.addEventListener("load", function() {
-    // 새로고침을 통해 쿠키를 새로 로드
-    //location.reload();
-
-    // 쿠키 가져오기
-    const cookie = decodeURIComponent(document.cookie); // 쿠키 값을 수동으로 디코딩합니다.
-
-    console.log(`내가 만든 쿠키~ ${cookie}`);
-
     // 서버에 요청을 보낼 때 쿠키를 포함시켜서 전송
     fetch('http://localhost:3001/get-profile-image', {
-        headers: {
-            "Cookie": cookie // 현재 페이지의 쿠키를 서버에 전달
-        }
+        credentials: 'include' // 쿠키를 서버에 포함시키도록 설정
     })
     .then(response => response.json()) // 응답을 JSON으로 변환
     .then(data => {
@@ -120,6 +110,3 @@ window.addEventListener("load", function() {
         console.error("Error:", error);
     });
 });
-
-
-

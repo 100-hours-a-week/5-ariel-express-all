@@ -106,8 +106,12 @@ app.get('/list-of-posts', (req, res) => {
     res.sendFile(path.join(publicPath, 'html', 'list-of-posts.html'));
 });
 
-// 게시글 목록 페이지에서 프사 요청
 // 서버 코드
+// 서버가 호스팅하는 URL을 가져오는 함수
+function getServerUrl(req) {
+    return req.protocol + '://' + req.get('host');
+}
+
 // 게시글 목록 페이지에서 프사 요청
 app.get('/get-profile-image', (req, res) => {
     // 쿠키에서 현재 로그인한 이메일 정보를 읽어옴
@@ -127,7 +131,7 @@ app.get('/get-profile-image', (req, res) => {
             const currentUser = users.find(user => user.email === loggedInUser);
             if (currentUser) {
                 // 현재 로그인한 사용자의 프로필 이미지 경로를 생성
-                const profileImagePath = currentUser.profile_picture;
+                const profileImagePath = getServerUrl(req) + '/' + currentUser.profile_picture;
                 console.log(`현재 로그인한 사용자 프사 경로: ${profileImagePath}`);
 
                 // JSON 형식으로 프로필 이미지 경로를 클라이언트에게 전달
@@ -143,6 +147,7 @@ app.get('/get-profile-image', (req, res) => {
         res.status(200).json({ profileImagePath: 'http://localhost:3001/images/profile-image.png' }); // 예: 기본 이미지를 제공하거나 다른 처리를 수행할 수 있음
     }
 });
+
 
 
 // DELETE 요청 처리: 게시글 삭제
@@ -537,7 +542,7 @@ app.post('/update-profile', upload.single('profileImage'), (req, res) => {
     const newNickname = req.body.newNickname;
     const profileImage = req.file; // 업로드된 프로필 이미지 파일
 
-    console.log(`회원 정보 수정 페이지! 새 닉네임: ${newNickname}, 프로필 이미지: ${profileImage}`);
+    console.log(`회원 정보 수정 페이지! 로그인된 사용자 이메일: ${loggedInUser}, 새 닉네임: ${newNickname}, 프로필 이미지: ${profileImage.path}`);
 
     fs.readFile(usersJsonPath, 'utf8', (err, data) => {
         if (err) {
@@ -549,6 +554,7 @@ app.post('/update-profile', upload.single('profileImage'), (req, res) => {
         let users = JSON.parse(data);
 
         const userIndex = users.findIndex(user => user.email === loggedInUser);
+        console.log(`userIndex: ${userIndex}`);
         if (userIndex !== -1) {
             users[userIndex].nickname = newNickname;
 
@@ -558,6 +564,8 @@ app.post('/update-profile', upload.single('profileImage'), (req, res) => {
                 // 여기서는 파일의 경로를 바로 저장합니다.
                 users[userIndex].profile_picture = profileImage.path;
             }
+
+            console.log(`변경된 유저: ${users}`);
 
             fs.writeFile(usersJsonPath, JSON.stringify(users, null, 4), 'utf8', (err) => {
                 if (err) {
@@ -572,6 +580,7 @@ app.post('/update-profile', upload.single('profileImage'), (req, res) => {
         }
     });
 });
+
 
 // DELETE 요청을 처리하는 엔드포인트
 app.delete('/withdraw', (req, res) => {
@@ -636,7 +645,7 @@ app.listen(3001, () => {
 
 //     console.log(`회원 정보 수정 페이지! 새 닉네임: ${newNickname}, 프로필 이미지: ${profileImage.path}`);
 
-//     fs.readFile('backend/model/users.json', 'utf8', (err, data) => {
+//     fs.readFile(usersJsonPath, 'utf8', (err, data) => {
 //         if (err) {
 //             console.error('Error reading file:', err);
 //             res.status(500).json({ success: false, error: 'Failed to read file' });
@@ -655,7 +664,7 @@ app.listen(3001, () => {
 //                 users[userIndex].profile_picture.path = profileImage.path;
 //             }
 
-//             fs.writeFile('backend/model/users.json', JSON.stringify(users, null, 4), 'utf8', (err) => {
+//             fs.writeFile(usersJsonPath, JSON.stringify(users, null, 4), 'utf8', (err) => {
 //                 if (err) {
 //                     console.error('Error writing file:', err);
 //                     res.status(500).json({ success: false, error: 'Failed to write file' });

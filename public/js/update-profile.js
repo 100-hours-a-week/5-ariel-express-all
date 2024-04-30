@@ -89,7 +89,8 @@ async function updateProfile() {
         try {
             const response = await fetch('http://localhost:3001/update-profile', {
                 method: 'POST',
-                body: formData
+                body: formData,
+                credentials: 'include'
             });
             const data = await response.json();
             if (data.success) {
@@ -190,21 +191,23 @@ async function confirmWithdraw() {
     }
 }
 
-// 페이지 로드 시 실행되는 함수
 window.addEventListener("load", function() {
-    fetch('http://localhost:3001/get-profile-image') // 서버에 요청을 보냄
-        .then(response => response.json()) // 응답을 JSON으로 변환
-        .then(data => {
-            // 서버에서 전달받은 프로필 이미지 경로를 콘솔에 출력
-            console.log("서버에서 전달받은 profileImagePath:", data.profileImagePath);
+    // 서버에 요청을 보낼 때 쿠키를 포함시켜서 전송
+    fetch('http://localhost:3001/get-profile-image', {
+        credentials: 'include' // 쿠키를 서버에 포함시키도록 설정
+    })
+    .then(response => response.json()) // 응답을 JSON으로 변환
+    .then(data => {
+        // 서버에서 전달받은 프로필 이미지 경로를 콘솔에 출력
+        console.log("서버에서 전달받은 profileImagePath:", data.profileImagePath);
 
-            // 프로필 이미지를 업데이트
-            const userProfileImage = document.getElementById("userProfileImage");
-            const profileImage = document.getElementById("profileImage");
-            userProfileImage.src = data.profileImagePath;
-            profileImage.src = data.profileImagePath;
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
+        // 프로필 이미지를 업데이트
+        const userProfileImage = document.getElementById("userProfileImage");
+        const profileImage = document.getElementById("profileImage");
+        userProfileImage.src = data.profileImagePath;
+        profileImage.src = data.profileImagePath;
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
 });
