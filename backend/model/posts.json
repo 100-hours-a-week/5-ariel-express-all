@@ -4,12 +4,12 @@
             "id": 1,
             "title": "Hollywood",
             "author": {
-                "profile_picture": "../../public/assets/images/author1.webp",
+                "profile_picture": "http://localhost:3001/images/author1.webp",
                 "nickname": "검정치마"
             },
             "date": "2024-04-15",
             "time": "12:00",
-            "image": "uploads/af90a4398ba3f539e2e7fdb1f0277375",
+            "image": "http://localhost:3001/uploads/fded9f484877dbda1e236aa1807b50e2",
             "content": "오 지금 밟고 있는 땅이 꺼질 것만 같아 내 손을 놓는 순간 녹아 없어질걸요 넌 영화 속에 살고 그런 너를 지켜보네 조명을 내려줘요 잔털 하나 없는 너의 가느다란 목에 숨 쉴 때 나 몸이 떨려와 그 만큼이나 좋아 하얀 마음 때 묻으면 안 되니까 사랑해줘요 처음만 있구요 끝은 아득하네요 Baby I just don't know what to say You were my dream and now it all feels so real You're real, yeah Heavy drinks and light hearted jokes Quit my day job just to stay up all night with you We are going to Hollywood and never coming back, coming back Maybe we'll turn to gold 붉은 머리칼이 일렁이며 내게 손짓했어요 겁내지 말라고 어서 뛰어들래요 타버리면 어때요 다 바스러져 없어질 텐데 나 안 돌아가 여기 남겨두세요 오오오 Don't stop action friction Live in a fiction baby Hollywood Don't stop action friction Live in a fiction baby Hollywood",
             "likes": 1530,
             "views": 20000,
@@ -17,7 +17,7 @@
                 {
                     "id": 1,
                     "author": {
-                        "profile_picture": "../../public/assets/images/user2.png",
+                        "profile_picture": "http://localhost:3001/images/user2.png",
                         "nickname": "빨강치마"
                     },
                     "date": "2024-04-15",
@@ -27,7 +27,7 @@
                 {
                     "id": 2,
                     "author": {
-                        "profile_picture": "../../public/assets/images/user3.png",
+                        "profile_picture": "http://localhost:3001/images/user3.png",
                         "nickname": "뮤직이즈마이라이프"
                     },
                     "date": "2024-04-15",
@@ -37,7 +37,7 @@
                 {
                     "id": 3,
                     "author": {
-                        "profile_picture": "../../public/assets/images/user1.png",
+                        "profile_picture": "http://localhost:3001/images/user1.png",
                         "nickname": "test"
                     },
                     "date": "2024-04-26",
@@ -47,12 +47,12 @@
                 {
                     "id": 4,
                     "author": {
-                        "profile_picture": "uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
+                        "profile_picture": "http://localhost:3001/uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
                         "nickname": "인어공주"
                     },
                     "date": "2024-04-29",
                     "time": "10:30:09",
-                    "content": "ㅎㅎㅎ"
+                    "content": "쪼아"
                 }
             ]
         },
@@ -60,12 +60,12 @@
             "id": 2,
             "title": "내가 할 수 없는 말",
             "author": {
-                "profile_picture": "../../public/assets/images/author2.jpg",
+                "profile_picture": "http://localhost:3001/images/author2.jpg",
                 "nickname": "양다일"
             },
             "date": "2024-04-16",
             "time": "10:00",
-            "image": "uploads/f9e23fc49853646e54a41335e2549efd",
+            "image": "http://localhost:3001/uploads/f9e23fc49853646e54a41335e2549efd",
             "content": "끝인 걸 알아 아마도 오늘이겠지 듣기 싫은 말 애써 준비한 걸 알아 어쩌면 우린 서툰 시작이라고 바라만 봐야 아름다웠을 거라고 수 없는 이별을 말하면서 왜 너의 진심은 없는 거야 날 사랑했잖아 원했었잖아 뜨겁게 날 안았던 너잖아 날 떠날 거라면 끝인거라면 오늘이 가기 전에 말해줘 내가 할 수 없는 말 더 이상 너에게 의미 없는 걸 알아 시간이 지나 또 후회할지도 몰라 사랑했잖아 수없이 말했었는데 믿었었는데 고작 이거야 날 사랑했잖아 원했었잖아 뜨겁게 날 안았던 너잖아 날 떠날 거라면 끝인 거라면 오늘이 가기 전에 말해줘 바라만 봐도 설렜던 날 잊지 말아 줘 끝인 거라면 니가 말해줘 날 사랑했잖아 원했었잖아 뜨겁게 날 안았던 너잖아 다 끝인 거라고 돌아간대도 결국엔 같을 거라 애써 외면하는 너잖아 어렵게 꺼낸 너도 힘들었겠지 마지막 인사도 못했는데 안녕",
             "likes": 9,
             "views": 50,
@@ -73,7 +73,7 @@
                 {
                     "id": 1,
                     "author": {
-                        "profile_picture": "../../public/assets/images/user1.png",
+                        "profile_picture": "http://localhost:3001/images/user1.png",
                         "nickname": "발라드러버"
                     },
                     "date": "2024-04-16",
@@ -83,7 +83,7 @@
                 {
                     "id": 2,
                     "author": {
-                        "profile_picture": "uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
+                        "profile_picture": "http://localhost:3001/uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
                         "nickname": "인어공주"
                     },
                     "date": "2024-04-29",
@@ -96,12 +96,12 @@
             "id": 3,
             "title": "민들레 (full ver.)",
             "author": {
-                "profile_picture": "../../public/assets/images/author3.jpg",
+                "profile_picture": "http://localhost:3001/images/author3.jpg",
                 "nickname": "우효"
             },
             "date": "2024-04-16",
             "time": "19:03",
-            "image": "../../public/assets/images/post3.jpeg",
+            "image": "http://localhost:3001/images/post3.jpeg",
             "content": "우리 손 잡을까요 지난날은 다 잊어버리고 나를 사랑한다고 말해주세요 우리 동네에 가요 편한 미소를 지어 주세요 노란 꽃잎처럼 내 맘에 사뿐히 내려앉도록 바람결에 스쳐 갈까 내 마음에 심어질까 무심코 내딛는 걸음에 아파하며 돌아설까 구겨진 잎사귀라도 예쁜 책에 꽂아놓고 너에게 주고만 싶어요 사랑을 말하고 싶어 사랑해요 그대 있는 모습 그대로 너의 모든 눈물 닦아주고 싶어 어서 와요 그대 매일 기다려요 나 웃을게요 많이 그대를 위해 많이 많이 웃을게요 우리 손 잡을까요 (널 얼마나 사랑하는데) 오늘은 안아줘요 (널 얼마나 기다렸는데) 이제는 춤을 춰요 (왜 왜 자꾸 멀어지려 해) 우리 동네에 가요 (왜 왜 자꾸 놓아주려 해) 놓아주려 해 바람처럼 사라질까 내 마음을 채워줄까 시간마저 쉴 수 있는 나의 집이 되어줄까 빗물이 나를 적시고 눈앞을 흐리게 해도 나는 너를 보고 싶어요 너와 함께 하고 싶어 사랑해요 그대 있는 모습 그대로 너의 모든 시간 함께 하고 싶어 어서 와요 그대 같이 걸어가요 웃게 해줄게요 더 웃게 해줄게요 영원히",
             "likes": 19,
             "views": 232,
@@ -109,7 +109,7 @@
                 {
                     "id": 1,
                     "author": {
-                        "profile_picture": "../../public/assets/images/user1.png",
+                        "profile_picture": "http://localhost:3001/images/user1.png",
                         "nickname": "flower"
                     },
                     "date": "2024-04-16",
@@ -119,7 +119,7 @@
                 {
                     "id": 2,
                     "author": {
-                        "profile_picture": "../../public/assets/images/user4.png",
+                        "profile_picture": "http://localhost:3001/images/user4.png",
                         "nickname": "리종인"
                     },
                     "date": "2024-04-17",
@@ -129,7 +129,7 @@
                 {
                     "id": 3,
                     "author": {
-                        "profile_picture": "../../public/assets/images/user5.png",
+                        "profile_picture": "http://localhost:3001/images/user5.png",
                         "nickname": "비눗물"
                     },
                     "date": "2024-04-17",
@@ -139,7 +139,7 @@
                 {
                     "id": 4,
                     "author": {
-                        "profile_picture": "uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
+                        "profile_picture": "http://localhost:3001/uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
                         "nickname": "인어공주"
                     },
                     "date": "2024-04-29",
@@ -152,12 +152,12 @@
             "id": 4,
             "title": "Instant Lover",
             "author": {
-                "profile_picture": "../../public/assets/images/author4.jpg",
+                "profile_picture": "http://localhost:3001/images/author4.jpg",
                 "nickname": "알레프"
             },
             "date": "2024-04-16",
             "time": "22:30",
-            "image": "../../public/assets/images/post4.jpeg",
+            "image": "http://localhost:3001/images/post4.jpeg",
             "content": "What are we Just an Instant Lover 쉽게 사랑하고 쉽게 헤어지는 What are we Just a part time Lover I hope you don't mind I hope you don't mind I hope you don't mind 나 할 말 있어 내가 잘못했어 참 미안해 그래도 나 이제 떠나야 해 순간의 진심으로 대해서 미안해 그래도 나 진심이야 정말 행복했어 순간의 진심도 사랑이라 말해준 널 사랑해 널 좋아해 이제 그만 갈게 Why do we Want a happy ending 멋진 사랑하고 미련 없이 가는 What are we Just an Instant lover I hope you don't mind I hope you don't mind I hope you don't mind 나 할 말 있어 내가 잘못했어 참 미안해 그래도 나 이제 떠나야 해 순간의 진심으로 대해서 미안해 그래도 나 진심이야 정말 행복했어 순간의 진심도 사랑이라 말해준 널 사랑해 참 좋아해 이제 그만 갈게 우린 사랑이야 사랑이니 이만 새 사랑하자 순간의 진심으로 대해서 미안해 그래도 나 진심이야 정말 행복했어 순간의 진심도 사랑이라 말해준 널 사랑해 참 좋아해 이제 그만 갈게 Goodbye My Love",
             "likes": 21,
             "views": 250,
@@ -165,7 +165,7 @@
                 {
                     "id": 1,
                     "author": {
-                        "profile_picture": "../../public/assets/images/user1.png",
+                        "profile_picture": "http://localhost:3001/images/user1.png",
                         "nickname": "좋아해요다"
                     },
                     "date": "2024-04-17",
@@ -175,7 +175,7 @@
                 {
                     "id": 2,
                     "author": {
-                        "profile_picture": "../../public/assets/images/user2.png",
+                        "profile_picture": "http://localhost:3001/images/user2.png",
                         "nickname": "윤히네"
                     },
                     "date": "2024-04-17",
@@ -185,7 +185,7 @@
                 {
                     "id": 3,
                     "author": {
-                        "profile_picture": "../../public/assets/images/user3.png",
+                        "profile_picture": "http://localhost:3001/images/user3.png",
                         "nickname": "llii"
                     },
                     "date": "2024-04-17",
@@ -195,7 +195,7 @@
                 {
                     "id": 4,
                     "author": {
-                        "profile_picture": "../../public/assets/images/user4.png",
+                        "profile_picture": "http://localhost:3001/images/user4.png",
                         "nickname": "기타징징"
                     },
                     "date": "2024-04-18",
@@ -205,7 +205,7 @@
                 {
                     "id": 3,
                     "author": {
-                        "profile_picture": "../../public/assets/images/user5.png",
+                        "profile_picture": "http://localhost:3001/images/user5.png",
                         "nickname": "gomyammi"
                     },
                     "date": "2024-04-19",
@@ -215,7 +215,7 @@
                 {
                     "id": 6,
                     "author": {
-                        "profile_picture": "../../public/assets/images/user1.png",
+                        "profile_picture": "http://localhost:3001/images/user1.png",
                         "nickname": "test"
                     },
                     "date": "2024-04-25",
@@ -228,12 +228,12 @@
             "id": 5,
             "title": "Kill Me Tonight",
             "author": {
-                "profile_picture": "../../public/assets/images/author5.jpg",
+                "profile_picture": "http://localhost:3001/images/author5.jpg",
                 "nickname": "ASH ISLAND"
             },
             "date": "2024-04-17",
             "time": "00:17",
-            "image": "../../public/assets/images/post5.jpeg",
+            "image": "http://localhost:3001/images/post5.jpeg",
             "content": "Anybody? Is there anybody I'm not gonna liyin 사라질래 이 밤에 그게 내게 덜 무섭겠어 아마도 아니면 내가 먼저 널 찾을 것만 같아 이건 알아둬 Fuck everything you're sayin' am I wrong? 내 눈엔 전부 아니라서 Yeah 이해시키던가 아님 죽여줘 제발 나는 하나만을 원해 저 달 아래 Oh I just wanna anybody kill me tonight Yeah I just wanna anybody kill me tonight Oh I just wanna anybody Kill me tonight (Tonight) Oh I just wanna anybody kill me tonight Yeah I just wanna anybody kill me tonight Oh I just wanna anybody Kill me tonight (Tonight) Killin me softly nobody know me 아무도 몰라 내 기분 나 혼자 노트에다가 적지 창문 밖을 봐 난 Right now 뻔하겠지만 다 Right now 내가 봤던 건 다 꿈은 아니었어 꿈은 아니겠지만 난 눈을 감았어 너도 똑같았지만 싫지는 않았어 내 숨이 멎으면 그땐 내 손을 잡아줘 Fuck everything you're sayin' am I wrong? 내 눈엔 전부 아니라서 Yeah 이해시키던가 아님 죽여줘 제발 나는 하나만을 원해 저 달 아래 Oh I just wanna anybody kill me tonight Yeah I just wanna anybody kill me tonight Oh I just wanna anybody Kill me tonight (Tonight) Oh I just wanna anybody kill me tonight Yeah I just wanna anybody kill me tonight Oh I just wanna anybody Kill me tonight (Tonight) Tonight Tonight",
             "likes": 11,
             "views": 133,
@@ -241,7 +241,7 @@
                 {
                     "id": 1,
                     "author": {
-                        "profile_picture": "../../public/assets/images/user1.png",
+                        "profile_picture": "http://localhost:3001/images/user1.png",
                         "nickname": "e__n"
                     },
                     "date": "2024-04-17",
@@ -251,7 +251,7 @@
                 {
                     "id": 2,
                     "author": {
-                        "profile_picture": "../../public/assets/images/user2.png",
+                        "profile_picture": "http://localhost:3001/images/user2.png",
                         "nickname": "우어ㅏㅇ왕"
                     },
                     "date": "2024-04-18",
@@ -261,7 +261,7 @@
                 {
                     "id": 3,
                     "author": {
-                        "profile_picture": "../../public/assets/images/user3.png",
+                        "profile_picture": "http://localhost:3001/images/user3.png",
                         "nickname": "뜽아아앙"
                     },
                     "date": "2024-04-18",
@@ -271,7 +271,7 @@
                 {
                     "id": 4,
                     "author": {
-                        "profile_picture": "../../public/assets/images/user4.png",
+                        "profile_picture": "http://localhost:3001/images/user4.png",
                         "nickname": "포니뀨잉"
                     },
                     "date": "2024-04-19",
@@ -284,7 +284,7 @@
             "id": 6,
             "title": "ㅁ",
             "author": {
-                "profile_picture": "../../public/assets/images/user2.png",
+                "profile_picture": "http://localhost:3001/images/user2.png",
                 "nickname": "test"
             },
             "date": "2024-04-29",
@@ -297,7 +297,7 @@
                 {
                     "id": 1,
                     "author": {
-                        "profile_picture": "uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
+                        "profile_picture": "http://localhost:3001/uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
                         "nickname": "인어공주"
                     },
                     "date": "2024-04-29",
@@ -307,7 +307,7 @@
                 {
                     "id": 2,
                     "author": {
-                        "profile_picture": "uploads/3343d949fe0ca32acb400b0a107f6182",
+                        "profile_picture": "http://localhost:3001/uploads/3343d949fe0ca32acb400b0a107f6182",
                         "nickname": "test22"
                     },
                     "date": "2024-04-29",
@@ -320,12 +320,12 @@
             "id": 7,
             "title": "test",
             "author": {
-                "profile_picture": "uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
+                "profile_picture": "http://localhost:3001/uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
                 "nickname": "인어공주"
             },
             "date": "2024-04-29",
             "time": "20:44:46",
-            "image": "uploads/371a1a16e7081219f89799ac470e8969",
+            "image": "http://localhost:3001/uploads/371a1a16e7081219f89799ac470e8969",
             "content": "사진도 올라가셈요!!!",
             "likes": 0,
             "views": 0,
@@ -333,7 +333,7 @@
                 {
                     "id": 1,
                     "author": {
-                        "profile_picture": "uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
+                        "profile_picture": "http://localhost:3001/uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
                         "nickname": "인어공주"
                     },
                     "date": "2024-04-29",
@@ -343,7 +343,7 @@
                 {
                     "id": 2,
                     "author": {
-                        "profile_picture": "uploads/dc572a1cf738d2bf645513019745cfc3",
+                        "profile_picture": "http://localhost:3001/uploads/dc572a1cf738d2bf645513019745cfc3",
                         "nickname": "yeji"
                     },
                     "date": "2024-04-29",
@@ -356,7 +356,7 @@
             "id": 8,
             "title": "저 예 요",
             "author": {
-                "profile_picture": "uploads/dc572a1cf738d2bf645513019745cfc3",
+                "profile_picture": "http://localhost:3001/uploads/dc572a1cf738d2bf645513019745cfc3",
                 "nickname": "yeji"
             },
             "date": "2024-04-29",

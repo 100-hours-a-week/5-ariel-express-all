@@ -86,28 +86,40 @@ function formatDateTime(date, time) {
 }
 
 // posts.json fetch
-fetch('/backend/model/posts.json')
+fetch('http://localhost:3001/posts')
     .then(response => response.json())
     .then(data => renderPosts(data.posts))
     .catch(error => console.error('Error fetching posts:', error));
 
 // 페이지 로드 시 실행되는 함수
 window.addEventListener("load", function() {
-    fetch('/get-profile-image') // 서버에 요청을 보냄
-        .then(response => response.json()) // 응답을 JSON으로 변환
-        .then(data => {
-            // 서버에서 전달받은 프로필 이미지 경로를 콘솔에 출력
-            console.log("서버에서 전달받은 profileImagePath:", data.profileImagePath);
+    // 새로고침을 통해 쿠키를 새로 로드
+    //location.reload();
 
-            // 프로필 이미지를 업데이트
-            const userProfileImage = document.getElementById("userProfileImage");
-            userProfileImage.src = data.profileImagePath;
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
+    // 쿠키 가져오기
+    const cookie = decodeURIComponent(document.cookie); // 쿠키 값을 수동으로 디코딩합니다.
+
+    console.log(`내가 만든 쿠키~ ${cookie}`);
+
+    // 서버에 요청을 보낼 때 쿠키를 포함시켜서 전송
+    fetch('http://localhost:3001/get-profile-image', {
+        headers: {
+            "Cookie": cookie // 현재 페이지의 쿠키를 서버에 전달
+        }
+    })
+    .then(response => response.json()) // 응답을 JSON으로 변환
+    .then(data => {
+        // 서버에서 전달받은 프로필 이미지 경로를 콘솔에 출력
+        console.log("서버에서 전달받은 profileImagePath:", data.profileImagePath);
+
+        // 프로필 이미지를 업데이트
+        const userProfileImage = document.getElementById("userProfileImage");
+        userProfileImage.src = data.profileImagePath;
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
 });
-
 
 
 

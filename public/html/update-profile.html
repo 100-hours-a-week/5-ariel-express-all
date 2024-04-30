@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/public/css/update-profile.css">
+    <link rel="stylesheet" type="text/css" href="/css/update-profile.css">
     <title>회원정보수정</title>
 </head>
 
 <body>
     <header>
-        <img src="/public/assets/images/title.png" class="title-image" alt="title-image">
+        <img src="/assets/images/title.png" class="title-image" alt="title-image">
         <div class="dropdown">
-            <img src="/public/assets/images/profile-image.png" class="profile-image" alt="profile-image" id="userProfileImage" onclick="toggleDropdown()">
+            <img src="/assets/images/profile-image.png" class="profile-image" alt="profile-image" id="userProfileImage" onclick="toggleDropdown()">
             <div class="dropdown-content" id="dropdownContent">
                 <a href="update-profile">회원정보수정</a>
                 <a href="update-password">비밀번호수정</a>
@@ -27,7 +27,7 @@
             <p class="input-titles"><b>프로필 사진*</b></p>
 
             <label class="profile-image-button">
-                <img id="profileImage" src="/public/assets/images/modify-profile-image.png" class="modify-profile-image"
+                <img id="profileImage" src="/assets/images/modify-profile-image.png" class="modify-profile-image"
                     alt="modify-profile-image">
                 <input id="profileImageInput" type="file" accept="image/*" style="display: none;">
             </label>
@@ -57,7 +57,7 @@
     <!-- 회원 정보 수정 토스트 메시지 -->
     <div id="toastMessage">Message</div>
 
-    <script src="/public/js/update-profile.js"></script>
+    <script src="/js/update-profile.js"></script>
 
 </body>
 

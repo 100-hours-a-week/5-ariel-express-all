@@ -50,7 +50,7 @@ async function validateEmail(tf) {
         return false;
     } else {
         try {
-            const response = await fetch("/backend/model/users.json"); // 사용자 정보 fetch
+            const response = await fetch("http://localhost:3001/users"); // 사용자 정보 fetch
             const data = await response.json();
             const existingEmail = data.find(user => user.email === emailValue);
             if (existingEmail) {
@@ -177,7 +177,7 @@ async function validateNickname(tf) {
         return false;
     } else {
         try {
-            const response = await fetch("/backend/model/users.json");// 사용자 정보 fetch
+            const response = await fetch("http://localhost:3001/users");// 사용자 정보 fetch
             const data = await response.json();
             const existingNickname = data.find(user => user.nickname === nicknameValue);
             if (existingNickname) {

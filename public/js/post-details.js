@@ -90,7 +90,7 @@ function renderPostDetails(post) {
 // 게시글 ID를 가져와서 해당 게시글 정보를 요청하는 함수
 function fetchPostDetails() {
     const postId = getPostIdFromUrl(); // 게시글 id를 가져옴
-    fetch('/backend/model/posts.json') // 게시글 정보 fetch
+    fetch('http://localhost:3001/posts') // 게시글 정보 fetch
         .then(response => response.json())
         .then(data => {
             const post = data.posts.find(post => post.id === parseInt(postId));
@@ -214,7 +214,7 @@ function confirmDeletePost() {
     const postId = getPostIdFromUrl(); // 게시글 ID 가져오기
 
     // 삭제 요청을 보냄
-    fetch('/delete-post', {
+    fetch('http://localhost:3001/delete-post', {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
@@ -249,7 +249,7 @@ function confirmDeleteComment(postId) {
     const deleteButton = document.getElementById('deleteCommentButton');
     deleteButton.onclick = function () {
         // 서버에 해당 댓글을 삭제하는 요청을 보냄
-        fetch('/delete-comment', {
+        fetch('http://localhost:3001/delete-comment', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -294,41 +294,10 @@ function editComment(commentId, commentContent) {
     };
 }
 
-
-// 댓글 업데이트
-// function updateComment(postId, commentId, updatedCommentContent) {
-//     // 댓글 업데이트 로직 추가
-//     const commentListSpace = document.querySelector('.comment-list-space');
-//     const commentToUpdate = commentListSpace.querySelector(`[data-comment-id="${commentId}"]`);
-
-
-//     // 댓글 업데이트 API 호출 및 성공 시 댓글 목록 다시 렌더링
-//     // 예시로 fetch를 사용하며, 실제로는 백엔드와의 통신 로직에 맞게 수정 필요
-//     // fetch('/update-comment', {
-//     //     method: 'PUT',
-//     //     headers: {
-//     //         'Content-Type': 'application/json'
-//     //     },
-//     //     body: JSON.stringify({ commentId, content: updatedCommentContent })
-//     // })
-//     // .then(response => response.json())
-//     // .then(data => {
-//     //     if (data.success) {
-//     //         // 성공적으로 댓글이 업데이트된 경우
-//     //         // 댓글 목록을 다시 가져와서 렌더링
-//     //         fetchComments(data.updatedComments);
-//     //     } else {
-//     //         console.error('Failed to update comment:', data.error);
-//     //     }
-//     // })
-//     // .catch(error => console.error('Error updating comment:', error));
-//     console.log(postId, commentId, updatedCommentContent)
-// }
-
 // 댓글 업데이트
 function updateComment(postId, commentId, updatedCommentContent) {
     // /backend/model/posts.json에서 댓글 정보 가져오기
-    fetch('/backend/model/posts.json')
+    fetch('http://localhost:3001/posts')
         .then(response => response.json())
         .then(data => {
             // postId에 해당하는 게시글 찾기
@@ -345,7 +314,7 @@ function updateComment(postId, commentId, updatedCommentContent) {
                     console.log("업데이트된 댓글 내용:", updatedCommentContent);
 
                     // 서버에 댓글 업데이트를 요청합니다.
-                    fetch('/update-comment', {
+                    fetch('http://localhost:3001/update-comment', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -417,7 +386,7 @@ function registerComment() {
         };
 
         // 서버에 새로운 댓글 등록 요청 보내기
-        fetch('/add-comment', {
+        fetch('http://localhost:3001/add-comment', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -453,7 +422,6 @@ function getLoggedInUserProfile() {
     return document.cookie.replace(/(?:(?:^|.*;\s*)loggedInUserProfile\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 }
 
-
 function formatDateTime(date, time) {
     // 날짜와 시간을 공백으로 구분하여 ISO 8601 형식의 문자열로 변환
     const isoDateTimeString = `${date}T${time}`;
@@ -473,8 +441,6 @@ function formatDateTime(date, time) {
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
-
-
 function showToast(message) {
     const toast = document.getElementById('toastMessage');
     if (toast) {
@@ -492,7 +458,7 @@ function showToast(message) {
 
 // 페이지 로드 시 실행되는 함수
 window.addEventListener("load", function() {
-    fetch('/get-profile-image') // 서버에 요청을 보냄
+    fetch('http://localhost:3001/get-profile-image') // 서버에 요청을 보냄
         .then(response => response.json()) // 응답을 JSON으로 변환
         .then(data => {
             // 서버에서 전달받은 프로필 이미지 경로를 콘솔에 출력

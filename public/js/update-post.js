@@ -28,7 +28,7 @@ window.onload = function () {
 
 function fetchPostDetails() {
     const postId = getPostIdFromUrl(); // 게시글 id를 가져옴
-    fetch('/backend/model/posts.json')
+    fetch('http://localhost:3001/posts')
         .then(response => response.json())
         .then(data => {
             const post = data.posts.find(post => post.id === parseInt(postId));
@@ -70,7 +70,7 @@ document.getElementById('updateForm').addEventListener('submit', function (event
     formData.append('image', imageFile); // 이미지 파일 추가
 
     // 수정할 내용을 서버에 전송하고, 성공적으로 처리되면 페이지를 다시 불러옴
-    fetch(`update-post?id=${postId}`, { // PUT에서 POST로 수정
+    fetch(`http://localhost:3001/update-post?id=${postId}`, { // PUT에서 POST로 수정
         method: 'POST', // PUT에서 POST로 수정
         body: formData
     })
@@ -98,7 +98,7 @@ function displayFileName() {
     } else {
         // 파일 선택이 취소된 경우 기존 파일명 표시
         const postId = document.getElementById('postId').value;
-        fetch('/backend/model/posts.json')
+        fetch('http://localhost:3001/posts')
             .then(response => response.json())
             .then(data => {
                 const post = data.posts.find(post => post.id === parseInt(postId));
@@ -120,7 +120,7 @@ document.getElementById('fileButton').addEventListener('click', function(event) 
 
 // 페이지 로드 시 실행되는 함수
 window.addEventListener("load", function() {
-    fetch('/get-profile-image') // 서버에 요청을 보냄
+    fetch('http://localhost:3001/get-profile-image') // 서버에 요청을 보냄
         .then(response => response.json()) // 응답을 JSON으로 변환
         .then(data => {
             // 서버에서 전달받은 프로필 이미지 경로를 콘솔에 출력

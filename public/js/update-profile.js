@@ -12,7 +12,7 @@ profileImageInput.addEventListener("change", function (event) {
         }
         reader.readAsDataURL(file);
     } else {
-        fetch('/get-profile-image') // 서버에 요청을 보냄
+        fetch('http://localhost:3001/get-profile-image') // 서버에 요청을 보냄
         .then(response => response.json()) // 응답을 JSON으로 변환
         .then(data => {
             // 기본 이미지로 복원
@@ -42,7 +42,7 @@ async function validate() {
     }
     else {
         try {
-            const response = await fetch("/backend/model/users.json");
+            const response = await fetch('http://localhost:3001/users');
             const data = await response.json();
             const existingNickname = data.find(user => user.nickname === nicknameValue);
             if (existingNickname) {
@@ -87,7 +87,7 @@ async function updateProfile() {
         }
         // 서버로 업데이트 요청 전송
         try {
-            const response = await fetch('/update-profile', {
+            const response = await fetch('http://localhost:3001/update-profile', {
                 method: 'POST',
                 body: formData
             });
@@ -103,9 +103,6 @@ async function updateProfile() {
         }
     }
 }
-
-
-
 
 // 드롭다운 메뉴
 function toggleDropdown() {
@@ -177,7 +174,7 @@ function redirectToSignIn() {
 // 사용자가 회원 탈퇴 확인 버튼을 클릭할 때 호출되는 함수
 async function confirmWithdraw() {
     try {
-        const response = await fetch('/withdraw', {
+        const response = await fetch('http://localhost:3001/withdraw', {
             method: 'DELETE'
         });
         const data = await response.json();
@@ -195,7 +192,7 @@ async function confirmWithdraw() {
 
 // 페이지 로드 시 실행되는 함수
 window.addEventListener("load", function() {
-    fetch('/get-profile-image') // 서버에 요청을 보냄
+    fetch('http://localhost:3001/get-profile-image') // 서버에 요청을 보냄
         .then(response => response.json()) // 응답을 JSON으로 변환
         .then(data => {
             // 서버에서 전달받은 프로필 이미지 경로를 콘솔에 출력
