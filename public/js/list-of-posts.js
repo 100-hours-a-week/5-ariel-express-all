@@ -79,35 +79,47 @@ function formatNumber(number) {
     }
 }
 
-// 날짜와 시간을 형식에 맞게 변환하는 함수
 function formatDateTime(date, time) {
-    const dateTime = new Date(date + 'T' + time);
-    return dateTime.toISOString().slice(0, 19).replace('T', ' ');
+    // 날짜와 시간을 공백으로 구분하여 ISO 8601 형식의 문자열로 변환
+    const isoDateTimeString = `${date}T${time}`;
+    const dateTime = new Date(isoDateTimeString);
+    // 만약 날짜와 시간이 유효하지 않다면 빈 문자열 반환
+    if (isNaN(dateTime.getTime())) {
+        return '';
+    }
+    // ISO 8601 형식에서 시간 정보를 추출하여 반환
+    const year = dateTime.getFullYear();
+    const month = String(dateTime.getMonth() + 1).padStart(2, '0');
+    const day = String(dateTime.getDate()).padStart(2, '0');
+    const hours = String(dateTime.getHours()).padStart(2, '0');
+    const minutes = String(dateTime.getMinutes()).padStart(2, '0');
+    const seconds = String(dateTime.getSeconds()).padStart(2, '0');
+    // YYYY-MM-DD HH:MM:SS 형식으로 반환
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
 // posts.json fetch
-fetch('/backend/model/posts.json')
+fetch('http://localhost:3001/posts')
     .then(response => response.json())
     .then(data => renderPosts(data.posts))
     .catch(error => console.error('Error fetching posts:', error));
 
 // 페이지 로드 시 실행되는 함수
 window.addEventListener("load", function() {
-    fetch('/get-profile-image') // 서버에 요청을 보냄
-        .then(response => response.json()) // 응답을 JSON으로 변환
-        .then(data => {
-            // 서버에서 전달받은 프로필 이미지 경로를 콘솔에 출력
-            console.log("서버에서 전달받은 profileImagePath:", data.profileImagePath);
+    // 서버에 요청을 보낼 때 쿠키를 포함시켜서 전송
+    fetch('http://localhost:3001/get-profile-image', {
+        credentials: 'include' // 쿠키를 서버에 포함시키도록 설정
+    })
+    .then(response => response.json()) // 응답을 JSON으로 변환
+    .then(data => {
+        // 서버에서 전달받은 프로필 이미지 경로를 콘솔에 출력
+        console.log("서버에서 전달받은 profileImagePath:", data.profileImagePath);
 
-            // 프로필 이미지를 업데이트
-            const userProfileImage = document.getElementById("userProfileImage");
-            userProfileImage.src = data.profileImagePath;
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
+        // 프로필 이미지를 업데이트
+        const userProfileImage = document.getElementById("userProfileImage");
+        userProfileImage.src = data.profileImagePath;
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
 });
-
-
-
-

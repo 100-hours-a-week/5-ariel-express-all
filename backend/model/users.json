@@ -13,9 +13,9 @@
     },
     {
         "email": "test@naver.com",
-        "password": "Abcd123**",
-        "nickname": "yeji",
-        "profile_picture": "uploads/dc572a1cf738d2bf645513019745cfc3"
+        "password": "Test1234*",
+        "nickname": "apple",
+        "profile_picture": "uploads/d74b63018570b61f59f9fc8a722a7da0"
     },
     {
         "email": "test@naver.comㅁ",
@@ -46,5 +46,11 @@
         "password": "Test1234*",
         "nickname": "test22",
         "profile_picture": "uploads/3343d949fe0ca32acb400b0a107f6182"
+    },
+    {
+        "email": "test0429@naver.com",
+        "password": "Test0429*",
+        "nickname": "0429",
+        "profile_picture": "uploads/5c2d5661922b03065ae80bae72d5414c"
     }
 ]

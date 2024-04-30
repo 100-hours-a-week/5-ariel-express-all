@@ -85,7 +85,9 @@ function redirectToPostListPage() {
 // 사용자 로그인 함수
 function loginUser(email, password) {
     // JSON 파일에서 사용자 정보 가져오기
-    fetch("backend/model/users.json")
+    fetch("http://localhost:3001/users", {
+        credentials: 'include' // 쿠키를 포함시키기 위해 설정
+    })
         .then(response => response.json())
         .then(data => {
             // 사용자 정보 확인
@@ -97,12 +99,13 @@ function loginUser(email, password) {
                 // 로그인 성공 후 3초 후 페이지 이동
                 setTimeout(function () {
                     // 서버로 POST 요청을 보냄
-                    fetch("/login", {
+                    fetch("http://localhost:3001/login", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
                         },
-                        body: JSON.stringify({ email: email, password: password })
+                        body: JSON.stringify({ email: email, password: password }),
+                        credentials: 'include' // 쿠키를 포함시키기 위해 설정
                     })
                         .then(response => response.json())
                         .then(data => {
@@ -129,6 +132,7 @@ function loginUser(email, password) {
             console.error("Error:", error);
         });
 }
+
 
 // 로그인 폼 제출 이벤트 핸들러
 document.getElementById("loginForm").addEventListener("submit", function (event) {
