@@ -9,14 +9,16 @@ profileImageInput.addEventListener("change", function (event) {
         const reader = new FileReader();
         reader.onload = function (e) {
             profileImage.src = e.target.result;
-        }
+        };
         reader.readAsDataURL(file);
     } else {
+        // 파일이 없는 경우에만 기본 이미지로 복원
         fetch('http://localhost:3001/get-profile-image') // 서버에 요청을 보냄
         .then(response => response.json()) // 응답을 JSON으로 변환
         .then(data => {
             // 기본 이미지로 복원
             profileImage.src = data.profileImagePath;
+            location.reload();
         })
         .catch(error => {
             console.error("Error:", error);
@@ -82,7 +84,6 @@ async function updateProfile() {
 
         // FormData에 변경된 프로필 이미지 추가
         if (profileImageFile) {
-            // 파일 객체를 직접 추가합니다.
             formData.append('profileImage', profileImageFile);
         }
         // 서버로 업데이트 요청 전송
@@ -176,6 +177,7 @@ function redirectToSignIn() {
 async function confirmWithdraw() {
     try {
         const response = await fetch('http://localhost:3001/withdraw', {
+            credentials: 'include', // 쿠키를 서버에 포함시키도록 설정
             method: 'DELETE'
         });
         const data = await response.json();

@@ -1,21 +1,15 @@
 [
     {
-        "email": "1225yj50@nad.cdca",
-        "password": "Abcd1234!",
-        "nickname": "abc",
-        "profile_picture": "uploads/1c50ef02f0e6cadb139b3b2145c5e828"
-    },
-    {
         "email": "1225yj50@naver.c",
-        "password": "Yj1213455*",
+        "password": "Abcd123*",
         "nickname": "yj",
         "profile_picture": "uploads/0e65f3a44633825c14e2259712871755"
     },
     {
         "email": "test@naver.com",
         "password": "Test1234*",
-        "nickname": "apple",
-        "profile_picture": "uploads/d74b63018570b61f59f9fc8a722a7da0"
+        "nickname": "예지",
+        "profile_picture": "uploads/ea4a7d7a6d0916219d393a199feccffc"
     },
     {
         "email": "test@naver.comㅁ",
@@ -32,7 +26,7 @@
     {
         "email": "test@naver.com1",
         "password": "Test1234*",
-        "nickname": "te",
+        "nickname": "test",
         "profile_picture": "uploads/a08223e2536bfcd8eff45eb33ae413f2"
     },
     {
@@ -52,5 +46,17 @@
         "password": "Test0429*",
         "nickname": "0429",
         "profile_picture": "uploads/5c2d5661922b03065ae80bae72d5414c"
+    },
+    {
+        "email": "TEST@naver.com",
+        "password": "Test1234*",
+        "nickname": "TEST",
+        "profile_picture": "uploads/dfa9f101726c74fa2071c47accc1a134"
+    },
+    {
+        "email": "0501@naver.com",
+        "password": "Test0501*",
+        "nickname": "0501",
+        "profile_picture": "uploads/e17186eeb5641c89784f6b754aa2fde8"
     }
 ]
