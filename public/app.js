@@ -1,25 +1,14 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const fs = require('fs');
 const cors = require('cors');
+const publicPath = path.join(__dirname); // 정적 파일 제공을 위한 경로 설정
 
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/' }); // 업로드된 파일을 저장할 디렉토리를 설정합니다.
-
-// body-parser 미들웨어 추가
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-
-// 정적 파일 제공을 위한 경로 설정
-// app.use(express.static(path.join(__dirname, 'public')));
-// app.use(express.static(path.join(__dirname)));
-const publicPath = path.join(__dirname);
-
-console.log(publicPath);
-
 app.use(express.static(__dirname));
+
 
 // 루트 경로에 대한 요청 처리
 app.get('/', (req, res) => {

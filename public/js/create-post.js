@@ -82,6 +82,10 @@ function createPost() {
     formData.append('content', content);
     formData.append('image', imageFile);
 
+    console.log(formData.get('title'));
+    console.log(formData.get('content'));
+    console.log(formData.get('image'));
+
     // 서버에 새 게시글 정보 전송
     fetch('http://localhost:3001/create-post', {
         credentials: 'include',
@@ -91,13 +95,12 @@ function createPost() {
     .then(response => response.json())
     .then(data => {
         // 게시글 작성 성공 후 페이지 이동
-        window.location.href = "list-of-posts";
+        window.location.href = "./list-of-posts";
     })
     .catch(error => {
         console.error('Error creating post:', error);
     });
 }
-
 
 // 페이지 로드 시 실행되는 함수
 window.addEventListener("load", function() {
