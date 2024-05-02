@@ -202,6 +202,16 @@ function updatePassword(req, res) {
     });
 }
 
+// 현재 로그인 된 이메일로 사용자 정보 변경
+function currentUserEmail(req, res) {
+    const loggedInUserEmail = req.cookies.loggedInUser;
+    if (loggedInUserEmail) {
+        res.json({ success: true, email: loggedInUserEmail });
+    } else {
+        res.status(401).json({ success: false, message: 'User not logged in' });
+    }
+}
+
 module.exports = {
     users,
     login,
@@ -209,5 +219,6 @@ module.exports = {
     getProfileImage,
     updateProfile,
     withdraw,
-    updatePassword
+    updatePassword,
+    currentUserEmail
 };

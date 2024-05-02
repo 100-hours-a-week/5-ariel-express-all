@@ -2,15 +2,15 @@
     "posts": [
         {
             "id": 1,
-            "title": "Hollywood",
+            "title": "Hollywood!!",
             "author": {
                 "profile_picture": "http://localhost:3000/assets/images/author1.webp",
                 "nickname": "검정치마"
             },
             "date": "2024-04-15",
             "time": "12:00",
-            "image": "http://localhost:3001/uploads/24f742a84feccffe0949a688c2fd4062",
-            "content": "오 지금 밟고 있는 땅이 꺼질 것만 같아 내 손을 놓는 순간 녹아 없어질걸요 넌 영화 속에 살고 그런 너를 지켜보네 조명을 내려줘요 잔털 하나 없는 너의 가느다란 목에 숨 쉴 때 나 몸이 떨려와 그 만큼이나 좋아 하얀 마음 때 묻으면 안 되니까 사랑해줘요 처음만 있구요 끝은 아득하네요 Baby I just don't know what to say You were my dream and now it all feels so real You're real, yeah Heavy drinks and light hearted jokes Quit my day job just to stay up all night with you We are going to Hollywood and never coming back, coming back Maybe we'll turn to gold 붉은 머리칼이 일렁이며 내게 손짓했어요 겁내지 말라고 어서 뛰어들래요 타버리면 어때요 다 바스러져 없어질 텐데 나 안 돌아가 여기 남겨두세요 오오오 Don't stop action friction Live in a fiction baby Hollywood Don't stop action friction Live in a fiction baby Hollywood",
+            "image": "http://localhost:3001/uploads/2922ff267b21972f4a35b0e3eed6d48d",
+            "content": "5 지금 밟고 있는 땅이 꺼질 것만 같아 내 손을 놓는 순간 녹아 없어질걸요 넌 영화 속에 살고 그런 너를 지켜보네 조명을 내려줘요 잔털 하나 없는 너의 가느다란 목에 숨 쉴 때 나 몸이 떨려와 그 만큼이나 좋아 하얀 마음 때 묻으면 안 되니까 사랑해줘요 처음만 있구요 끝은 아득하네요 Baby I just don't know what to say You were my dream and now it all feels so real You're real, yeah Heavy drinks and light hearted jokes Quit my day job just to stay up all night with you We are going to Hollywood and never coming back, coming back Maybe we'll turn to gold 붉은 머리칼이 일렁이며 내게 손짓했어요 겁내지 말라고 어서 뛰어들래요 타버리면 어때요 다 바스러져 없어질 텐데 나 안 돌아가 여기 남겨두세요 오오오 Don't stop action friction Live in a fiction baby Hollywood Don't stop action friction Live in a fiction baby Hollywood",
             "likes": 1530,
             "views": 20000,
             "comments": [
@@ -57,12 +57,12 @@
                 {
                     "id": 5,
                     "author": {
-                        "profile_picture": "http://localhost:3001/uploads/d74b63018570b61f59f9fc8a722a7da0",
-                        "nickname": "apple"
+                        "profile_picture": "http://localhost:3001/uploads/a92cb0d80e4806a4cb52f15bf65acbd5",
+                        "nickname": "TEST1"
                     },
                     "date": "2024-05-01",
-                    "time": "15:56:58",
-                    "content": "hi!"
+                    "time": "23:52:02",
+                    "content": "잘 듣고 갑니다"
                 }
             ]
         },
@@ -328,42 +328,6 @@
         },
         {
             "id": 7,
-            "title": "안녕하시오리까",
-            "author": {
-                "profile_picture": "http://localhost:3001/uploads/d74b63018570b61f59f9fc8a722a7da0",
-                "nickname": "apple"
-            },
-            "date": "2024-04-30",
-            "time": "14:26:21",
-            "image": "http://localhost:3001/uploads/d1ee9e8f0fa088252531851e2a487b0e",
-            "content": "사과예여",
-            "likes": 0,
-            "views": 0,
-            "comments": [
-                {
-                    "id": 1,
-                    "author": {
-                        "profile_picture": "http://localhost:3001/uploads/d74b63018570b61f59f9fc8a722a7da0",
-                        "nickname": "apple"
-                    },
-                    "date": "2024-04-30",
-                    "time": "14:26:55",
-                    "content": "어? 나다"
-                },
-                {
-                    "id": 2,
-                    "author": {
-                        "profile_picture": "http://localhost:3001/uploads/d74b63018570b61f59f9fc8a722a7da0",
-                        "nickname": "apple"
-                    },
-                    "date": "2024-05-01",
-                    "time": "20:31:22",
-                    "content": "ㅋㅋㅋㅋㅋㅋㅋ"
-                }
-            ]
-        },
-        {
-            "id": 8,
             "title": "좀 돼라",
             "author": {
                 "profile_picture": "http://localhost:3001/uploads/d74b63018570b61f59f9fc8a722a7da0",
@@ -389,7 +353,7 @@
             ]
         },
         {
-            "id": 9,
+            "id": 8,
             "title": "예지로 작성",
             "author": {
                 "profile_picture": "http://localhost:3001/uploads/ea4a7d7a6d0916219d393a199feccffc",
@@ -415,7 +379,7 @@
             ]
         },
         {
-            "id": 10,
+            "id": 9,
             "title": "ㅎㅇ",
             "author": {
                 "profile_picture": "http://localhost:3001/uploads/e17186eeb5641c89784f6b754aa2fde8",
@@ -437,6 +401,32 @@
                     "date": "2024-05-01",
                     "time": "21:47:40",
                     "content": "안녕하심가ㅋㅋ"
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "title": "hello",
+            "author": {
+                "profile_picture": "http://localhost:3001/uploads/a92cb0d80e4806a4cb52f15bf65acbd5",
+                "nickname": "TEST1"
+            },
+            "date": "2024-05-01",
+            "time": "23:52:49",
+            "image": "http://localhost:3001/uploads/05e82c225bb3fec8c2ef998a28ea951a",
+            "content": "아임 원숭이",
+            "likes": 0,
+            "views": 0,
+            "comments": [
+                {
+                    "id": 1,
+                    "author": {
+                        "profile_picture": "http://localhost:3001/uploads/a92cb0d80e4806a4cb52f15bf65acbd5",
+                        "nickname": "TEST1"
+                    },
+                    "date": "2024-05-01",
+                    "time": "23:52:57",
+                    "content": "어? 나다"
                 }
             ]
         }

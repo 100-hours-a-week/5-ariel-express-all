@@ -99,6 +99,7 @@ function updateComment(req, res) {
     });
 }
 
+// 댓글 등록
 function addComment(req, res) {
     const { postId, content } = req.body;
     
