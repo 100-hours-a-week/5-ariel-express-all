@@ -32,4 +32,7 @@ router.delete('/withdraw', userController.withdraw);
 // 비밀번호 수정
 router.post('/update-password', userController.updatePassword);
 
+// 회원정보 - 현재 로그인 된 사용자 이메일 표시
+router.get('/current-user-email', userController.currentUserEmail)
+
 module.exports = router;

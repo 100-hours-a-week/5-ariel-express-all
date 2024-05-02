@@ -26,6 +26,7 @@ profileImageInput.addEventListener("change", function (event) {
     }
 });
 
+
 // 닉네임 유효성 검사
 async function validate() {
     const nicknameInput = document.querySelector(".input-name");
@@ -193,7 +194,7 @@ async function confirmWithdraw() {
     }
 }
 
-window.addEventListener("load", function() {
+window.addEventListener("load", async function() {
     // 서버에 요청을 보낼 때 쿠키를 포함시켜서 전송
     fetch('http://localhost:3001/get-profile-image', {
         credentials: 'include' // 쿠키를 서버에 포함시키도록 설정
@@ -212,4 +213,21 @@ window.addEventListener("load", function() {
     .catch(error => {
         console.error("Error:", error);
     });
+
+    try {
+        // 현재 로그인된 사용자의 이메일을 요청
+        const response = await fetch('http://localhost:3001/current-user-email', {
+            credentials: 'include' // 쿠키를 서버에 포함시키도록 설정
+        });
+        const data = await response.json();
+        if (data.success) {
+            // 현재 로그인된 사용자의 이메일을 페이지에 표시
+            const currentEmailElement = document.getElementById('currentEmail');
+            currentEmailElement.innerText = data.email;
+        } else {
+            console.error("Failed to get current user email:", data.message);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
 });
