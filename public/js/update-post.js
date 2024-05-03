@@ -1,6 +1,6 @@
 // 드롭다운 메뉴
-function toggleDropdown() {
-    var dropdownContent = document.getElementById("dropdownContent");
+const toggleDropdown = () => {
+    const dropdownContent = document.getElementById("dropdownContent");
     if (dropdownContent.classList.contains("show")) {
         dropdownContent.classList.remove("show");
     } else {
@@ -9,11 +9,11 @@ function toggleDropdown() {
 }
 
 // 다른 곳을 클릭했을 때, 열러있는 드롭다운 닫기
-window.onclick = function (event) {
+window.onclick = (event) => {
     if (!event.target.matches('.profile-image')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        for (var i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
+        const dropdowns = document.getElementsByClassName("dropdown-content");
+        for (let i = 0; i < dropdowns.length; i++) {
+            const openDropdown = dropdowns[i];
             if (openDropdown.classList.contains('show')) {
                 openDropdown.classList.remove('show');
             }
@@ -22,11 +22,11 @@ window.onclick = function (event) {
 }
 
 // 페이지가 로드되면 해당 게시글 정보를 가져와서 렌더링
-window.onload = function () {
+window.onload = () => {
     fetchPostDetails();
 };
 
-function fetchPostDetails() {
+const fetchPostDetails = () => {
     const postId = getPostIdFromUrl(); // 게시글 id를 가져옴
     fetch('http://localhost:3001/posts')
         .then(response => response.json())
@@ -41,7 +41,7 @@ function fetchPostDetails() {
         .catch(error => console.error('Error fetching post details:', error));
 }
 
-function renderPostDetails(post) {
+const renderPostDetails = (post) => {
     document.getElementById('postId').value = post.id;
     document.getElementById('titleInput').value = post.title;
     document.getElementById('contentInput').value = post.content;
@@ -49,14 +49,14 @@ function renderPostDetails(post) {
 }
 
 // URL에서 게시글 ID를 가져오는 함수
-function getPostIdFromUrl() {
+const getPostIdFromUrl = () => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     return urlParams.get('id');
 }
 
 // 수정하기 버튼 클릭 시 동작
-document.getElementById('updateForm').addEventListener('submit', function (event) {
+document.getElementById('updateForm').addEventListener('submit', (event) => {
     event.preventDefault(); // 폼 기본 동작 방지
 
     const postId = document.getElementById('postId').value;
@@ -89,7 +89,7 @@ document.getElementById('updateForm').addEventListener('submit', function (event
 
 
 // 이미지 파일 선택 시 파일명 표시
-function displayFileName() {
+const displayFileName = () => {
     console.log('함수 실행됨');
     const fileInput = document.getElementById('fileInput');
     const fileName = document.getElementById('fileName');
@@ -113,13 +113,13 @@ function displayFileName() {
 }
 
 // 파일 선택 버튼 클릭 시 파일 선택 input 열기
-document.getElementById('fileButton').addEventListener('click', function(event) {
+document.getElementById('fileButton').addEventListener('click', (event) => {
     event.preventDefault(); // 기본 동작 방지
     document.getElementById('fileInput').click(); // 파일 선택 input 열기
 });
 
 // 페이지 로드 시 실행되는 함수
-window.addEventListener("load", function() {
+window.addEventListener("load", () => {
     // 서버에 요청을 보낼 때 쿠키를 포함시켜서 전송
     fetch('http://localhost:3001/get-profile-image', {
         credentials: 'include' // 쿠키를 서버에 포함시키도록 설정

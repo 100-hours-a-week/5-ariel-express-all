@@ -4,11 +4,11 @@ const profileImageHelperText = document.getElementById("profileImageHelperText")
 const signupForm = document.getElementById("signupForm");
 
 // 프로필 사진 설정
-profileImageInput.addEventListener("change", function (event) {
+profileImageInput.addEventListener("change", (event) => {
     const file = event.target.files[0]; // 선택된 파일을 가져옴
     if (file) {
         const reader = new FileReader(); // FileReader: 파일을 읽기 위한 객체
-        reader.onload = function (e) { // 파일 로드가 완료되었을 때 이벤트 처리
+        reader.onload = (e) => { // 파일 로드가 완료되었을 때 이벤트 처리
             profilePreview.src = e.target.result; // 프로필 미리보기 이미지 변경
         }
         reader.readAsDataURL(file); // 파일을 읽어 data URL로 변환하여 반환. (파일의 내용을 문자열로 표현)
@@ -24,14 +24,14 @@ const emailHelperText = document.getElementById('emailHelperText');
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // 이메일 input에서 포커스 아웃될 때마다 유효성 검사
-emailInput.addEventListener('blur', function () {
+emailInput.addEventListener('blur', () => {
     validateEmail(true).then(valid => {
         validateAllInputs();
     });
 });
 
 // 이메일 유효성 검사
-async function validateEmail(tf) {
+const validateEmail = async (tf) => {
     const emailValue = emailInput.value.trim();
 
     if (emailValue === '') {
@@ -77,13 +77,13 @@ async function validateEmail(tf) {
 const passwordInput = document.getElementById('passwordInput');
 const passwordHelperText = document.getElementById('passwordHelperText');
 
-passwordInput.addEventListener('blur', function () {
+passwordInput.addEventListener('blur', () => {
     validatePassword(true).then(valid => {
         validateAllInputs();
     });
 });
 
-async function validatePassword(tf) {
+const validatePassword = async (tf) => {
     const passwordValue = passwordInput.value.trim();
 
     if (passwordValue === '') {
@@ -111,14 +111,14 @@ const confirmPasswordInput = document.getElementById('confirmPasswordInput');
 const confirmPasswordHelperText = document.getElementById('confirmPasswordHelperText');
 
 // 비밀번호 input에서 포커스 아웃될 때마다 유효성 검사
-confirmPasswordInput.addEventListener('blur', function () {
+confirmPasswordInput.addEventListener('blur', async () => {
     validateConfirmPassword(true).then(valid => {
         validateAllInputs();
     });
 });
 
 // 비밀번호 유효성 검사
-async function validateConfirmPassword(tf) {
+const validateConfirmPassword = async (tf) => {
     const passwordValue = passwordInput.value.trim();
     const confirmPasswordValue = confirmPasswordInput.value.trim();
 
@@ -147,14 +147,14 @@ const nicknameInput = document.getElementById('nicknameInput');
 const nicknameHelperText = document.getElementById('nicknameHelperText');
 
 // 닉네임 input에서 포커스 아웃될 때마다 유효성 검사
-nicknameInput.addEventListener('blur', function () {
+nicknameInput.addEventListener('blur', async () => {
     validateNickname(true).then(valid => {
         validateAllInputs();
     });
 });
 
 // 닉네임 유효성 검사
-async function validateNickname(tf) {
+const validateNickname = async (tf) => {
     const nicknameValue = nicknameInput.value.trim();
 
     if (nicknameValue === '') {
@@ -200,7 +200,7 @@ async function validateNickname(tf) {
     }
 }
 
-function validatePasswordStrength(password) {
+const validatePasswordStrength = (password) => {
     // 비밀번호는 8자 이상, 20자 이하여야 하고, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 함
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
     return passwordRegex.test(password);
@@ -208,7 +208,7 @@ function validatePasswordStrength(password) {
 
 
 // input 값 전체 유효성 검사 함수
-async function validateAllInputs() {
+const validateAllInputs = async () => {
     const emailValid = await validateEmail(false);
     const passwordValid = await validatePassword(false);
     const confirmPasswordValid = await validateConfirmPassword(false);
@@ -226,7 +226,7 @@ async function validateAllInputs() {
 }
 
 // 폼 제출 전 프로필 사진 첨부 여부 확인
-signupForm.addEventListener('submit', function (event) {
+signupForm.addEventListener('submit', (event) => {
     if (!profileImageInput.files[0]) {
         profileImageHelperText.textContent = '* 프로필 사진을 추가해주세요.';
         profileImageHelperText.style.visibility = 'visible';

@@ -1,17 +1,40 @@
+// 드롭다운
+const toggleDropdown = () => {
+    const dropdownContent = document.getElementById("dropdownContent");
+    if (dropdownContent.classList.contains("show")) {
+        dropdownContent.classList.remove("show");
+    } else {
+        dropdownContent.classList.add("show");
+    }
+}
+
+// 다른 곳을 클릭했을 때, 열러있는 드롭다운 닫기
+window.onclick = (event) => {
+    if (!event.target.matches('.profile-image')) {
+        const dropdowns = document.getElementsByClassName("dropdown-content");
+        for (let i = 0; i < dropdowns.length; i++) {
+            const openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}
+
 const titleInput = document.getElementById("titleInput");
 const contentInput = document.getElementById("contentInput");
 const createPostHelperText = document.getElementById("createPostHelperText");
 
 // 제목 input 값이 변경될 때마다 유효성 검사
-titleInput.addEventListener('input', function () {
+titleInput.addEventListener('input', () => {
     validate();
 });
 // 내용 input 값이 변경될 때마다 유효성 검사
-contentInput.addEventListener('input', function () {
+contentInput.addEventListener('input', () => {
     validate();
 });
 
-function validate() {
+const validate = () => {
     const titleValue = titleInput.value.trim();
     const contentValue = contentInput.value.trim();
 
@@ -31,31 +54,8 @@ function validate() {
     }
 }
 
-// 드롭다운
-function toggleDropdown() {
-    var dropdownContent = document.getElementById("dropdownContent");
-    if (dropdownContent.classList.contains("show")) {
-        dropdownContent.classList.remove("show");
-    } else {
-        dropdownContent.classList.add("show");
-    }
-}
-
-// 다른 곳을 클릭했을 때, 열러있는 드롭다운 닫기
-window.onclick = function (event) {
-    if (!event.target.matches('.profile-image')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        for (var i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
-        }
-    }
-}
-
 // 이미지 파일 선택 시 파일명 표시
-function displayFileName() {
+const displayFileName = () => {
     const fileInput = document.getElementById('fileInput');
     const fileName = document.getElementById('fileName');
     if (fileInput.files.length > 0) {
@@ -65,13 +65,8 @@ function displayFileName() {
     }
 }
 
-// 게시글 목록 페이지로 이동
-// function redirectToPostList() {
-//     window.location.href = "list-of-posts";
-// }
-
 // 게시글 작성 완료 시 호출되는 함수
-function createPost() {
+const createPost = () => {
     const title = titleInput.value.trim();
     const content = contentInput.value.trim();
     const imageFile = document.getElementById('fileInput').files[0]; // 이미지 파일
@@ -103,7 +98,7 @@ function createPost() {
 }
 
 // 페이지 로드 시 실행되는 함수
-window.addEventListener("load", function() {
+window.addEventListener("load", () => {
     // 서버에 요청을 보낼 때 쿠키를 포함시켜서 전송
     fetch('http://localhost:3001/get-profile-image', {
         credentials: 'include' // 쿠키를 서버에 포함시키도록 설정
