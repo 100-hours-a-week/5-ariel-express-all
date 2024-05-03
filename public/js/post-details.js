@@ -1,6 +1,6 @@
 // 드롭다운 메뉴
-function toggleDropdown() {
-    var dropdownContent = document.getElementById("dropdownContent");
+const toggleDropdown = () => {
+    const dropdownContent = document.getElementById("dropdownContent");
     if (dropdownContent.classList.contains("show")) {
         dropdownContent.classList.remove("show");
     } else {
@@ -9,11 +9,11 @@ function toggleDropdown() {
 }
 
 // 다른 곳을 클릭했을 때, 열러있는 드롭다운 닫기
-window.onclick = function (event) {
+window.onclick = (event) => {
     if (!event.target.matches('.profile-image')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        for (var i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
+        const dropdowns = document.getElementsByClassName("dropdown-content");
+        for (let i = 0; i < dropdowns.length; i++) {
+            const openDropdown = dropdowns[i];
             if (openDropdown.classList.contains('show')) {
                 openDropdown.classList.remove('show');
             }
@@ -22,14 +22,14 @@ window.onclick = function (event) {
 }
 
 // URL에서 게시글 ID를 가져오는 함수
-function getPostIdFromUrl() {
+const getPostIdFromUrl = () => {
     const queryString = window.location.search; // id 반환 (ex. ?id=1)
     const urlParams = new URLSearchParams(queryString); // 쿼리문자열 해석
     return urlParams.get('id'); // 'id' 매개변수의 값을 가져옴
 }
 
 // 게시글 정보를 화면에 렌더링하는 함수
-function renderPostDetails(post) {
+const renderPostDetails = (post) => {
     const postDetails = document.getElementById('postDetails');
 
     const formattedViews = formatNumber(post.views);
@@ -88,7 +88,7 @@ function renderPostDetails(post) {
 
 
 // 게시글 ID를 가져와서 해당 게시글 정보를 요청하는 함수
-function fetchPostDetails() {
+const fetchPostDetails = () => {
     const postId = getPostIdFromUrl(); // 게시글 id를 가져옴
     fetch('http://localhost:3001/posts') // 게시글 정보 fetch
         .then(response => response.json())
@@ -104,7 +104,7 @@ function fetchPostDetails() {
 }
 
 // 댓글을 가져와서 화면에 렌더링하는 함수
-function fetchComments(comments) {
+const fetchComments = (comments) => {
     // querySelector: 문서에서 클래스가 "comment-list-space"인 첫 번째 요소 반환
     const commentListSpace = document.querySelector('.comment-list-space');
 
@@ -130,12 +130,12 @@ function fetchComments(comments) {
 }
 
 // 페이지가 로드되면 해당 게시글 정보를 가져와서 렌더링
-window.onload = function () {
+window.onload = () => {
     fetchPostDetails();
 };
 
 // 숫자를 형식에 맞게 변환하는 함수
-function formatNumber(number) {
+const formatNumber = (number) => {
     if (number >= 100000) {
         return (number / 1000).toFixed(0) + 'k';
     } else if (number >= 10000) {
@@ -148,9 +148,9 @@ function formatNumber(number) {
 }
 
 // 게시글 삭제 모달 보이기
-function showPostDeleteModal() {
-    var modalBackground = document.getElementById('postDeleteModalBackground');
-    var deleteModal = document.getElementById('postDeleteModal');
+const showPostDeleteModal = () => {
+    const modalBackground = document.getElementById('postDeleteModalBackground');
+    const deleteModal = document.getElementById('postDeleteModal');
 
     modalBackground.style.display = 'block';
     deleteModal.style.display = 'block';
@@ -159,15 +159,15 @@ function showPostDeleteModal() {
     document.body.style.overflow = 'hidden';
 
     // 삭제 버튼 클릭 시 confirmDeletePost 함수 호출
-    document.getElementById('deletePostButton').addEventListener('click', function() {
+    document.getElementById('deletePostButton').addEventListener('click', () => {
         confirmDeletePost();
     });
 }
 
 // 게시글 삭제 모달 숨기기
-function hidePostDeleteModal() {
-    var modalBackground = document.getElementById('postDeleteModalBackground');
-    var deleteModal = document.getElementById('postDeleteModal');
+const hidePostDeleteModal = () => {
+    const modalBackground = document.getElementById('postDeleteModalBackground');
+    const deleteModal = document.getElementById('postDeleteModal');
 
     modalBackground.style.display = 'none';
     deleteModal.style.display = 'none';
@@ -177,9 +177,9 @@ function hidePostDeleteModal() {
 }
 
 // 댓글 삭제 모달 보이기
-function showCommentDeleteModal(commentId) {
-    var modalBackground = document.getElementById('commentDeleteModalBackground');
-    var deleteModal = document.getElementById('commentDeleteModal');
+const showCommentDeleteModal = (commentId) => {
+    const modalBackground = document.getElementById('commentDeleteModalBackground');
+    const deleteModal = document.getElementById('commentDeleteModal');
 
     modalBackground.style.display = 'block';
     deleteModal.style.display = 'block';
@@ -199,9 +199,9 @@ function showCommentDeleteModal(commentId) {
 
 
 // 댓글 삭제 모달 숨기기
-function hideCommentDeleteModal() {
-    var modalBackground = document.getElementById('commentDeleteModalBackground');
-    var deleteModal = document.getElementById('commentDeleteModal');
+const hideCommentDeleteModal = () => {
+    const modalBackground = document.getElementById('commentDeleteModalBackground');
+    const deleteModal = document.getElementById('commentDeleteModal');
 
     modalBackground.style.display = 'none';
     deleteModal.style.display = 'none';
@@ -210,7 +210,7 @@ function hideCommentDeleteModal() {
     document.body.style.overflow = '';
 }
 
-function confirmDeletePost() {
+const confirmDeletePost = () => {
     const postId = getPostIdFromUrl(); // 게시글 ID 가져오기
 
     // 삭제 요청을 보냄
@@ -224,11 +224,6 @@ function confirmDeletePost() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            // 삭제가 성공했을 경우 화면에서 해당 게시글을 제거
-            // 여기에는 화면에서 게시글을 삭제하는 로직을 추가하세요
-            // 예를 들어, 삭제 후에는 해당 게시글의 DOM 요소를 제거하는 방식으로 화면 갱신
-            // 이후에는 페이지를 새로고침하거나, 다른 방법을 사용하여 게시글 목록을 다시 가져올 수 있습니다.
-            // removePostFromUI(postId);
             hidePostDeleteModal();
             // location.reload(); // 예시로 페이지를 새로고침하는 방식 사용
             window.location.href = "list-of-posts";
@@ -241,13 +236,13 @@ function confirmDeletePost() {
 }
 
 // 댓글 삭제 확인 모달에서 삭제 버튼 클릭 시 실행되는 함수
-function confirmDeleteComment(postId) {
+const confirmDeleteComment = (postId) => {
     // 삭제할 댓글의 ID를 모달에서 가져옴
     const commentId = document.getElementById('commentDeleteModal').dataset.commentId;
 
     // 삭제 버튼을 클릭했을 때만 삭제 요청을 보냄
     const deleteButton = document.getElementById('deleteCommentButton');
-    deleteButton.onclick = function () {
+    deleteButton.onclick =  () => {
         // 서버에 해당 댓글을 삭제하는 요청을 보냄
         fetch('http://localhost:3001/delete-comment', {
             method: 'DELETE',
@@ -279,7 +274,7 @@ function confirmDeleteComment(postId) {
 document.getElementById('commentDeleteModalBackground').addEventListener('click', confirmDeleteComment);
 
 // 댓글 수정
-function editComment(commentId, commentContent) {
+const editComment = (commentId, commentContent) => {
     const inputComment = document.querySelector('.input-comment');
     const registerButton = document.querySelector('.comment-register-button');
     const postId = getPostIdFromUrl(); // 게시글 id를 가져옴
@@ -287,7 +282,7 @@ function editComment(commentId, commentContent) {
     inputComment.value = commentContent;
     registerButton.textContent = '댓글 수정';
 
-    registerButton.onclick = function () {
+    registerButton.onclick = () => {
         // 댓글 수정 버튼 클릭 시 동작
         const updatedCommentContent = inputComment.value;
         updateComment(postId, commentId, updatedCommentContent); // postId를 함께 전달
@@ -295,7 +290,7 @@ function editComment(commentId, commentContent) {
 }
 
 // 댓글 업데이트
-function updateComment(postId, commentId, updatedCommentContent) {
+const updateComment = (postId, commentId, updatedCommentContent) => {
     // /backend/model/posts.json에서 댓글 정보 가져오기
     fetch('http://localhost:3001/posts')
         .then(response => response.json())
@@ -345,7 +340,7 @@ function updateComment(postId, commentId, updatedCommentContent) {
 
 
 // 댓글 등록
-function registerComment() {
+const registerComment = () => {
     const inputComment = document.querySelector('.input-comment');
     const registerButton = document.querySelector('.comment-register-button');
     const postId = getPostIdFromUrl();
@@ -362,7 +357,7 @@ function registerComment() {
         const loggedInUserProfile = getLoggedInUserProfile();
 
         // 현재 시간을 가져오는 함수
-        function getCurrentDateTime() {
+        const getCurrentDateTime = () => {
             const now = new Date();
             const year = now.getFullYear();
             const month = (now.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
@@ -414,16 +409,16 @@ function registerComment() {
 }
 
 // 현재 로그인된 사용자의 닉네임 가져오기
-function getLoggedInUserNickname() {
+const getLoggedInUserNickname = () => {
     return document.cookie.replace(/(?:(?:^|.*;\s*)loggedInUserNickname\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 }
 
 // 현재 로그인된 사용자의 프로필 이미지 가져오기
-function getLoggedInUserProfile() {
+const getLoggedInUserProfile = () => {
     return document.cookie.replace(/(?:(?:^|.*;\s*)loggedInUserProfile\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 }
 
-function formatDateTime(date, time) {
+const formatDateTime = (date, time) => {
     // 날짜와 시간을 공백으로 구분하여 ISO 8601 형식의 문자열로 변환
     const isoDateTimeString = `${date}T${time}`;
     const dateTime = new Date(isoDateTimeString);
@@ -442,14 +437,14 @@ function formatDateTime(date, time) {
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
-function showToast(message) {
+const showToast = (message) => {
     const toast = document.getElementById('toastMessage');
     if (toast) {
         toast.innerText = message;
         toast.style.display = 'block'; // 토스트 메시지 보이기
 
         // 3초 후에 토스트 메시지 숨기기
-        setTimeout(function () {
+        setTimeout( () => {
             toast.style.display = 'none';
         }, 3000);
     } else {
@@ -458,7 +453,7 @@ function showToast(message) {
 }
 
 // 페이지 로드 시 실행되는 함수
-window.addEventListener("load", function() {
+window.addEventListener("load", () => {
     // 서버에 요청을 보낼 때 쿠키를 포함시켜서 전송
     fetch('http://localhost:3001/get-profile-image', {
         credentials: 'include' // 쿠키를 서버에 포함시키도록 설정

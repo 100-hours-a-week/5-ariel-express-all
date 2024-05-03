@@ -1,13 +1,36 @@
+// 드롭다운 메뉴
+const toggleDropdown = () => {
+    const dropdownContent = document.getElementById("dropdownContent");
+    if (dropdownContent.classList.contains("show")) {
+        dropdownContent.classList.remove("show");
+    } else {
+        dropdownContent.classList.add("show");
+    }
+}
+
+// 다른 곳을 클릭했을 때, 열러있는 드롭다운 닫기
+window.onclick = (event) => {
+    if (!event.target.matches('.profile-image')) {
+        const dropdowns = document.getElementsByClassName("dropdown-content");
+        for (let i = 0; i < dropdowns.length; i++) {
+            const openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}
+
 const profileImageInput = document.getElementById("profileImageInput");
 const profileImage = document.getElementById("profileImage");
 const nickname = document.getElementById("nickname");
 
 // 프로필 사진 설정
-profileImageInput.addEventListener("change", function (event) {
+profileImageInput.addEventListener("change", (event) => {
     const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
-        reader.onload = function (e) {
+        reader.onload = (e) => {
             profileImage.src = e.target.result;
         };
         reader.readAsDataURL(file);
@@ -28,7 +51,7 @@ profileImageInput.addEventListener("change", function (event) {
 
 
 // 닉네임 유효성 검사
-async function validate() {
+const validate = async () => {
     const nicknameInput = document.querySelector(".input-name");
     const updateProfileHelperText = document.getElementById("updateProfileHelperText");
     const nicknameValue = nicknameInput.value.trim();
@@ -66,7 +89,7 @@ async function validate() {
 }
 
 // 사용자가 수정하기 버튼을 클릭할 때 프로필을 업데이트하는 함수
-async function updateProfile() {
+const updateProfile = async () => {
     // 유효성 검사를 통과한 경우에만 업데이트 수행
     if (updateProfileHelperText.textContent === "* 통과") {
         showToast('프로필 업데이트 완료');
@@ -107,37 +130,14 @@ async function updateProfile() {
     }
 }
 
-// 드롭다운 메뉴
-function toggleDropdown() {
-    var dropdownContent = document.getElementById("dropdownContent");
-    if (dropdownContent.classList.contains("show")) {
-        dropdownContent.classList.remove("show");
-    } else {
-        dropdownContent.classList.add("show");
-    }
-}
-
-// 다른 곳을 클릭했을 때, 열러있는 드롭다운 닫기
-window.onclick = function (event) {
-    if (!event.target.matches('.profile-image')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        for (var i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
-        }
-    }
-}
-
-function showToast(message) {
+const showToast = (message) => {
     const toast = document.getElementById('toastMessage');
     if (toast) {
         toast.innerText = message;
         toast.style.display = 'block'; // 토스트 메시지 보이기
 
         // 3초 후에 토스트 메시지 숨기기
-        setTimeout(function () {
+        setTimeout( () => {
             toast.style.display = 'none';
         }, 3000);
     } else {
@@ -146,9 +146,9 @@ function showToast(message) {
 }
 
 // 회원 탈퇴 모달 보이기
-function showWithdrawModal() {
-    var modalBackground = document.getElementById('withdrawModalBackground');
-    var deleteModal = document.getElementById('withdrawModal');
+const showWithdrawModal = () => {
+    const modalBackground = document.getElementById('withdrawModalBackground');
+    const deleteModal = document.getElementById('withdrawModal');
 
     modalBackground.style.display = 'block';
     deleteModal.style.display = 'block';
@@ -158,9 +158,9 @@ function showWithdrawModal() {
 }
 
 // 회원 탈퇴 모달 숨기기
-function hideWithdrawModal() {
-    var modalBackground = document.getElementById('withdrawModalBackground');
-    var deleteModal = document.getElementById('withdrawModal');
+const hideWithdrawModal = () => {
+    const modalBackground = document.getElementById('withdrawModalBackground');
+    const deleteModal = document.getElementById('withdrawModal');
 
     modalBackground.style.display = 'none';
     deleteModal.style.display = 'none';
@@ -170,12 +170,12 @@ function hideWithdrawModal() {
 }
 
 // 로그인 화면으로 이동
-function redirectToSignIn() {
+const redirectToSignIn = () => {
     window.location.href = "sign-in";
 }
 
 // 사용자가 회원 탈퇴 확인 버튼을 클릭할 때 호출되는 함수
-async function confirmWithdraw() {
+const confirmWithdraw = async () => {
     try {
         const response = await fetch('http://localhost:3001/withdraw', {
             credentials: 'include', // 쿠키를 서버에 포함시키도록 설정
@@ -194,7 +194,7 @@ async function confirmWithdraw() {
     }
 }
 
-window.addEventListener("load", async function() {
+window.addEventListener("load", async () => {
     // 서버에 요청을 보낼 때 쿠키를 포함시켜서 전송
     fetch('http://localhost:3001/get-profile-image', {
         credentials: 'include' // 쿠키를 서버에 포함시키도록 설정

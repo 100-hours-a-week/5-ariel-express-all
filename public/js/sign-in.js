@@ -4,7 +4,7 @@ const loginButton = document.getElementById("loginButton");
 const helperText = document.getElementById("helperText");
 
 // 입력 필드 내용이 변경될 때마다 호출되는 함수
-function checkInputs() {
+const checkInputs = () => {
     // 이메일과 비밀번호가 입력되었는지 확인
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
@@ -29,19 +29,19 @@ passwordInput.addEventListener("input", checkInputs);
 
 
 // 이메일 유효성 검사 함수
-function isValidEmail(email) {
+const isValidEmail = (email) => {
     // 이메일 형식 검사 정규식
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
 
-function isValidPassword(password) {
+const isValidPassword = (password) => {
     // 비밀번호는 8자 이상, 20자 이하여야 하고, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 함
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
     return passwordRegex.test(password);
 }
 
-function validation(email, password) {
+const validation = (email, password) => {
     // 이메일과 비밀번호가 입력되지 않은 경우
     if (!email.trim() && !password.trim()) {
         return '이메일과 비밀번호를 입력해주세요.';
@@ -78,12 +78,12 @@ function validation(email, password) {
 }
 
 // 게시글 목록 페이지로 이동하는 함수
-function redirectToPostListPage() {
+const redirectToPostListPage = () => {
     window.location.href = "/list-of-posts";
 }
 
 // 사용자 로그인 함수
-function loginUser(email, password) {
+const loginUser = (email, password) => {
     // JSON 파일에서 사용자 정보 가져오기
     fetch("http://localhost:3001/users", {
         credentials: 'include' // 쿠키를 포함시키기 위해 설정
@@ -97,7 +97,7 @@ function loginUser(email, password) {
                 helperText.textContent = "* 성공";
                 helperText.style.visibility = 'visible'; // helper text를 보이도록 변경
                 // 로그인 성공 후 3초 후 페이지 이동
-                setTimeout(function () {
+                setTimeout( () => {
                     // 서버로 POST 요청을 보냄
                     fetch("http://localhost:3001/login", {
                         method: "POST",
@@ -135,7 +135,7 @@ function loginUser(email, password) {
 
 
 // 로그인 폼 제출 이벤트 핸들러
-document.getElementById("loginForm").addEventListener("submit", function (event) {
+document.getElementById("loginForm").addEventListener("submit", (event) => {
     event.preventDefault(); // 폼 제출 방지
 
     // 사용자가 입력한 이메일과 비밀번호 가져오기 (앞뒤 공백 제거)
@@ -155,7 +155,7 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
 });
 
 // 페이지 로드 시 실행되는 함수
-window.addEventListener("load", function () {
+window.addEventListener("load", () => {
     // 쿠키에서 현재 로그인한 이메일 정보를 가져옴
     const loggedInUser = document.cookie.split(";").find(cookie => cookie.trim().startsWith("loggedInUser="));
     if (loggedInUser) {

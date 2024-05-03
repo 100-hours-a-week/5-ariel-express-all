@@ -1,6 +1,6 @@
 // 드롭다운 메뉴
-function toggleDropdown() {
-    var dropdownContent = document.getElementById("dropdownContent");
+const toggleDropdown = () => {
+    const dropdownContent = document.getElementById("dropdownContent");
     if (dropdownContent.classList.contains("show")) {
         dropdownContent.classList.remove("show");
     } else {
@@ -9,11 +9,11 @@ function toggleDropdown() {
 }
 
 // 다른 곳을 클릭했을 때, 열러있는 드롭다운 닫기
-window.onclick = function (event) {
+window.onclick = (event) => {
     if (!event.target.matches('.profile-image')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        for (var i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
+        const dropdowns = document.getElementsByClassName("dropdown-content");
+        for (let i = 0; i < dropdowns.length; i++) {
+            const openDropdown = dropdowns[i];
             if (openDropdown.classList.contains('show')) {
                 openDropdown.classList.remove('show');
             }
@@ -22,7 +22,7 @@ window.onclick = function (event) {
 }
 
 // 게시글 데이터를 받아와서 게시글 목록 생성
-function renderPosts(posts) {
+const renderPosts = (posts) => {
     const postList = document.getElementById('postList');
 
     posts.forEach(post => {
@@ -53,7 +53,7 @@ function renderPosts(posts) {
 }
 
 // 게시글 제목 글자 수 제한 함수
-function limitPostTitleLength() {
+const limitPostTitleLength = () => {
     const postTitles = document.querySelectorAll('.post-title');
 
     postTitles.forEach(title => {
@@ -66,7 +66,7 @@ function limitPostTitleLength() {
 }
 
 // 숫자를 형식에 맞게 변환하는 함수
-function formatNumber(number) {
+const formatNumber = (number) => {
     if (number >= 100000) {
         // toFixed(): 숫자를 지정된 소수점 이하 자릿수로 반올림한 후 문자열로 반환하는 메서드
         return (number / 1000).toFixed(0) + 'k';
@@ -79,7 +79,7 @@ function formatNumber(number) {
     }
 }
 
-function formatDateTime(date, time) {
+const formatDateTime = (date, time) => {
     // 날짜와 시간을 공백으로 구분하여 ISO 8601 형식의 문자열로 변환
     const isoDateTimeString = `${date}T${time}`;
     const dateTime = new Date(isoDateTimeString);
@@ -105,7 +105,7 @@ fetch('http://localhost:3001/posts')
     .catch(error => console.error('Error fetching posts:', error));
 
 // 페이지 로드 시 실행되는 함수
-window.addEventListener("load", function() {
+window.addEventListener("load", () => {
     // 서버에 요청을 보낼 때 쿠키를 포함시켜서 전송
     fetch('http://localhost:3001/get-profile-image', {
         credentials: 'include' // 쿠키를 서버에 포함시키도록 설정

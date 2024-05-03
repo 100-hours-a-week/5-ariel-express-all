@@ -1,6 +1,6 @@
 // 드롭다운 메뉴
-function toggleDropdown() {
-    var dropdownContent = document.getElementById("dropdownContent");
+const toggleDropdown = () => {
+    const dropdownContent = document.getElementById("dropdownContent");
     if (dropdownContent.classList.contains("show")) {
         dropdownContent.classList.remove("show");
     } else {
@@ -9,11 +9,11 @@ function toggleDropdown() {
 }
 
 // 다른 곳을 클릭했을 때, 열러있는 드롭다운 닫기
-window.onclick = function (event) {
+window.onclick = (event) => {
     if (!event.target.matches('.profile-image')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        for (var i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
+        const dropdowns = document.getElementsByClassName("dropdown-content");
+        for (let i = 0; i < dropdowns.length; i++) {
+            const openDropdown = dropdowns[i];
             if (openDropdown.classList.contains('show')) {
                 openDropdown.classList.remove('show');
             }
@@ -27,7 +27,7 @@ const passwordHelperText = document.getElementById('passwordHelperText')
 const confirmPasswordHelperText = document.getElementById('confirmPasswordHelperText');
 
 // 비밀번호 유효성 검사 함수
-function validatePassword(tf) {
+const validatePassword = (tf) => {
     const passwordValue = passwordInput.value.trim();
     const confirmPasswordValue = confirmPasswordInput.value.trim();
 
@@ -60,7 +60,7 @@ function validatePassword(tf) {
 }
 
 // 비밀번호 확인 유효성 검사
-function validateConfirmPassword(tf) {
+const validateConfirmPassword = (tf) => {
     const passwordValue = passwordInput.value.trim();
     const confirmPasswordValue = confirmPasswordInput.value.trim();
 
@@ -83,14 +83,14 @@ function validateConfirmPassword(tf) {
     }
 }
 
-function validatePasswordStrength(password) {
+const validatePasswordStrength = (password) => {
     // 비밀번호는 8자 이상, 20자 이하여야 하고, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 함
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
     return passwordRegex.test(password);
 }
 
 // 모든 input값 유효성 검사
-async function validateAllInputs() {
+const validateAllInputs = async () => {
     const passwordValid = await validatePassword(false);
     const confirmPasswordValid = await validateConfirmPassword(false);
 
@@ -104,14 +104,14 @@ async function validateAllInputs() {
     }
 }
 
-function showToast(message) {
+const showToast = (message) => {
     const toast = document.getElementById('toastMessage');
     if (toast) {
         toast.innerText = message;
         toast.style.display = 'block'; // 토스트 메시지 보이기
 
         // 3초 후에 토스트 메시지 숨기기
-        setTimeout(function () {
+        setTimeout( () => {
             toast.style.display = 'none';
         }, 3000);
     } else {
@@ -121,7 +121,7 @@ function showToast(message) {
 
 // update-password.js
 // 사용자가 비밀번호를 수정하고 수정하기 버튼을 클릭했을 때 실행되는 함수
-async function updatePassword() {
+const updatePassword = async () =>{
 
     if (passwordHelperText.textContent === "* 통과" && confirmPasswordHelperText.textContent === '* 통과') {
         newPassword = passwordInput.value;
@@ -153,7 +153,7 @@ async function updatePassword() {
 }
 
 // 페이지 로드 시 실행되는 함수
-window.addEventListener("load", function() {
+window.addEventListener("load", () => {
     // 서버에 요청을 보낼 때 쿠키를 포함시켜서 전송
     fetch('http://localhost:3001/get-profile-image', {
         credentials: 'include' // 쿠키를 서버에 포함시키도록 설정

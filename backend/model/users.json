@@ -8,7 +8,7 @@
     {
         "email": "test@naver.com",
         "password": "Test1234*",
-        "nickname": "예지",
+        "nickname": "옞",
         "profile_picture": "uploads/ea4a7d7a6d0916219d393a199feccffc"
     },
     {
@@ -64,5 +64,11 @@
         "password": "Man12345*",
         "nickname": "man",
         "profile_picture": "uploads/245089ce55d756245b778b8544025298"
+    },
+    {
+        "email": "123@naver.com",
+        "password": "Test1234*",
+        "nickname": "123",
+        "profile_picture": "uploads/d71c31367c9f65ac4ca8d8c416586ad2"
     }
 ]
