@@ -1,15 +1,21 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// 현재 모듈의 경로를 가져오기
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const usersJsonPath = path.join(__dirname, '..', 'model', 'users.json');
 
 // 사용자 정보를 파일에서 읽어와서 클라이언트에게 전송
-function users(req, res) {
+const users = (req, res) => {
     const usersFilePath = usersJsonPath;
     res.sendFile(usersFilePath);
 }
 
 // 로그인 요청 처리
-function login(req, res) {
+const login = (req, res) => {
     const { email } = req.body;
     // 디코딩된 이메일 정보를 사용하여 쿠키 설정
     const decodedEmail = decodeURIComponent(email);
@@ -19,7 +25,7 @@ function login(req, res) {
 }
 
 // 회원가입 요청 처리
-function signUp(req, res) {
+const signUp = (req, res) => {
     const { email, password, confirmPassword, nickname } = req.body;
     const profile_picture = req.file.path;
 
@@ -58,7 +64,7 @@ function signUp(req, res) {
 }
 
 // 현재 로그인된 사용자의 프로필 사진 요청 처리
-function getProfileImage(req, res) {
+const getProfileImage = (req, res) => {
     // 쿠키에서 현재 로그인한 이메일 정보를 읽어옴
     const loggedInUser = req.cookies.loggedInUser;
 
@@ -94,7 +100,7 @@ function getProfileImage(req, res) {
 }
 
 // 회원정보 수정
-function updateProfile(req, res) {
+const updateProfile = (req, res) => {
     const loggedInUser = req.cookies.loggedInUser;
     const newNickname = req.body.newNickname;
     const profileImage = req.file; // 업로드된 프로필 이미지 파일
@@ -135,7 +141,7 @@ function updateProfile(req, res) {
 }
 
 // 회원 탈퇴
-function withdraw(req, res) {
+const withdraw = (req, res) => {
     // 사용자 정보를 users.json 파일에서 읽어옴
     fs.readFile(usersJsonPath, 'utf8', (err, data) => {
         if (err) {
@@ -167,7 +173,7 @@ function withdraw(req, res) {
 }
 
 // 비밀번호 변경
-function updatePassword(req, res) {
+const updatePassword = (req, res) => {
     const { newPassword } = req.body;
 
     console.log(`비밀번호 변경 페이지: ${newPassword}`);
@@ -203,7 +209,7 @@ function updatePassword(req, res) {
 }
 
 // 현재 로그인 된 이메일로 사용자 정보 변경
-function currentUserEmail(req, res) {
+const currentUserEmail = (req, res) => {
     const loggedInUserEmail = req.cookies.loggedInUser;
     if (loggedInUserEmail) {
         res.json({ success: true, email: loggedInUserEmail });
@@ -212,7 +218,7 @@ function currentUserEmail(req, res) {
     }
 }
 
-module.exports = {
+export default {
     users,
     login,
     signUp,

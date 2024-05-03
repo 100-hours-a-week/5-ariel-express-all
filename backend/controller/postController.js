@@ -1,18 +1,23 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { getCurrentDateTime } from '../tools/currentDateTime.js';
+import { fileURLToPath } from 'url';
+
+// 현재 모듈의 경로를 가져오기
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const postsJsonPath = path.join(__dirname, '..', 'model', 'posts.json');
 const usersJsonPath = path.join(__dirname, '..', 'model', 'users.json');
-const getCurrentDateTime = require('../tools/currentDateTime');
-
 
 // 게시글 정보를 파일에서 읽어와서 클라이언트에게 전송
-function posts(req, res) {
+const posts = (req, res) => {
     const postsFilePath = postsJsonPath;
     res.sendFile(postsFilePath);
 }
 
 // 게시글 목록 조회 페이지 전송
-function listOfPosts(req, res) {
+const listOfPosts = (req, res) => {
     // 쿠키에서 현재 로그인한 이메일 정보를 읽어옴
     const loggedInUser = req.cookies.loggedInUser;
     console.log(`현재 로그인한 이메일: ${loggedInUser}`);
@@ -20,7 +25,7 @@ function listOfPosts(req, res) {
 }
 
 // 게시글 삭제
-function deletePost(req, res) {
+const deletePost = (req, res) => {
     const { postId } = req.body;
 
     // posts.json 파일 읽어오기
@@ -62,12 +67,12 @@ function deletePost(req, res) {
 }
 
 // 게시글 작성
-function createPost(req, res) {
+const createPost = (req, res) => {
     const { title, content } = req.body;
     const imageFile = req.file; // 이미지 파일
 
     // 현재 날짜와 시간 가져오기
-    const { currentDate, currentTime } = getCurrentDateTime.getCurrentDateTime();
+    const { currentDate, currentTime } = getCurrentDateTime();
 
     // 현재 로그인된 사용자의 이메일 정보 가져오기
     const loggedInUserEmail = req.cookies.loggedInUser;
@@ -137,7 +142,7 @@ function createPost(req, res) {
 }
 
 // 게시글 수정
-function updatePost(req, res) {
+const updatePost = (req, res) => {
     const postId = req.query.id;
     const { title, content } = req.body;
 
@@ -186,7 +191,7 @@ function updatePost(req, res) {
     });
 }
 
-module.exports = {
+export default {
     posts,
     listOfPosts,
     deletePost,

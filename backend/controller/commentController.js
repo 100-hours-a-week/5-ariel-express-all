@@ -1,12 +1,18 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { getCurrentDateTime } from '../tools/currentDateTime.js';
+import { fileURLToPath } from 'url';
+
+// 현재 모듈의 경로를 가져오기
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const postsJsonPath = path.join(__dirname, '..', 'model', 'posts.json');
 const usersJsonPath = path.join(__dirname, '..', 'model', 'users.json');
-const getCurrentDateTime = require('../tools/currentDateTime');
 
 
 // 댓글 삭제
-function deleteComment(req, res) {
+const deleteComment = (req, res) => {
     const { postId, commentId } = req.body;
 
     fs.readFile(postsJsonPath, 'utf8', (err, data) => {
@@ -54,7 +60,7 @@ function deleteComment(req, res) {
 }
 
 // 댓글 수정
-function updateComment(req, res) {
+const updateComment = (req, res) => {
     const { postId, commentId, content } = req.body;
 
     // posts.json 파일을 읽어와서 해당 게시글을 찾고 댓글을 업데이트
@@ -100,11 +106,11 @@ function updateComment(req, res) {
 }
 
 // 댓글 등록
-function addComment(req, res) {
+const addComment = (req, res) => {
     const { postId, content } = req.body;
     
     // 현재 날짜와 시간 가져오기
-    const { currentDate, currentTime } = getCurrentDateTime.getCurrentDateTime();
+    const { currentDate, currentTime } = getCurrentDateTime();
 
     // 현재 로그인된 사용자의 이메일 정보 가져오기
     const loggedInUserEmail = req.cookies.loggedInUser;
@@ -180,7 +186,7 @@ function addComment(req, res) {
     });
 }
 
-module.exports = {
+export default {
     deleteComment,
     updateComment,
     addComment,

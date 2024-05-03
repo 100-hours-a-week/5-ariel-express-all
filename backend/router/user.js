@@ -1,9 +1,10 @@
-const express = require('express');
+import express from 'express';
+import multer from 'multer';
+import cors from 'cors';
+import userController from '../controller/userController.js';
+
 const router = express.Router();
-const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
-const cors = require('cors'); // cors 모듈 추가
-const userController = require('../controller/userController');
 
 // CORS 옵션 설정
 const corsOptions = {
@@ -35,4 +36,4 @@ router.post('/update-password', userController.updatePassword);
 // 회원정보 - 현재 로그인 된 사용자 이메일 표시
 router.get('/current-user-email', userController.currentUserEmail)
 
-module.exports = router;
+export default router;

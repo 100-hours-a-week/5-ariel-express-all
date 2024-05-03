@@ -1,8 +1,14 @@
-const express = require('express');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const path = require('path');
-const cors = require('cors');
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+import path from 'path';
+import cors from 'cors';
+import { fileURLToPath } from 'url';
+
+// 현재 모듈의 경로를 가져오기
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
 
 // CORS 옵션 설정
@@ -19,13 +25,15 @@ app.use(cors(corsOptions));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // uploads 디렉토리를 정적 파일로 제공
 
 // 라우터 설정
-const userRouter = require('./router/user');
-const postRouter = require('./router/post');
-const commentRouter = require('./router/comment');
+import userRouter from './router/user.js';
+import postRouter from './router/post.js';
+import commentRouter from './router/comment.js';
 app.use(userRouter);
 app.use(postRouter);
 app.use(commentRouter);
 
-app.listen(3001, () => {
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
     console.log('백엔드 서버가 실행 중입니다.');
 });
