@@ -348,7 +348,17 @@
                     },
                     "date": "2024-05-01",
                     "time": "18:14:55",
-                    "content": "ㅋㅋ"
+                    "content": "ㅋㅋㅋㅋ"
+                },
+                {
+                    "id": 2,
+                    "author": {
+                        "profile_picture": "http://localhost:3001/uploads/ea4a7d7a6d0916219d393a199feccffc",
+                        "nickname": "옞"
+                    },
+                    "date": "2024-05-04",
+                    "time": "01:05:20",
+                    "content": "됨"
                 }
             ]
         },
@@ -380,32 +390,6 @@
         },
         {
             "id": 9,
-            "title": "ㅎㅇ",
-            "author": {
-                "profile_picture": "http://localhost:3001/uploads/e17186eeb5641c89784f6b754aa2fde8",
-                "nickname": "0501"
-            },
-            "date": "2024-05-01",
-            "time": "21:11:11",
-            "image": "http://localhost:3001/uploads/10a39f2dfc62da3f13159ae0efd79c11",
-            "content": "ㅈㄱㄴ~",
-            "likes": 0,
-            "views": 0,
-            "comments": [
-                {
-                    "id": 1,
-                    "author": {
-                        "profile_picture": "http://localhost:3001/uploads/a08223e2536bfcd8eff45eb33ae413f2",
-                        "nickname": "te"
-                    },
-                    "date": "2024-05-01",
-                    "time": "21:47:40",
-                    "content": "안녕하심가ㅋㅋ"
-                }
-            ]
-        },
-        {
-            "id": 10,
             "title": "hello",
             "author": {
                 "profile_picture": "http://localhost:3001/uploads/a92cb0d80e4806a4cb52f15bf65acbd5",
@@ -431,7 +415,7 @@
             ]
         },
         {
-            "id": 11,
+            "id": 10,
             "title": "되겠지?",
             "author": {
                 "profile_picture": "http://localhost:3001/uploads/ea4a7d7a6d0916219d393a199feccffc",
@@ -455,6 +439,21 @@
                     "content": "g"
                 }
             ]
+        },
+        {
+            "id": 11,
+            "title": "ㅎㅇ",
+            "author": {
+                "profile_picture": "http://localhost:3001/uploads/ea4a7d7a6d0916219d393a199feccffc",
+                "nickname": "옞"
+            },
+            "date": "2024-05-04",
+            "time": "01:04:37",
+            "image": null,
+            "content": "ㅎ",
+            "likes": 0,
+            "views": 0,
+            "comments": []
         }
     ]
 }

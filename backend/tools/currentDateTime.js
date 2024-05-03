@@ -1,5 +1,5 @@
 // 현재 날짜, 시간 반환
-function getCurrentDateTime() {
+export function getCurrentDateTime() {
     const now = new Date();
     const year = now.getFullYear();
     const month = (now.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
@@ -12,6 +12,6 @@ function getCurrentDateTime() {
     return { currentDate, currentTime };
 }
 
-module.exports = {
-    getCurrentDateTime
-};
+// module.exports = {
+//     getCurrentDateTime
+// };

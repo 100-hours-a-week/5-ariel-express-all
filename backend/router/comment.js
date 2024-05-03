@@ -1,9 +1,9 @@
-const express = require('express');
-const router = express.Router();
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
+import express from 'express';
+import multer from 'multer';
+import commentController from '../controller/commentController.js';
 
-const commentController = require('../controller/commentController');
+const router = express.Router();
+const upload = multer({ dest: 'uploads/' });
 
 // 댓글 삭제 요청
 router.delete('/delete-comment', commentController.deleteComment);
@@ -14,4 +14,4 @@ router.post('/update-comment', commentController.updateComment);
 // 댓글 등록 요청
 router.post('/add-comment', commentController.addComment);
 
-module.exports = router;
+export default router;

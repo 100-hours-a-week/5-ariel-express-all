@@ -1,9 +1,10 @@
-const express = require('express');
+import express from 'express';
+import multer from 'multer';
+import postController from '../controller/postController.js';
+
 const router = express.Router();
-const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 
-const postController = require('../controller/postController');
 
 // posts.json 가져오기
 router.get('/posts', postController.posts);
@@ -20,4 +21,4 @@ router.post('/create-post', upload.single('image'), postController.createPost);
 // 게시글 수정 요청
 router.post('/update-post', upload.single('image'), postController.updatePost);
 
-module.exports = router;
+export default router;
