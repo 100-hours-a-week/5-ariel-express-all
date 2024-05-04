@@ -503,7 +503,30 @@
             "content": "돼야함",
             "likes": 0,
             "views": 0,
-            "comments": []
+            "comments": [
+                {
+                    "id": 1,
+                    "author": {
+                        "email": "0504@naver.com",
+                        "profile_picture": "http://localhost:3001/uploads/a5c537f38d9f3661ecd06530ccb4ae21",
+                        "nickname": "0504"
+                    },
+                    "date": "2024-05-04",
+                    "time": "22:06:22",
+                    "content": "수정 완."
+                },
+                {
+                    "id": 2,
+                    "author": {
+                        "email": "0504@naver.com",
+                        "profile_picture": "http://localhost:3001/uploads/953700ef2a9f67051245a0ce0ce0ab3a",
+                        "nickname": "ㅎ"
+                    },
+                    "date": "2024-05-04",
+                    "time": "22:09:32",
+                    "content": "ㅌㅌ"
+                }
+            ]
         },
         {
             "id": 12,
@@ -535,31 +558,19 @@
         },
         {
             "id": 13,
-            "title": "이메일도 드가자",
+            "title": "작성",
             "author": {
                 "email": "0504@naver.com",
                 "profile_picture": "http://localhost:3001/uploads/a5c537f38d9f3661ecd06530ccb4ae21",
                 "nickname": "0504"
             },
             "date": "2024-05-04",
-            "time": "21:51:06",
-            "image": null,
-            "content": "ㄱ",
+            "time": "22:03:21",
+            "image": "http://localhost:3001/uploads/3c666bfd3493d6c0e7573111c8c336e9",
+            "content": "!!!",
             "likes": 0,
             "views": 0,
-            "comments": [
-                {
-                    "id": 1,
-                    "author": {
-                        "email": "0504@naver.com",
-                        "profile_picture": "http://localhost:3001/uploads/a5c537f38d9f3661ecd06530ccb4ae21",
-                        "nickname": "0504"
-                    },
-                    "date": "2024-05-04",
-                    "time": "21:52:13",
-                    "content": "댓글도 드가자"
-                }
-            ]
+            "comments": []
         }
     ]
 }
