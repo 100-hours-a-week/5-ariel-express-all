@@ -113,7 +113,7 @@ const addComment = (req, res) => {
     const { currentDate, currentTime } = getCurrentDateTime();
 
     // 현재 로그인된 사용자의 이메일 정보 가져오기
-    const loggedInUserEmail = req.cookies.loggedInUser;
+    const loggedInUserEmail = req.session.loggedInUser;
 
     // 사용자 이메일 정보를 이용하여 해당 사용자의 닉네임과 프로필 정보를 users.json 파일에서 찾아옴
     fs.readFile(usersJsonPath, 'utf8', (err, data) => {
@@ -158,6 +158,7 @@ const addComment = (req, res) => {
                 const newComment = {
                     id: newCommentId,
                     author: {
+                        email: loggedInUserEmail,
                         profile_picture: 'http://localhost:3001/' + loggedInUser.profile_picture,
                         nickname: loggedInUser.nickname
                     },

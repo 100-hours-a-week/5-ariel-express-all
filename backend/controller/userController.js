@@ -109,7 +109,7 @@ const getProfileImage = (req, res) => {
 
 // 회원정보 수정
 const updateProfile = (req, res) => {
-    const loggedInUser = req.cookies.loggedInUser;
+    const loggedInUser = req.session.loggedInUser;
     const newNickname = req.body.newNickname;
     const profileImage = req.file; // 업로드된 프로필 이미지 파일
 
@@ -160,7 +160,7 @@ const withdraw = (req, res) => {
         let users = JSON.parse(data);
 
         // 현재 로그인한 사용자의 이메일을 통해 사용자 정보를 찾음
-        const loggedInUserEmail = req.cookies.loggedInUser;
+        const loggedInUserEmail = req.session.loggedInUser;
         const userIndex = users.findIndex(user => user.email === loggedInUserEmail);
 
         if (userIndex === -1) {
@@ -196,7 +196,7 @@ const updatePassword = (req, res) => {
         let users = JSON.parse(data);
 
         // 현재 로그인한 사용자의 이메일을 통해 사용자 정보를 찾음
-        const loggedInUserEmail = req.cookies.loggedInUser;
+        const loggedInUserEmail = req.session.loggedInUser;
         const userIndex = users.findIndex(user => user.email === loggedInUserEmail);
 
         if (userIndex === -1) {
@@ -218,7 +218,7 @@ const updatePassword = (req, res) => {
 
 // 현재 로그인 된 이메일로 사용자 정보 변경
 const currentUserEmail = (req, res) => {
-    const loggedInUserEmail = req.cookies.loggedInUser;
+    const loggedInUserEmail = req.session.loggedInUser;
     if (loggedInUserEmail) {
         res.json({ success: true, email: loggedInUserEmail });
     } else {

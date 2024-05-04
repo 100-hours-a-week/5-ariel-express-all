@@ -26,8 +26,8 @@
     {
         "email": "test@naver.com1",
         "password": "Test1234*",
-        "nickname": "test",
-        "profile_picture": "uploads/a08223e2536bfcd8eff45eb33ae413f2"
+        "nickname": "민들레",
+        "profile_picture": "uploads/b6b35d8b9fea0b5f8d4fbb290b871d1b"
     },
     {
         "email": "test@naver.com3dk",
@@ -70,5 +70,11 @@
         "password": "Test1234*",
         "nickname": "123",
         "profile_picture": "uploads/d71c31367c9f65ac4ca8d8c416586ad2"
+    },
+    {
+        "email": "0504@naver.com",
+        "password": "Abcd1234*",
+        "nickname": "0504",
+        "profile_picture": "uploads/a5c537f38d9f3661ecd06530ccb4ae21"
     }
 ]
