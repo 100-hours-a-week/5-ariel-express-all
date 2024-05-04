@@ -8,8 +8,8 @@
     {
         "email": "test@naver.com",
         "password": "Test1234*",
-        "nickname": "숭이",
-        "profile_picture": "uploads/daace06f897fefbfe38acdc19c6d0454"
+        "nickname": "사과",
+        "profile_picture": "uploads/bcc6cc7ea95ef510e59191594ea636d6"
     },
     {
         "email": "test@naver.comㅁ",
@@ -74,7 +74,7 @@
     {
         "email": "0504@naver.com",
         "password": "Abcd1234*",
-        "nickname": "ㅎ",
-        "profile_picture": "uploads/953700ef2a9f67051245a0ce0ce0ab3a"
+        "nickname": "그랜파",
+        "profile_picture": "uploads/9b85a086a38c858393483e6d3b580b22"
     }
 ]
