@@ -21,6 +21,11 @@ window.onclick = (event) => {
     }
 }
 
+const logout = () => {
+    sessionStorage.removeItem('loggedInUser');
+    window.location.href = "/sign-in";
+}
+
 const passwordInput = document.getElementById('passwordInput');
 const confirmPasswordInput = document.getElementById('confirmPasswordInput');
 const passwordHelperText = document.getElementById('passwordHelperText')

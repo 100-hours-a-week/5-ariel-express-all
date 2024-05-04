@@ -1,7 +1,12 @@
-const express = require('express');
+import express from 'express';
+import path from 'path';
+import cors from'cors';
+import { fileURLToPath } from 'url';
+
+// 현재 모듈의 경로를 가져오기
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app = express();
-const path = require('path');
-const cors = require('cors');
 const publicPath = path.join(__dirname); // 정적 파일 제공을 위한 경로 설정
 
 app.use(express.json());

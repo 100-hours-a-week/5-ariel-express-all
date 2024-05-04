@@ -15,12 +15,20 @@ const users = (req, res) => {
 }
 
 // 로그인 요청 처리
+// const login = (req, res) => {
+//     const { email } = req.body;
+//     // 디코딩된 이메일 정보를 사용하여 쿠키 설정
+//     const decodedEmail = decodeURIComponent(email);
+//     //console.log(`현재 로그인 된 사용자 이메일 디코딩 ver: ${decodedEmail}`);
+//     res.cookie('loggedInUser', decodedEmail, { maxAge: 900000, httpOnly: true }); // 쿠키 만료 시간: 15분
+//     res.json({ success: true });
+// }
+
+// 로그인 요청 처리
 const login = (req, res) => {
     const { email } = req.body;
-    // 디코딩된 이메일 정보를 사용하여 쿠키 설정
-    const decodedEmail = decodeURIComponent(email);
-    //console.log(`현재 로그인 된 사용자 이메일 디코딩 ver: ${decodedEmail}`);
-    res.cookie('loggedInUser', decodedEmail, { maxAge: 900000, httpOnly: true }); // 쿠키 만료 시간: 15분
+    // 디코딩된 이메일 정보를 사용하여 세션 설정
+    req.session.loggedInUser = decodeURIComponent(email);
     res.json({ success: true });
 }
 
@@ -65,11 +73,11 @@ const signUp = (req, res) => {
 
 // 현재 로그인된 사용자의 프로필 사진 요청 처리
 const getProfileImage = (req, res) => {
-    // 쿠키에서 현재 로그인한 이메일 정보를 읽어옴
-    const loggedInUser = req.cookies.loggedInUser;
+    // 세션에서 현재 로그인한 이메일 정보를 읽어옴
+    const loggedInUserEmail = req.session.loggedInUser;
 
-    console.log(`프사 요청 loggedInUser: ${loggedInUser}`);
-    if (loggedInUser) {
+    console.log(`프사 요청 loggedInUser: ${loggedInUserEmail}`);
+    if (loggedInUserEmail) {
         // 현재 로그인한 사용자의 정보를 users.json 파일에서 찾음
         fs.readFile(usersJsonPath, 'utf8', (err, data) => {
             if (err) {
@@ -79,7 +87,7 @@ const getProfileImage = (req, res) => {
             }
 
             const users = JSON.parse(data);
-            const currentUser = users.find(user => user.email === loggedInUser);
+            const currentUser = users.find(user => user.email === loggedInUserEmail);
             if (currentUser) {
                 // 현재 로그인한 사용자의 프로필 이미지 경로를 생성
                 const profileImagePath = 'http://localhost:3001/' + currentUser.profile_picture;
@@ -94,8 +102,8 @@ const getProfileImage = (req, res) => {
             }
         });
     } else {
-        // 로그인되지 않은 사용자인 경우 (임시)
-        res.status(200).json({ profileImagePath: 'http://localhost:3001/images/profile-image.png' }); // 예: 기본 이미지를 제공하거나 다른 처리를 수행할 수 있음
+        // 로그인되지 않은 사용자인 경우
+        res.status(401).json({ error: 'User not logged in' });
     }
 }
 
@@ -226,5 +234,5 @@ export default {
     updateProfile,
     withdraw,
     updatePassword,
-    currentUserEmail
+    currentUserEmail,
 };

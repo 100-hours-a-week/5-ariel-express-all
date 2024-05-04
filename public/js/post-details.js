@@ -21,6 +21,11 @@ window.onclick = (event) => {
     }
 }
 
+const logout = () => {
+    sessionStorage.removeItem('loggedInUser');
+    window.location.href = "/sign-in";
+}
+
 // URL에서 게시글 ID를 가져오는 함수
 const getPostIdFromUrl = () => {
     const queryString = window.location.search; // id 반환 (ex. ?id=1)

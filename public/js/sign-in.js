@@ -110,6 +110,8 @@ const loginUser = (email, password) => {
                         .then(response => response.json())
                         .then(data => {
                             if (data.success) {
+                                // 세션 정보를 클라이언트에서 설정
+                                sessionStorage.setItem('loggedInUser', email);
                                 // 로그인 성공 시 게시글 목록 페이지로 이동
                                 redirectToPostListPage();
                             } else {
@@ -156,13 +158,34 @@ document.getElementById("loginForm").addEventListener("submit", (event) => {
 
 // 페이지 로드 시 실행되는 함수
 window.addEventListener("load", () => {
-    // 쿠키에서 현재 로그인한 이메일 정보를 가져옴
-    const loggedInUser = document.cookie.split(";").find(cookie => cookie.trim().startsWith("loggedInUser="));
+    // 클라이언트 측에 설정된 세션 정보 가져오기
+    const loggedInUser = sessionStorage.getItem('loggedInUser');
+    
     if (loggedInUser) {
-        // 현재 로그인한 사용자에 대한 추가 작업을 수행
-        console.log("현재 로그인한 이메일:", loggedInUser.split("=")[1]);
+        // 로그인된 사용자 정보를 서버로 전달
+        fetch("http://localhost:3001/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email: loggedInUser }), // 세션 정보를 서버로 전달
+            credentials: 'include' // 쿠키를 포함시키기 위해 설정
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // 세션 정보를 서버로 전달한 후 로그인 성공 시 게시글 목록 페이지로 이동
+                redirectToPostListPage();
+            } else {
+                // 로그인 실패 시 메시지 출력 또는 처리
+                console.log("로그인 실패");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
     } else {
-        // 로그인되지 않은 사용자에 대한 처리
+        // 세션 정보가 없는 경우, 로그인되지 않은 상태로 처리
         console.log("로그인되지 않음");
     }
 });
