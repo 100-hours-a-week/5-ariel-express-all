@@ -179,6 +179,7 @@ a {
     /* 부모 요소 .dropdown 바로 아래에 나타나도록 설정합니다. */
     left: 55%;
     /* 부모 요소 .dropdown과 왼쪽 정렬됩니다. */
+    text-align: center;
 }
 
 .dropdown-content a {

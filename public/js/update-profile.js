@@ -21,6 +21,11 @@ window.onclick = (event) => {
     }
 }
 
+const logout = () => {
+    sessionStorage.removeItem('loggedInUser');
+    window.location.href = "/sign-in";
+}
+
 const profileImageInput = document.getElementById("profileImageInput");
 const profileImage = document.getElementById("profileImage");
 const nickname = document.getElementById("nickname");

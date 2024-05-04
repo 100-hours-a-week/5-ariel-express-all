@@ -98,6 +98,11 @@ const formatDateTime = (date, time) => {
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
+const logout = () => {
+    sessionStorage.removeItem('loggedInUser');
+    window.location.href = "/sign-in";
+}
+
 // posts.json fetch
 fetch('http://localhost:3001/posts')
     .then(response => response.json())
@@ -110,16 +115,16 @@ window.addEventListener("load", () => {
     fetch('http://localhost:3001/get-profile-image', {
         credentials: 'include' // 쿠키를 서버에 포함시키도록 설정
     })
-    .then(response => response.json()) // 응답을 JSON으로 변환
-    .then(data => {
-        // 서버에서 전달받은 프로필 이미지 경로를 콘솔에 출력
-        console.log("서버에서 전달받은 profileImagePath:", data.profileImagePath);
+        .then(response => response.json()) // 응답을 JSON으로 변환
+        .then(data => {
+            // 서버에서 전달받은 프로필 이미지 경로를 콘솔에 출력
+            console.log("서버에서 전달받은 profileImagePath:", data.profileImagePath);
 
-        // 프로필 이미지를 업데이트
-        const userProfileImage = document.getElementById("userProfileImage");
-        userProfileImage.src = data.profileImagePath;
-    })
-    .catch(error => {
-        console.error("Error:", error);
-    });
+            // 프로필 이미지를 업데이트
+            const userProfileImage = document.getElementById("userProfileImage");
+            userProfileImage.src = data.profileImagePath;
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
 });

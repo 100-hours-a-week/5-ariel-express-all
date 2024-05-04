@@ -21,6 +21,11 @@ window.onclick = (event) => {
     }
 }
 
+const logout = () => {
+    sessionStorage.removeItem('loggedInUser');
+    window.location.href = "/sign-in";
+}
+
 // 페이지가 로드되면 해당 게시글 정보를 가져와서 렌더링
 window.onload = () => {
     fetchPostDetails();
