@@ -277,9 +277,6 @@ const currentUserEmailAndNickname = (req, res) => {
             const users = JSON.parse(data);
             const currentUser = users.find(user => user.email === loggedInUserEmail);
 
-            console.log(currentUser);
-            console.log(loggedInUserEmail, currentUser.nickname);
-
             if (currentUser) {
                 // 이메일과 닉네임 반환
                 const user = {
