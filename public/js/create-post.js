@@ -94,6 +94,7 @@ const createPost = () => {
     })
     .then(response => response.json())
     .then(data => {
+        alert('게시글 작성 완료');
         // 게시글 작성 성공 후 페이지 이동
         window.location.href = "./list-of-posts";
     })

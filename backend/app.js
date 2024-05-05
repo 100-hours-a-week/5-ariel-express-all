@@ -36,6 +36,20 @@ app.use(session({
 app.use(userRouter);
 app.use(postRouter);
 app.use(commentRouter);
+// 로그인 여부 확인 미들웨어
+const isLoggedIn = (req, res, next) => {
+    // 세션에서 loggedInUser 키가 있는지 확인
+    if (req.session.loggedInUser) {
+        // 다음 미들웨어 함수로 넘어감
+        next();
+    } else {
+        // 로그인 페이지로 리다이렉트
+        res.redirect('/sign-in'); // 로그인 페이지 URL에 맞게 수정해야 함
+    }
+};
+
+// 라우터에 미들웨어 적용
+app.use(isLoggedIn);
 
 const PORT = process.env.PORT || 3001;
 

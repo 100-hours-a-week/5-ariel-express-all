@@ -18,8 +18,8 @@ const posts = (req, res) => {
 
 // 게시글 목록 조회 페이지 전송
 const listOfPosts = (req, res) => {
-    // 쿠키에서 현재 로그인한 이메일 정보를 읽어옴
     const loggedInUser = req.session.loggedInUser;
+
     console.log(`현재 로그인한 이메일: ${loggedInUser}`);
     res.sendFile(path.join(publicPath, 'html', 'list-of-posts.html'));
 }

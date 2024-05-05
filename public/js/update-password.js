@@ -144,8 +144,8 @@ const updatePassword = async () => {
             });
             const data = await response.json();
             if (data.success) {
-                location.reload();
-                showToast("비밀번호가 성공적으로 업데이트되었습니다.");
+                alert('비밀번호 수정 완료');
+                window.location.href = 'list-of-posts'
                 passwordInput.value = '';
                 confirmPasswordInput.value = '';
             } else {
