@@ -620,7 +620,7 @@
                     "author": {
                         "email": "test@naver.comㅁ",
                         "profile_picture": "http://localhost:3001/uploads/574d123298ae6bb723bae33ac3ad9cba",
-                        "nickname": "갈매기"
+                        "nickname": "끼루룩"
                     },
                     "date": "2024-05-05",
                     "time": "17:17:16",
@@ -680,6 +680,34 @@
                     "date": "2024-05-04",
                     "time": "22:59:39",
                     "content": "ㅋㅋ"
+                }
+            ]
+        },
+        {
+            "id": 16,
+            "title": "게시글 수정!",
+            "author": {
+                "email": "test@naver.comㅁ",
+                "profile_picture": "http://localhost:3001/uploads/574d123298ae6bb723bae33ac3ad9cba",
+                "nickname": "끼루룩"
+            },
+            "date": "2024-05-05",
+            "time": "19:05:05",
+            "image": "http://localhost:3001/uploads/b3ac31331a1ecbac868fe6cbc1fac731",
+            "content": "내가 많네..",
+            "likes": 0,
+            "views": 0,
+            "comments": [
+                {
+                    "id": 1,
+                    "author": {
+                        "email": "test@naver.comㅁ",
+                        "profile_picture": "http://localhost:3001/uploads/574d123298ae6bb723bae33ac3ad9cba",
+                        "nickname": "끼루룩"
+                    },
+                    "date": "2024-05-05",
+                    "time": "19:06:19",
+                    "content": "갱!"
                 }
             ]
         }

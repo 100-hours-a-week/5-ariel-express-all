@@ -82,6 +82,7 @@ document.getElementById('updateForm').addEventListener('submit', (event) => {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
+                alert('게시글 수정 완료');
                 // 성공적으로 수정되었을 때 해당 게시글 상세 조회 페이지로 이동
                 window.location.href = `post-details?id=${postId}`;
             } else {

@@ -189,7 +189,8 @@ const confirmWithdraw = async () => {
         });
         const data = await response.json();
         if (data.success) {
-            console.log("회원 탈퇴가 성공적으로 처리되었습니다.");
+            alert('회원 탈퇴 완료');
+            window.history.back();
             // 회원 탈퇴 후 로그인 화면으로 이동
             redirectToSignIn();
         } else {
