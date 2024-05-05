@@ -609,7 +609,7 @@
                     "author": {
                         "email": "test@naver.com",
                         "profile_picture": "http://localhost:3001/uploads/bcc6cc7ea95ef510e59191594ea636d6",
-                        "nickname": "사과"
+                        "nickname": "apple"
                     },
                     "date": "2024-05-04",
                     "time": "22:58:17",
@@ -639,7 +639,7 @@
             "author": {
                 "email": "test@naver.com",
                 "profile_picture": "http://localhost:3001/uploads/bcc6cc7ea95ef510e59191594ea636d6",
-                "nickname": "사과"
+                "nickname": "apple"
             },
             "date": "2024-05-04",
             "time": "22:58:54",
@@ -653,7 +653,7 @@
                     "author": {
                         "email": "test@naver.com",
                         "profile_picture": "http://localhost:3001/uploads/bcc6cc7ea95ef510e59191594ea636d6",
-                        "nickname": "사과"
+                        "nickname": "apple"
                     },
                     "date": "2024-05-04",
                     "time": "22:59:36",
@@ -664,7 +664,7 @@
                     "author": {
                         "email": "test@naver.com",
                         "profile_picture": "http://localhost:3001/uploads/bcc6cc7ea95ef510e59191594ea636d6",
-                        "nickname": "사과"
+                        "nickname": "apple"
                     },
                     "date": "2024-05-04",
                     "time": "22:59:39",

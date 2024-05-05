@@ -97,7 +97,6 @@ const validate = async () => {
 const updateProfile = async () => {
     // 유효성 검사를 통과한 경우에만 업데이트 수행
     if (updateProfileHelperText.textContent === "* 통과") {
-        showToast('프로필 업데이트 완료');
 
         // 변경된 닉네임 가져오기
         const newNickname = document.getElementById("nickname").value.trim();
@@ -132,6 +131,8 @@ const updateProfile = async () => {
         } catch (error) {
             console.error("Error:", error);
         }
+        alert('회원 정보 수정 완료');
+        window.location.href = "list-of-posts";
     }
 }
 
@@ -197,6 +198,7 @@ const confirmWithdraw = async () => {
     } catch (error) {
         console.error("Error:", error);
     }
+    logout();
 }
 
 window.addEventListener("load", async () => {
@@ -221,14 +223,17 @@ window.addEventListener("load", async () => {
 
     try {
         // 현재 로그인된 사용자의 이메일을 요청
-        const response = await fetch('http://localhost:3001/current-user-email', {
+        const response = await fetch('http://localhost:3001/current-user-email-and-nickname', {
             credentials: 'include' // 쿠키를 서버에 포함시키도록 설정
         });
         const data = await response.json();
+        console.log(data);
         if (data.success) {
             // 현재 로그인된 사용자의 이메일을 페이지에 표시
             const currentEmailElement = document.getElementById('currentEmail');
-            currentEmailElement.innerText = data.email;
+            currentEmailElement.innerText = data.user.email;
+            const nicknameInput = document.getElementById('nickname');
+            nicknameInput.placeholder = data.user.nickname;
         } else {
             console.error("Failed to get current user email:", data.message);
         }
