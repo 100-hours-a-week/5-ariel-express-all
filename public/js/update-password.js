@@ -30,6 +30,7 @@ const passwordInput = document.getElementById('passwordInput');
 const confirmPasswordInput = document.getElementById('confirmPasswordInput');
 const passwordHelperText = document.getElementById('passwordHelperText')
 const confirmPasswordHelperText = document.getElementById('confirmPasswordHelperText');
+const modifyButton = document.getElementById('modifyButton');
 
 // 비밀번호 유효성 검사 함수
 const validatePassword = (tf) => {
@@ -99,7 +100,6 @@ const validateAllInputs = async () => {
     const passwordValid = await validatePassword(false);
     const confirmPasswordValid = await validateConfirmPassword(false);
 
-    const modifyButton = document.getElementById('modifyButton');
     if (passwordValid && confirmPasswordValid) {
         modifyButton.disabled = false;
         modifyButton.style.backgroundColor = '#7F6AEE';
@@ -126,7 +126,7 @@ const showToast = (message) => {
 
 // update-password.js
 // 사용자가 비밀번호를 수정하고 수정하기 버튼을 클릭했을 때 실행되는 함수
-const updatePassword = async () =>{
+const updatePassword = async () => {
 
     if (passwordHelperText.textContent === "* 통과" && confirmPasswordHelperText.textContent === '* 통과') {
         newPassword = passwordInput.value;
@@ -144,6 +144,7 @@ const updatePassword = async () =>{
             });
             const data = await response.json();
             if (data.success) {
+                location.reload();
                 showToast("비밀번호가 성공적으로 업데이트되었습니다.");
                 passwordInput.value = '';
                 confirmPasswordInput.value = '';

@@ -19,7 +19,7 @@ const posts = (req, res) => {
 // 게시글 목록 조회 페이지 전송
 const listOfPosts = (req, res) => {
     // 쿠키에서 현재 로그인한 이메일 정보를 읽어옴
-    const loggedInUser = req.cookies.loggedInUser;
+    const loggedInUser = req.session.loggedInUser;
     console.log(`현재 로그인한 이메일: ${loggedInUser}`);
     res.sendFile(path.join(publicPath, 'html', 'list-of-posts.html'));
 }
@@ -75,7 +75,7 @@ const createPost = (req, res) => {
     const { currentDate, currentTime } = getCurrentDateTime();
 
     // 현재 로그인된 사용자의 이메일 정보 가져오기
-    const loggedInUserEmail = req.cookies.loggedInUser;
+    const loggedInUserEmail = req.session.loggedInUser;
 
     // 사용자 이메일 정보를 이용하여 해당 사용자의 닉네임과 프로필 정보를 users.json 파일에서 찾아옴
     fs.readFile(usersJsonPath, 'utf8', (err, data) => {
@@ -112,6 +112,7 @@ const createPost = (req, res) => {
                 id: posts.posts.length + 1, // 현재 게시글 개수 + 1
                 title: title,
                 author: {
+                    email: loggedInUserEmail,
                     profile_picture: 'http://localhost:3001/' + loggedInUser.profile_picture,
                     nickname: loggedInUser.nickname
                 },

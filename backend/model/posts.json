@@ -4,6 +4,7 @@
             "id": 1,
             "title": "Hollywood",
             "author": {
+                "email": "post1@example.com",
                 "profile_picture": "http://localhost:3000/assets/images/author1.webp",
                 "nickname": "검정치마"
             },
@@ -17,6 +18,7 @@
                 {
                     "id": 1,
                     "author": {
+                        "email": "comment1@example.com",
                         "profile_picture": "http://localhost:3000/assets/images/user2.png",
                         "nickname": "빨강치마"
                     },
@@ -27,6 +29,7 @@
                 {
                     "id": 2,
                     "author": {
+                        "email": "comment2@example.com",
                         "profile_picture": "http://localhost:3000/assets/images/user3.png",
                         "nickname": "뮤직이즈마이라이프"
                     },
@@ -37,6 +40,7 @@
                 {
                     "id": 3,
                     "author": {
+                        "email": "comment3@example.com",
                         "profile_picture": "http://localhost:3000/assets/images/user1.png",
                         "nickname": "test"
                     },
@@ -47,6 +51,7 @@
                 {
                     "id": 4,
                     "author": {
+                        "email": "comment4@example.com",
                         "profile_picture": "http://localhost:3001/uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
                         "nickname": "인어공주"
                     },
@@ -57,12 +62,24 @@
                 {
                     "id": 5,
                     "author": {
+                        "email": "comment5@example.com",
                         "profile_picture": "http://localhost:3001/uploads/a92cb0d80e4806a4cb52f15bf65acbd5",
                         "nickname": "TEST1"
                     },
                     "date": "2024-05-01",
                     "time": "23:52:02",
                     "content": "잘 듣고 갑니다"
+                },
+                {
+                    "id": 6,
+                    "author": {
+                        "email": "comment6@example.com",
+                        "profile_picture": "http://localhost:3001/uploads/a5c537f38d9f3661ecd06530ccb4ae21",
+                        "nickname": "0504"
+                    },
+                    "date": "2024-05-04",
+                    "time": "20:50:02",
+                    "content": "아 좋아요"
                 }
             ]
         },
@@ -70,6 +87,7 @@
             "id": 2,
             "title": "내가 할 수 없는 말",
             "author": {
+                "email": "post2@example.com",
                 "profile_picture": "http://localhost:3000/assets/images/author2.jpg",
                 "nickname": "양다일"
             },
@@ -83,6 +101,7 @@
                 {
                     "id": 1,
                     "author": {
+                        "email": "comment1@example.com",
                         "profile_picture": "http://localhost:3000/assets/images/user1.png",
                         "nickname": "발라드러버"
                     },
@@ -93,6 +112,7 @@
                 {
                     "id": 2,
                     "author": {
+                        "email": "comment2@example.com",
                         "profile_picture": "http://localhost:3001/uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
                         "nickname": "인어공주"
                     },
@@ -103,6 +123,7 @@
                 {
                     "id": 3,
                     "author": {
+                        "email": "comment3@example.com",
                         "profile_picture": "http://localhost:3001/uploads/d74b63018570b61f59f9fc8a722a7da0",
                         "nickname": "apple"
                     },
@@ -116,6 +137,7 @@
             "id": 3,
             "title": "민들레 (full ver.)",
             "author": {
+                "email": "post3@example.com",
                 "profile_picture": "http://localhost:3000/assets/images/author3.jpg",
                 "nickname": "우효"
             },
@@ -129,6 +151,7 @@
                 {
                     "id": 1,
                     "author": {
+                        "email": "comment1@example.com",
                         "profile_picture": "http://localhost:3000/assets/images/user1.png",
                         "nickname": "flower"
                     },
@@ -139,6 +162,7 @@
                 {
                     "id": 2,
                     "author": {
+                        "email": "comment2@example.com",
                         "profile_picture": "http://localhost:3000/assets/images/user4.png",
                         "nickname": "리종인"
                     },
@@ -149,6 +173,7 @@
                 {
                     "id": 3,
                     "author": {
+                        "email": "comment3@example.com",
                         "profile_picture": "http://localhost:3000/assets/images/user5.png",
                         "nickname": "비눗물"
                     },
@@ -159,6 +184,7 @@
                 {
                     "id": 4,
                     "author": {
+                        "email": "comment4@example.com",
                         "profile_picture": "http://localhost:3001/uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
                         "nickname": "인어공주"
                     },
@@ -172,6 +198,7 @@
             "id": 4,
             "title": "Instant Lover",
             "author": {
+                "email": "post4@example.com",
                 "profile_picture": "http://localhost:3000/assets/images/author4.jpg",
                 "nickname": "알레프"
             },
@@ -185,6 +212,7 @@
                 {
                     "id": 1,
                     "author": {
+                        "email": "comment1@example.com",
                         "profile_picture": "http://localhost:3000/assets/images/user1.png",
                         "nickname": "좋아해요다"
                     },
@@ -195,6 +223,7 @@
                 {
                     "id": 2,
                     "author": {
+                        "email": "comment2@example.com",
                         "profile_picture": "http://localhost:3000/assets/images/user2.png",
                         "nickname": "윤히네"
                     },
@@ -205,6 +234,7 @@
                 {
                     "id": 3,
                     "author": {
+                        "email": "comment3@example.com",
                         "profile_picture": "http://localhost:3000/assets/images/user3.png",
                         "nickname": "llii"
                     },
@@ -215,6 +245,7 @@
                 {
                     "id": 4,
                     "author": {
+                        "email": "comment4@example.com",
                         "profile_picture": "http://localhost:3000/assets/images/user4.png",
                         "nickname": "기타징징"
                     },
@@ -223,8 +254,9 @@
                     "content": "끝을 알면서 너를 참 사랑했던"
                 },
                 {
-                    "id": 3,
+                    "id": 5,
                     "author": {
+                        "email": "comment5@example.com",
                         "profile_picture": "http://localhost:3000/assets/images/user5.png",
                         "nickname": "gomyammi"
                     },
@@ -235,6 +267,7 @@
                 {
                     "id": 6,
                     "author": {
+                        "email": "comment6@example.com",
                         "profile_picture": "http://localhost:3000/assets/images/user1.png",
                         "nickname": "test"
                     },
@@ -248,6 +281,7 @@
             "id": 5,
             "title": "Kill Me Tonight",
             "author": {
+                "email": "post5@example.com",
                 "profile_picture": "http://localhost:3000/assets/images/author5.jpg",
                 "nickname": "ASH ISLAND"
             },
@@ -261,6 +295,7 @@
                 {
                     "id": 1,
                     "author": {
+                        "email": "comment1@example.com",
                         "profile_picture": "http://localhost:3000/assets/images/user1.png",
                         "nickname": "e__n"
                     },
@@ -271,6 +306,7 @@
                 {
                     "id": 2,
                     "author": {
+                        "email": "comment2@example.com",
                         "profile_picture": "http://localhost:3000/assets/images/user2.png",
                         "nickname": "우어ㅏㅇ왕"
                     },
@@ -281,6 +317,7 @@
                 {
                     "id": 3,
                     "author": {
+                        "email": "comment3@example.com",
                         "profile_picture": "http://localhost:3000/assets/images/user3.png",
                         "nickname": "뜽아아앙"
                     },
@@ -291,6 +328,7 @@
                 {
                     "id": 4,
                     "author": {
+                        "email": "comment4@example.com",
                         "profile_picture": "http://localhost:3000/assets/images/user4.png",
                         "nickname": "포니뀨잉"
                     },
@@ -304,6 +342,7 @@
             "id": 6,
             "title": "test",
             "author": {
+                "email": "post6@example.com",
                 "profile_picture": "http://localhost:3001/uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
                 "nickname": "인어공주"
             },
@@ -317,6 +356,7 @@
                 {
                     "id": 1,
                     "author": {
+                        "email": "comment1@example.com",
                         "profile_picture": "http://localhost:3001/uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
                         "nickname": "인어공주"
                     },
@@ -330,6 +370,7 @@
             "id": 7,
             "title": "좀 돼라",
             "author": {
+                "email": "post7@example.com",
                 "profile_picture": "http://localhost:3001/uploads/d74b63018570b61f59f9fc8a722a7da0",
                 "nickname": "apple"
             },
@@ -343,6 +384,7 @@
                 {
                     "id": 1,
                     "author": {
+                        "email": "comment1@example.com",
                         "profile_picture": "http://localhost:3001/uploads/d74b63018570b61f59f9fc8a722a7da0",
                         "nickname": "apple"
                     },
@@ -353,6 +395,7 @@
                 {
                     "id": 2,
                     "author": {
+                        "email": "comment2@example.com",
                         "profile_picture": "http://localhost:3001/uploads/ea4a7d7a6d0916219d393a199feccffc",
                         "nickname": "옞"
                     },
@@ -366,6 +409,7 @@
             "id": 8,
             "title": "예지로 작성",
             "author": {
+                "email": "post8@example.com",
                 "profile_picture": "http://localhost:3001/uploads/ea4a7d7a6d0916219d393a199feccffc",
                 "nickname": "예지"
             },
@@ -379,6 +423,7 @@
                 {
                     "id": 1,
                     "author": {
+                        "email": "comment1@example.com",
                         "profile_picture": "http://localhost:3001/uploads/ea4a7d7a6d0916219d393a199feccffc",
                         "nickname": "예지"
                     },
@@ -392,6 +437,7 @@
             "id": 9,
             "title": "hello",
             "author": {
+                "email": "post9@example.com",
                 "profile_picture": "http://localhost:3001/uploads/a92cb0d80e4806a4cb52f15bf65acbd5",
                 "nickname": "TEST1"
             },
@@ -405,6 +451,7 @@
                 {
                     "id": 1,
                     "author": {
+                        "email": "comment1@example.com",
                         "profile_picture": "http://localhost:3001/uploads/a92cb0d80e4806a4cb52f15bf65acbd5",
                         "nickname": "TEST1"
                     },
@@ -418,6 +465,7 @@
             "id": 10,
             "title": "되겠지?",
             "author": {
+                "email": "post10@example.com",
                 "profile_picture": "http://localhost:3001/uploads/ea4a7d7a6d0916219d393a199feccffc",
                 "nickname": "예지"
             },
@@ -431,6 +479,7 @@
                 {
                     "id": 1,
                     "author": {
+                        "email": "comment1@example.com",
                         "profile_picture": "http://localhost:3001/uploads/ea4a7d7a6d0916219d393a199feccffc",
                         "nickname": "예지"
                     },
@@ -442,18 +491,186 @@
         },
         {
             "id": 11,
-            "title": "ㅎㅇ",
+            "title": "게시글 작성은 되나",
             "author": {
-                "profile_picture": "http://localhost:3001/uploads/ea4a7d7a6d0916219d393a199feccffc",
-                "nickname": "옞"
+                "email": "post11@example.com",
+                "profile_picture": "http://localhost:3001/uploads/62d310c36044c899bb03d5d003a330b2",
+                "nickname": "민들레"
             },
             "date": "2024-05-04",
-            "time": "01:04:37",
+            "time": "20:46:58",
             "image": null,
-            "content": "ㅎ",
+            "content": "돼야함",
+            "likes": 0,
+            "views": 0,
+            "comments": [
+                {
+                    "id": 1,
+                    "author": {
+                        "email": "0504@naver.com",
+                        "profile_picture": "http://localhost:3001/uploads/9b85a086a38c858393483e6d3b580b22",
+                        "nickname": "그랜파"
+                    },
+                    "date": "2024-05-04",
+                    "time": "22:06:22",
+                    "content": "수정 완완"
+                },
+                {
+                    "id": 2,
+                    "author": {
+                        "email": "0504@naver.com",
+                        "profile_picture": "http://localhost:3001/uploads/9b85a086a38c858393483e6d3b580b22",
+                        "nickname": "그랜파"
+                    },
+                    "date": "2024-05-04",
+                    "time": "22:09:32",
+                    "content": "ㅌㅌ"
+                },
+                {
+                    "id": 3,
+                    "author": {
+                        "email": "0504@naver.com",
+                        "profile_picture": "http://localhost:3001/uploads/9b85a086a38c858393483e6d3b580b22",
+                        "nickname": "그랜파"
+                    },
+                    "date": "2024-05-04",
+                    "time": "22:56:18",
+                    "content": "꺄앙"
+                }
+            ]
+        },
+        {
+            "id": 12,
+            "title": "ㅎㅇ",
+            "author": {
+                "email": "post12@example.com",
+                "profile_picture": "http://localhost:3001/uploads/a5c537f38d9f3661ecd06530ccb4ae21",
+                "nickname": "0504"
+            },
+            "date": "2024-05-04",
+            "time": "20:49:50",
+            "image": "http://localhost:3001/uploads/e4e8f71146fa5ae5f82a127d06a0ee7f",
+            "content": "방금 가입함",
+            "likes": 0,
+            "views": 0,
+            "comments": [
+                {
+                    "id": 1,
+                    "author": {
+                        "email": "comment1@example.com",
+                        "profile_picture": "http://localhost:3001/uploads/a5c537f38d9f3661ecd06530ccb4ae21",
+                        "nickname": "0504"
+                    },
+                    "date": "2024-05-04",
+                    "time": "20:49:54",
+                    "content": "ㅎㅇㅇ"
+                }
+            ]
+        },
+        {
+            "id": 13,
+            "title": "작성",
+            "author": {
+                "email": "0504@naver.com",
+                "profile_picture": "http://localhost:3001/uploads/9b85a086a38c858393483e6d3b580b22",
+                "nickname": "그랜파"
+            },
+            "date": "2024-05-04",
+            "time": "22:03:21",
+            "image": "http://localhost:3001/uploads/3c666bfd3493d6c0e7573111c8c336e9",
+            "content": "!!!",
+            "likes": 0,
+            "views": 0,
+            "comments": [
+                {
+                    "id": 1,
+                    "author": {
+                        "email": "0504@naver.com",
+                        "profile_picture": "http://localhost:3001/uploads/9b85a086a38c858393483e6d3b580b22",
+                        "nickname": "그랜파"
+                    },
+                    "date": "2024-05-04",
+                    "time": "22:54:31",
+                    "content": "..?"
+                },
+                {
+                    "id": 2,
+                    "author": {
+                        "email": "0504@naver.com",
+                        "profile_picture": "http://localhost:3001/uploads/9b85a086a38c858393483e6d3b580b22",
+                        "nickname": "그랜파"
+                    },
+                    "date": "2024-05-04",
+                    "time": "22:56:08",
+                    "content": "오"
+                },
+                {
+                    "id": 3,
+                    "author": {
+                        "email": "test@naver.com",
+                        "profile_picture": "http://localhost:3001/uploads/bcc6cc7ea95ef510e59191594ea636d6",
+                        "nickname": "사과"
+                    },
+                    "date": "2024-05-04",
+                    "time": "22:58:17",
+                    "content": "꽃 예쁘네염"
+                }
+            ]
+        },
+        {
+            "id": 14,
+            "title": "안녕하십니까",
+            "author": {
+                "email": "0504@naver.com",
+                "profile_picture": "http://localhost:3001/uploads/9b85a086a38c858393483e6d3b580b22",
+                "nickname": "그랜파"
+            },
+            "date": "2024-05-04",
+            "time": "22:57:16",
+            "image": null,
+            "content": "까아악",
             "likes": 0,
             "views": 0,
             "comments": []
+        },
+        {
+            "id": 15,
+            "title": "ㅎㅇ",
+            "author": {
+                "email": "test@naver.com",
+                "profile_picture": "http://localhost:3001/uploads/bcc6cc7ea95ef510e59191594ea636d6",
+                "nickname": "사과"
+            },
+            "date": "2024-05-04",
+            "time": "22:58:54",
+            "image": "http://localhost:3001/uploads/7e64247d3188eadd80473d79bfe73b12",
+            "content": "나임",
+            "likes": 0,
+            "views": 0,
+            "comments": [
+                {
+                    "id": 1,
+                    "author": {
+                        "email": "test@naver.com",
+                        "profile_picture": "http://localhost:3001/uploads/bcc6cc7ea95ef510e59191594ea636d6",
+                        "nickname": "사과"
+                    },
+                    "date": "2024-05-04",
+                    "time": "22:59:36",
+                    "content": "나 닉넴 프사 바꿈"
+                },
+                {
+                    "id": 2,
+                    "author": {
+                        "email": "test@naver.com",
+                        "profile_picture": "http://localhost:3001/uploads/bcc6cc7ea95ef510e59191594ea636d6",
+                        "nickname": "사과"
+                    },
+                    "date": "2024-05-04",
+                    "time": "22:59:39",
+                    "content": "ㅋㅋ"
+                }
+            ]
         }
     ]
 }

@@ -7,6 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const usersJsonPath = path.join(__dirname, '..', 'model', 'users.json');
+const postsJsonPath = path.join(__dirname, '..', 'model', 'posts.json');
 
 // 사용자 정보를 파일에서 읽어와서 클라이언트에게 전송
 const users = (req, res) => {
@@ -109,7 +110,7 @@ const getProfileImage = (req, res) => {
 
 // 회원정보 수정
 const updateProfile = (req, res) => {
-    const loggedInUser = req.cookies.loggedInUser;
+    const loggedInUser = req.session.loggedInUser;
     const newNickname = req.body.newNickname;
     const profileImage = req.file; // 업로드된 프로필 이미지 파일
 
@@ -134,17 +135,63 @@ const updateProfile = (req, res) => {
 
             console.log(`변경된 유저: ${users}`);
 
+            // 사용자 정보 업데이트
             fs.writeFile(usersJsonPath, JSON.stringify(users, null, 4), 'utf8', (err) => {
                 if (err) {
                     console.error('Error writing file:', err);
                     res.status(500).json({ success: false, error: 'Failed to write file' });
                     return;
                 }
+
+                // 게시글과 댓글 정보 업데이트
+                updatePostsAndComments(loggedInUser, newNickname, profileImage);
+
                 res.json({ success: true });
             });
         } else {
             res.status(404).json({ success: false, error: 'User not found' });
         }
+    });
+}
+
+// 게시글과 댓글 정보 업데이트 함수
+const updatePostsAndComments = (userEmail, newNickname, profileImage) => {
+    fs.readFile(postsJsonPath, 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading file:', err);
+            return;
+        }
+
+        let postsData = JSON.parse(data);
+
+        // 게시글 정보 업데이트
+        postsData.posts.forEach(post => {
+            if (post.author.email === userEmail) {
+                post.author.nickname = newNickname;
+                if (profileImage) {
+                    post.author.profile_picture = 'http://localhost:3001/' + profileImage.path;
+                }
+            }
+
+            // 댓글 정보 업데이트
+            post.comments.forEach(comment => {
+                if (comment.author.email === userEmail) {
+                    comment.author.nickname = newNickname;
+                    if (profileImage) {
+                        comment.author.profile_picture = 'http://localhost:3001/' + profileImage.path;
+                    }
+                }
+            });
+        });
+
+        // 업데이트된 데이터 저장
+        fs.writeFile(postsJsonPath, JSON.stringify(postsData, null, 4), 'utf8', (err) => {
+            if (err) {
+                console.error('Error writing file:', err);
+                return;
+            }
+            console.log('Posts and comments updated successfully.');
+        });
     });
 }
 
@@ -160,7 +207,7 @@ const withdraw = (req, res) => {
         let users = JSON.parse(data);
 
         // 현재 로그인한 사용자의 이메일을 통해 사용자 정보를 찾음
-        const loggedInUserEmail = req.cookies.loggedInUser;
+        const loggedInUserEmail = req.session.loggedInUser;
         const userIndex = users.findIndex(user => user.email === loggedInUserEmail);
 
         if (userIndex === -1) {
@@ -196,7 +243,7 @@ const updatePassword = (req, res) => {
         let users = JSON.parse(data);
 
         // 현재 로그인한 사용자의 이메일을 통해 사용자 정보를 찾음
-        const loggedInUserEmail = req.cookies.loggedInUser;
+        const loggedInUserEmail = req.session.loggedInUser;
         const userIndex = users.findIndex(user => user.email === loggedInUserEmail);
 
         if (userIndex === -1) {
@@ -218,7 +265,7 @@ const updatePassword = (req, res) => {
 
 // 현재 로그인 된 이메일로 사용자 정보 변경
 const currentUserEmail = (req, res) => {
-    const loggedInUserEmail = req.cookies.loggedInUser;
+    const loggedInUserEmail = req.session.loggedInUser;
     if (loggedInUserEmail) {
         res.json({ success: true, email: loggedInUserEmail });
     } else {

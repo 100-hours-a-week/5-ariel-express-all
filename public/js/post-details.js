@@ -47,17 +47,24 @@ const renderPostDetails = (post) => {
         postImageHTML = `<img src="${post.image}" class="post-image" alt="post-image">`;
     }
 
+    // 현재 로그인된 사용자의 이메일 가져오기
+    const loggedInUserEmail = getLoggedInUserEmail();
+
+    // 작성자 이메일과 현재 로그인된 사용자의 이메일 비교하여 수정 및 삭제 버튼 처리
+    const editButtonsHTML = (post.author.email === loggedInUserEmail) ? `
+        <div class="edit-buttons">
+            <a href="update-post?id=${post.id}"><button class="modify-button">수정</button></a>
+            <button class="delete-button" onclick="showPostDeleteModal()">삭제</button>
+        </div>
+    ` : '';
+
     const postHTML = `
         <h1 class="post-title">${post.title}</h1>
         <div class="info1">
             <div class="post-author-profile"><img src=${post.author.profile_picture} width="30px" height="30px"></div>
             <div class="author-name"><small><b>${post.author.nickname}</b></small></div>
             <div class="post-date"><small>${formatDateTime(post.date, post.time)}</small></div>
-
-            <div class="edit-buttons">
-                <a href="update-post?id=${post.id}"><button class="modify-button">수정</button></a>
-                <button class="delete-button" onclick="showPostDeleteModal()">삭제</button>
-            </div>
+            ${editButtonsHTML} <!-- 수정, 삭제 버튼 HTML -->
         </div>
         <hr>
         <section class="body">
@@ -114,15 +121,23 @@ const fetchComments = (comments) => {
     const commentListSpace = document.querySelector('.comment-list-space');
 
     comments.forEach(comment => {
+        // 현재 로그인된 사용자의 이메일 가져오기
+        const loggedInUserEmail = getLoggedInUserEmail();
+
+        // 작성자 이메일과 현재 로그인된 사용자의 이메일 비교하여 수정 및 삭제 버튼 생성 여부 결정
+        const editButtonsHTML = (comment.author.email === loggedInUserEmail) ? `
+            <div class="edit-buttons">
+                <button class="modify-button" onclick="editComment('${comment.id}', '${comment.content}')">수정</button>
+                <button class="delete-button" onclick="showCommentDeleteModal('${comment.id}')">삭제</button>
+            </div>
+        ` : '';
+
         const commentHTML = `
             <section class="current-comment-info">
                 <div class="comment-author-profile"><img src="${comment.author.profile_picture}" style="border-radius: 50%; width: 30px; height: 30px;"></div>
                 <div class="author-name"><small><b>${comment.author.nickname}</b></small></div>
                 <div class="post-date"><small>${formatDateTime(comment.date, comment.time)}</small></div>
-                <div class="edit-buttons">
-                    <button class="modify-button" onclick="editComment('${comment.id}', '${comment.content}')">수정</button>
-                    <button class="delete-button" onclick="showCommentDeleteModal('${comment.id}')">삭제</button>
-                </div>
+                ${editButtonsHTML} <!-- 수정, 삭제 버튼 HTML -->
             </section>
             <section class="current-comment-text">
                 <div><small>${comment.content}</small></div>
@@ -134,10 +149,16 @@ const fetchComments = (comments) => {
     });
 }
 
+
 // 페이지가 로드되면 해당 게시글 정보를 가져와서 렌더링
 window.onload = () => {
     fetchPostDetails();
 };
+
+// 현재 로그인된 사용자의 이메일을 세션에서 가져옴
+const getLoggedInUserEmail = () => {
+    return sessionStorage.getItem('loggedInUser');
+}
 
 // 숫자를 형식에 맞게 변환하는 함수
 const formatNumber = (number) => {
