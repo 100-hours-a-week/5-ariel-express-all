@@ -609,11 +609,22 @@
                     "author": {
                         "email": "test@naver.com",
                         "profile_picture": "http://localhost:3001/uploads/bcc6cc7ea95ef510e59191594ea636d6",
-                        "nickname": "apple"
+                        "nickname": "애쁠"
                     },
                     "date": "2024-05-04",
                     "time": "22:58:17",
                     "content": "꽃 예쁘네염"
+                },
+                {
+                    "id": 4,
+                    "author": {
+                        "email": "test@naver.comㅁ",
+                        "profile_picture": "http://localhost:3001/uploads/574d123298ae6bb723bae33ac3ad9cba",
+                        "nickname": "갈매기"
+                    },
+                    "date": "2024-05-05",
+                    "time": "17:17:16",
+                    "content": "!!!?!?"
                 }
             ]
         },
@@ -639,7 +650,7 @@
             "author": {
                 "email": "test@naver.com",
                 "profile_picture": "http://localhost:3001/uploads/bcc6cc7ea95ef510e59191594ea636d6",
-                "nickname": "apple"
+                "nickname": "애쁠"
             },
             "date": "2024-05-04",
             "time": "22:58:54",
@@ -653,7 +664,7 @@
                     "author": {
                         "email": "test@naver.com",
                         "profile_picture": "http://localhost:3001/uploads/bcc6cc7ea95ef510e59191594ea636d6",
-                        "nickname": "apple"
+                        "nickname": "애쁠"
                     },
                     "date": "2024-05-04",
                     "time": "22:59:36",
@@ -664,7 +675,7 @@
                     "author": {
                         "email": "test@naver.com",
                         "profile_picture": "http://localhost:3001/uploads/bcc6cc7ea95ef510e59191594ea636d6",
-                        "nickname": "apple"
+                        "nickname": "애쁠"
                     },
                     "date": "2024-05-04",
                     "time": "22:59:39",

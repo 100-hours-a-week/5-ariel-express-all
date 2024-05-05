@@ -6,15 +6,9 @@
         "profile_picture": "uploads/0e65f3a44633825c14e2259712871755"
     },
     {
-        "email": "test@naver.com",
-        "password": "Test1234*",
-        "nickname": "apple",
-        "profile_picture": "uploads/bcc6cc7ea95ef510e59191594ea636d6"
-    },
-    {
         "email": "test@naver.comㅁ",
         "password": "Yj11234344*",
-        "nickname": "djfakl",
+        "nickname": "갈매기",
         "profile_picture": "uploads/574d123298ae6bb723bae33ac3ad9cba"
     },
     {
