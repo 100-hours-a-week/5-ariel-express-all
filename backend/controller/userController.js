@@ -263,11 +263,34 @@ const updatePassword = (req, res) => {
     });
 }
 
-// 현재 로그인 된 이메일로 사용자 정보 변경
-const currentUserEmail = (req, res) => {
+// 현재 로그인 된 이메일, 닉네임으로 사용자 정보 변경
+const currentUserEmailAndNickname = (req, res) => {
     const loggedInUserEmail = req.session.loggedInUser;
     if (loggedInUserEmail) {
-        res.json({ success: true, email: loggedInUserEmail });
+        // 사용자 정보를 users.json 파일에서 찾음
+        fs.readFile(usersJsonPath, 'utf8', (err, data) => {
+            if (err) {
+                console.error('Error reading file:', err);
+                return res.status(500).json({ success: false, error: 'Failed to read file' });
+            }
+
+            const users = JSON.parse(data);
+            const currentUser = users.find(user => user.email === loggedInUserEmail);
+
+            console.log(currentUser);
+            console.log(loggedInUserEmail, currentUser.nickname);
+
+            if (currentUser) {
+                // 이메일과 닉네임 반환
+                const user = {
+                    email: loggedInUserEmail,
+                    nickname: currentUser.nickname
+                };
+                res.json({ success: true, user });
+            } else {
+                res.status(404).json({ success: false, error: 'User not found' });
+            }
+        });
     } else {
         res.status(401).json({ success: false, message: 'User not logged in' });
     }
@@ -281,5 +304,5 @@ export default {
     updateProfile,
     withdraw,
     updatePassword,
-    currentUserEmail,
+    currentUserEmailAndNickname,
 };

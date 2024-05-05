@@ -34,6 +34,6 @@ router.delete('/withdraw', userController.withdraw);
 router.post('/update-password', userController.updatePassword);
 
 // 회원정보 - 현재 로그인 된 사용자 이메일 표시
-router.get('/current-user-email', userController.currentUserEmail)
+router.get('/current-user-email-and-nickname', userController.currentUserEmailAndNickname)
 
 export default router;
