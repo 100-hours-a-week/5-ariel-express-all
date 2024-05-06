@@ -1,68 +1,20 @@
 [
     {
-        "email": "1225yj50@naver.c",
-        "password": "Abcd123*",
-        "nickname": "yj",
-        "profile_picture": "uploads/0e65f3a44633825c14e2259712871755"
+        "email": "0506@naver.com",
+        "password": "$2b$10$vYfTjcubDJ/.dGf2OxwPreO4sjGH5r5vKTaWf9CwP4MJ9raiPMLIO",
+        "nickname": "0506",
+        "profile_picture": "uploads/ad0e784a6ee2ec808065329ae03195e0"
     },
     {
-        "email": "test1@naver.com",
-        "password": "Test1234*",
-        "nickname": "test11",
-        "profile_picture": "uploads/ae1fda4070ed96da5a9148ef36eefb00"
+        "email": "salt@naver.com",
+        "password": "$2b$10$8.mzv5OqlZadWzC9n7SQIOu6JrnOA9j.MWbFAVTymEx/c0r5r8obW",
+        "nickname": "소금빵",
+        "profile_picture": "uploads/07b92d72014d92da81f63acbc2ddeb7f"
     },
     {
-        "email": "test@naver.com1",
-        "password": "Test1234*",
-        "nickname": "민들레",
-        "profile_picture": "uploads/b6b35d8b9fea0b5f8d4fbb290b871d1b"
-    },
-    {
-        "email": "test@naver.com3dk",
-        "password": "Test1234*",
-        "nickname": "test2",
-        "profile_picture": "uploads/47ffb39ebae725ca396e893f9f904ba0"
-    },
-    {
-        "email": "test@naver.com2",
-        "password": "Test1234*",
-        "nickname": "test22",
-        "profile_picture": "uploads/3343d949fe0ca32acb400b0a107f6182"
-    },
-    {
-        "email": "test0429@naver.com",
-        "password": "Test0429*",
-        "nickname": "0429",
-        "profile_picture": "uploads/5c2d5661922b03065ae80bae72d5414c"
-    },
-    {
-        "email": "TEST@naver.com",
-        "password": "Test1234*",
-        "nickname": "TEST",
-        "profile_picture": "uploads/dfa9f101726c74fa2071c47accc1a134"
-    },
-    {
-        "email": "0501@naver.com",
-        "password": "Test0501*",
-        "nickname": "0501",
-        "profile_picture": "uploads/e17186eeb5641c89784f6b754aa2fde8"
-    },
-    {
-        "email": "TEST1@naver.com",
-        "password": "Man12345*",
-        "nickname": "man",
-        "profile_picture": "uploads/245089ce55d756245b778b8544025298"
-    },
-    {
-        "email": "123@naver.com",
-        "password": "Test1234*",
-        "nickname": "123",
-        "profile_picture": "uploads/d71c31367c9f65ac4ca8d8c416586ad2"
-    },
-    {
-        "email": "0504@naver.com",
-        "password": "Abcd1234*",
-        "nickname": "그랜파",
-        "profile_picture": "uploads/9b85a086a38c858393483e6d3b580b22"
+        "email": "ariel@naver.com",
+        "password": "$2b$10$qwrMqD6PvLfT1MJBG9iDdOv5iCv.gc4vfjmrz1aM57Cdzwyr06kse",
+        "nickname": "인어공주",
+        "profile_picture": "uploads/874210d416be7ba3cf4a3a8eb0c3ca9a"
     }
 ]

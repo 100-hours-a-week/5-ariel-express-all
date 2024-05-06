@@ -80,6 +80,17 @@
                     "date": "2024-05-04",
                     "time": "20:50:02",
                     "content": "아 좋아요"
+                },
+                {
+                    "id": 7,
+                    "author": {
+                        "email": "salt@naver.com",
+                        "profile_picture": "http://localhost:3001/uploads/07b92d72014d92da81f63acbc2ddeb7f",
+                        "nickname": "소금빵"
+                    },
+                    "date": "2024-05-06",
+                    "time": "15:28:41",
+                    "content": "쩝"
                 }
             ]
         },
