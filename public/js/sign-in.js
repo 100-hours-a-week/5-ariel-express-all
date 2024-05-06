@@ -83,48 +83,84 @@ const redirectToPostListPage = () => {
 }
 
 // 사용자 로그인 함수
+// const loginUser = (email, password) => {
+//     // JSON 파일에서 사용자 정보 가져오기
+//     fetch("http://localhost:3001/users", {
+//         credentials: 'include' // 쿠키를 포함시키기 위해 설정
+//     })
+//         .then(response => response.json())
+//         .then(data => {
+//             // 사용자 정보 확인
+//             const user = data.find(user => user.email === email && user.password === password);
+//             if (user) {
+//                 helperText.style.color = "blue";
+//                 helperText.textContent = "* 성공";
+//                 helperText.style.visibility = 'visible'; // helper text를 보이도록 변경
+//                 // 로그인 성공 후 3초 후 페이지 이동
+//                 setTimeout( () => {
+//                     // 서버로 POST 요청을 보냄
+//                     fetch("http://localhost:3001/login", {
+//                         method: "POST",
+//                         headers: {
+//                             "Content-Type": "application/json"
+//                         },
+//                         body: JSON.stringify({ email: email, password: password }),
+//                         credentials: 'include' // 쿠키를 포함시키기 위해 설정
+//                     })
+//                         .then(response => response.json())
+//                         .then(data => {
+//                             if (data.success) {
+//                                 // 세션 정보를 클라이언트에서 설정
+//                                 sessionStorage.setItem('loggedInUser', email);
+//                                 // 로그인 성공 시 게시글 목록 페이지로 이동
+//                                 redirectToPostListPage();
+//                             } else {
+//                                 // 로그인 실패 시 메시지 출력
+//                                 console.log("로그인 실패");
+//                             }
+//                         })
+//                         .catch(error => {
+//                             console.error("Error:", error);
+//                         });
+//                 }, 3000);
+//             } else {
+//                 // 로그인 실패 시 helper-text 변경
+//                 helperText.style.color = "red";
+//                 helperText.textContent = "* 이메일 또는 비밀번호를 다시 확인해주세요.";
+//                 helperText.style.visibility = 'visible'; // helper text를 보이도록 변경
+//             }
+//         })
+//         .catch(error => {
+//             console.error("Error:", error);
+//         });
+// }
+
 const loginUser = (email, password) => {
-    // JSON 파일에서 사용자 정보 가져오기
-    fetch("http://localhost:3001/users", {
+    // 서버로 POST 요청을 보냄
+    fetch("http://localhost:3001/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email: email, password: password }),
         credentials: 'include' // 쿠키를 포함시키기 위해 설정
     })
         .then(response => response.json())
         .then(data => {
-            // 사용자 정보 확인
-            const user = data.find(user => user.email === email && user.password === password);
-            if (user) {
+            if (data.success) {
+                // 세션 정보를 클라이언트에서 설정
+                sessionStorage.setItem('loggedInUser', email);
+
                 helperText.style.color = "blue";
                 helperText.textContent = "* 성공";
                 helperText.style.visibility = 'visible'; // helper text를 보이도록 변경
-                // 로그인 성공 후 3초 후 페이지 이동
+
+                // 로그인 성공 시 게시글 목록 페이지로 이동
                 setTimeout( () => {
-                    // 서버로 POST 요청을 보냄
-                    fetch("http://localhost:3001/login", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({ email: email, password: password }),
-                        credentials: 'include' // 쿠키를 포함시키기 위해 설정
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                // 세션 정보를 클라이언트에서 설정
-                                sessionStorage.setItem('loggedInUser', email);
-                                // 로그인 성공 시 게시글 목록 페이지로 이동
-                                redirectToPostListPage();
-                            } else {
-                                // 로그인 실패 시 메시지 출력
-                                console.log("로그인 실패");
-                            }
-                        })
-                        .catch(error => {
-                            console.error("Error:", error);
-                        });
+                    redirectToPostListPage();
                 }, 3000);
             } else {
-                // 로그인 실패 시 helper-text 변경
+                // 로그인 실패
                 helperText.style.color = "red";
                 helperText.textContent = "* 이메일 또는 비밀번호를 다시 확인해주세요.";
                 helperText.style.visibility = 'visible'; // helper text를 보이도록 변경
@@ -134,6 +170,7 @@ const loginUser = (email, password) => {
             console.error("Error:", error);
         });
 }
+
 
 
 // 로그인 폼 제출 이벤트 핸들러
@@ -157,35 +194,35 @@ document.getElementById("loginForm").addEventListener("submit", (event) => {
 });
 
 // 페이지 로드 시 실행되는 함수
-window.addEventListener("load", () => {
-    // 클라이언트 측에 설정된 세션 정보 가져오기
-    const loggedInUser = sessionStorage.getItem('loggedInUser');
+// window.addEventListener("load", () => {
+//     // 클라이언트 측에 설정된 세션 정보 가져오기
+//     const loggedInUser = sessionStorage.getItem('loggedInUser');
     
-    if (loggedInUser) {
-        // 로그인된 사용자 정보를 서버로 전달
-        fetch("http://localhost:3001/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ email: loggedInUser }), // 세션 정보를 서버로 전달
-            credentials: 'include' // 쿠키를 포함시키기 위해 설정
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // 세션 정보를 서버로 전달한 후 로그인 성공 시 게시글 목록 페이지로 이동
-                redirectToPostListPage();
-            } else {
-                // 로그인 실패 시 메시지 출력 또는 처리
-                console.log("로그인 실패");
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
-    } else {
-        // 세션 정보가 없는 경우, 로그인되지 않은 상태로 처리
-        console.log("로그인되지 않음");
-    }
-});
+//     if (loggedInUser) {
+//         // 로그인된 사용자 정보를 서버로 전달
+//         fetch("http://localhost:3001/login", {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json"
+//             },
+//             body: JSON.stringify({ email: loggedInUser }), // 세션 정보를 서버로 전달
+//             credentials: 'include' // 쿠키를 포함시키기 위해 설정
+//         })
+//         .then(response => response.json())
+//         .then(data => {
+//             if (data.success) {
+//                 // 세션 정보를 서버로 전달한 후 로그인 성공 시 게시글 목록 페이지로 이동
+//                 redirectToPostListPage();
+//             } else {
+//                 // 로그인 실패 시 메시지 출력 또는 처리
+//                 console.log("로그인 실패");
+//             }
+//         })
+//         .catch(error => {
+//             console.error("Error:", error);
+//         });
+//     } else {
+//         // 세션 정보가 없는 경우, 로그인되지 않은 상태로 처리
+//         console.log("로그인되지 않음");
+//     }
+// });

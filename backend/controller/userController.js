@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import bcrypt from 'bcrypt';
 import { fileURLToPath } from 'url';
 
 // 현재 모듈의 경로를 가져오기
@@ -25,20 +26,19 @@ const users = (req, res) => {
 //     res.json({ success: true });
 // }
 
+// // 로그인 요청 처리
+// const login = (req, res) => {
+//     const { email } = req.body;
+//     // 디코딩된 이메일 정보를 사용하여 세션 설정
+//     req.session.loggedInUser = decodeURIComponent(email);
+//     res.json({ success: true });
+// }
+
 // 로그인 요청 처리
 const login = (req, res) => {
-    const { email } = req.body;
-    // 디코딩된 이메일 정보를 사용하여 세션 설정
-    req.session.loggedInUser = decodeURIComponent(email);
-    res.json({ success: true });
-}
+    const { email, password } = req.body;
 
-// 회원가입 요청 처리
-const signUp = (req, res) => {
-    const { email, password, confirmPassword, nickname } = req.body;
-    const profile_picture = req.file.path;
-
-    // 기존 사용자 정보 읽어오기
+    // 사용자 정보 읽어오기
     fs.readFile(usersJsonPath, 'utf8', (err, data) => {
         if (err) {
             console.error('Error reading file:', err);
@@ -46,28 +46,79 @@ const signUp = (req, res) => {
             return;
         }
 
-        let users = JSON.parse(data);
+        const users = JSON.parse(data);
+        // 이메일을 이용하여 사용자 찾기
+        const user = users.find(user => user.email === email);
+        if (!user) {
+            // 사용자가 존재하지 않는 경우
+            res.json({ success: false });
+            return;
+        }
 
-        // 새로운 사용자 추가
-        const newUser = {
-            email,
-            password,
-            nickname,
-            profile_picture
-        };
-        users.push(newUser);
-
-        // 갱신된 사용자 정보를 JSON 형식으로 다시 작성
-        const updatedUsers = JSON.stringify(users, null, 4);
-
-        // 파일 갱신
-        fs.writeFile(usersJsonPath, updatedUsers, 'utf8', (err) => {
+        // 비밀번호 해시와 비교
+        bcrypt.compare(password, user.password, (err, result) => {
             if (err) {
-                console.error('Error writing file:', err);
-                res.status(500).send('Error writing file');
+                console.error('Error comparing passwords:', err);
+                res.status(500).send('Error comparing passwords');
                 return;
             }
-            res.redirect('http://localhost:3000/sign-in');
+
+            if (result) {
+                // 비밀번호 일치하는 경우 세션 설정
+                req.session.loggedInUser = email;
+                res.json({ success: true });
+            } else {
+                // 비밀번호 불일치하는 경우
+                res.json({ success: false });
+            }
+        });
+    });
+}
+
+// 회원가입 요청 처리
+const signUp = (req, res) => {
+    const { email, password, confirmPassword, nickname } = req.body;
+    const profile_picture = req.file.path;
+
+    // 비밀번호 암호화
+    bcrypt.hash(password, 10, (err, hashedPassword) => {
+        if (err) {
+            console.error('Error hashing password:', err);
+            res.status(500).send('Error hashing password');
+            return;
+        }
+
+        // 기존 사용자 정보 읽어오기
+        fs.readFile(usersJsonPath, 'utf8', (err, data) => {
+            if (err) {
+                console.error('Error reading file:', err);
+                res.status(500).send('Error reading file');
+                return;
+            }
+
+            let users = JSON.parse(data);
+
+            // 새로운 사용자 추가
+            const newUser = {
+                email,
+                password: hashedPassword, // 암호화된 비밀번호 저장
+                nickname,
+                profile_picture
+            };
+            users.push(newUser);
+
+            // 갱신된 사용자 정보를 JSON 형식으로 다시 작성
+            const updatedUsers = JSON.stringify(users, null, 4);
+
+            // 파일 갱신
+            fs.writeFile(usersJsonPath, updatedUsers, 'utf8', (err) => {
+                if (err) {
+                    console.error('Error writing file:', err);
+                    res.status(500).send('Error writing file');
+                    return;
+                }
+                res.redirect('http://localhost:3000/sign-in');
+            });
         });
     });
 }
