@@ -330,6 +330,16 @@ const updatePassword = (req, res) => {
     });
 }
 
+// 현재 로그인 된 이메일 반환
+const getCurrentUserEmail = (req, res) => {
+    const loggedInUserEmail = req.session.loggedInUser;
+    if (loggedInUserEmail) {
+        res.json({ success: true, email: loggedInUserEmail });
+    } else {
+        res.status(401).json({ success: false, message: 'User not logged in' });
+    }
+}
+
 // 현재 로그인 된 이메일, 닉네임으로 사용자 정보 변경
 const currentUserEmailAndNickname = (req, res) => {
     const loggedInUserEmail = req.session.loggedInUser;
@@ -369,5 +379,6 @@ export default {
     updateProfile,
     withdraw,
     updatePassword,
+    getCurrentUserEmail,
     currentUserEmailAndNickname,
 };
