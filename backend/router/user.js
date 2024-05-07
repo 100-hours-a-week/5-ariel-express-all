@@ -18,6 +18,9 @@ router.get('/users', userController.users);
 // 로그인 요청 처리
 router.post('/login', userController.login);
 
+// 로그아웃 요청 처리
+router.post('/logout', userController.logout);
+
 // 회원가입 요청 처리
 router.post('/signup', upload.single('profile_picture'), userController.signUp);
 

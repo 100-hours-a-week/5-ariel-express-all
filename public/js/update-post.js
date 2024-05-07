@@ -22,8 +22,22 @@ window.onclick = (event) => {
 }
 
 const logout = () => {
-    sessionStorage.removeItem('loggedInUser');
-    window.location.href = "/sign-in";
+    fetch('http://localhost:3001/logout', {
+        method: 'POST',
+        credentials: 'include' // 쿠키를 포함하여 요청하기 위해 설정
+    })
+    .then(response => {
+        if (response.ok) {
+            // 세션 및 쿠키 삭제 후 로그인 페이지로 이동
+            sessionStorage.removeItem('loggedInUser');
+            window.location.href = "/sign-in";
+        } else {
+            console.error('Failed to logout');
+        }
+    })
+    .catch(error => {
+        console.error('Error logging out:', error);
+    });
 }
 
 // 페이지가 로드되면 해당 게시글 정보를 가져와서 렌더링
@@ -126,11 +140,6 @@ document.getElementById('fileButton').addEventListener('click', (event) => {
 
 // 페이지 로드 시 실행되는 함수
 window.addEventListener("load", () => {
-    // 로그인 되지 않은 상태라면 접근 불가! 로그인 페이지로 이동
-    if (!sessionStorage.getItem('loggedInUser')) {
-        window.location.href = 'sign-in';
-    }
-    
     // 서버에 요청을 보낼 때 쿠키를 포함시켜서 전송
     fetch('http://localhost:3001/get-profile-image', {
         credentials: 'include' // 쿠키를 서버에 포함시키도록 설정
