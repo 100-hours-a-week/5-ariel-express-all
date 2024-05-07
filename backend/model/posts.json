@@ -350,34 +350,6 @@
             ]
         },
         {
-            "id": 6,
-            "title": "test",
-            "author": {
-                "email": "post6@example.com",
-                "profile_picture": "http://localhost:3001/uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
-                "nickname": "인어공주"
-            },
-            "date": "2024-04-29",
-            "time": "20:44:46",
-            "image": "http://localhost:3001/uploads/371a1a16e7081219f89799ac470e8969",
-            "content": "사진도 올라가셈요!!!",
-            "likes": 0,
-            "views": 0,
-            "comments": [
-                {
-                    "id": 1,
-                    "author": {
-                        "email": "comment1@example.com",
-                        "profile_picture": "http://localhost:3001/uploads/5dbddda32b48f01b6d40f0ac6e3d01aa",
-                        "nickname": "인어공주"
-                    },
-                    "date": "2024-04-29",
-                    "time": "20:46:24",
-                    "content": "에리얼이다"
-                }
-            ]
-        },
-        {
             "id": 7,
             "title": "좀 돼라",
             "author": {
@@ -473,252 +445,30 @@
             ]
         },
         {
-            "id": 10,
-            "title": "되겠지?",
-            "author": {
-                "email": "post10@example.com",
-                "profile_picture": "http://localhost:3001/uploads/ea4a7d7a6d0916219d393a199feccffc",
-                "nickname": "예지"
-            },
-            "date": "2024-05-03",
-            "time": "00:16:02",
-            "image": "http://localhost:3001/uploads/44f2d41146e1553d45313063c805f168",
-            "content": "돼야제",
-            "likes": 0,
-            "views": 0,
-            "comments": [
-                {
-                    "id": 1,
-                    "author": {
-                        "email": "comment1@example.com",
-                        "profile_picture": "http://localhost:3001/uploads/ea4a7d7a6d0916219d393a199feccffc",
-                        "nickname": "예지"
-                    },
-                    "date": "2024-05-03",
-                    "time": "00:23:56",
-                    "content": "g"
-                }
-            ]
-        },
-        {
             "id": 11,
-            "title": "게시글 작성은 되나",
-            "author": {
-                "email": "post11@example.com",
-                "profile_picture": "http://localhost:3001/uploads/62d310c36044c899bb03d5d003a330b2",
-                "nickname": "민들레"
-            },
-            "date": "2024-05-04",
-            "time": "20:46:58",
-            "image": null,
-            "content": "돼야함",
-            "likes": 0,
-            "views": 0,
-            "comments": [
-                {
-                    "id": 1,
-                    "author": {
-                        "email": "0504@naver.com",
-                        "profile_picture": "http://localhost:3001/uploads/9b85a086a38c858393483e6d3b580b22",
-                        "nickname": "그랜파"
-                    },
-                    "date": "2024-05-04",
-                    "time": "22:06:22",
-                    "content": "수정 완완"
-                },
-                {
-                    "id": 2,
-                    "author": {
-                        "email": "0504@naver.com",
-                        "profile_picture": "http://localhost:3001/uploads/9b85a086a38c858393483e6d3b580b22",
-                        "nickname": "그랜파"
-                    },
-                    "date": "2024-05-04",
-                    "time": "22:09:32",
-                    "content": "ㅌㅌ"
-                },
-                {
-                    "id": 3,
-                    "author": {
-                        "email": "0504@naver.com",
-                        "profile_picture": "http://localhost:3001/uploads/9b85a086a38c858393483e6d3b580b22",
-                        "nickname": "그랜파"
-                    },
-                    "date": "2024-05-04",
-                    "time": "22:56:18",
-                    "content": "꺄앙"
-                }
-            ]
-        },
-        {
-            "id": 12,
-            "title": "ㅎㅇ",
-            "author": {
-                "email": "post12@example.com",
-                "profile_picture": "http://localhost:3001/uploads/a5c537f38d9f3661ecd06530ccb4ae21",
-                "nickname": "0504"
-            },
-            "date": "2024-05-04",
-            "time": "20:49:50",
-            "image": "http://localhost:3001/uploads/e4e8f71146fa5ae5f82a127d06a0ee7f",
-            "content": "방금 가입함",
-            "likes": 0,
-            "views": 0,
-            "comments": [
-                {
-                    "id": 1,
-                    "author": {
-                        "email": "comment1@example.com",
-                        "profile_picture": "http://localhost:3001/uploads/a5c537f38d9f3661ecd06530ccb4ae21",
-                        "nickname": "0504"
-                    },
-                    "date": "2024-05-04",
-                    "time": "20:49:54",
-                    "content": "ㅎㅇㅇ"
-                }
-            ]
-        },
-        {
-            "id": 13,
-            "title": "작성",
-            "author": {
-                "email": "0504@naver.com",
-                "profile_picture": "http://localhost:3001/uploads/9b85a086a38c858393483e6d3b580b22",
-                "nickname": "그랜파"
-            },
-            "date": "2024-05-04",
-            "time": "22:03:21",
-            "image": "http://localhost:3001/uploads/3c666bfd3493d6c0e7573111c8c336e9",
-            "content": "!!!",
-            "likes": 0,
-            "views": 0,
-            "comments": [
-                {
-                    "id": 1,
-                    "author": {
-                        "email": "0504@naver.com",
-                        "profile_picture": "http://localhost:3001/uploads/9b85a086a38c858393483e6d3b580b22",
-                        "nickname": "그랜파"
-                    },
-                    "date": "2024-05-04",
-                    "time": "22:54:31",
-                    "content": "..?"
-                },
-                {
-                    "id": 2,
-                    "author": {
-                        "email": "0504@naver.com",
-                        "profile_picture": "http://localhost:3001/uploads/9b85a086a38c858393483e6d3b580b22",
-                        "nickname": "그랜파"
-                    },
-                    "date": "2024-05-04",
-                    "time": "22:56:08",
-                    "content": "오"
-                },
-                {
-                    "id": 3,
-                    "author": {
-                        "email": "test@naver.com",
-                        "profile_picture": "http://localhost:3001/uploads/bcc6cc7ea95ef510e59191594ea636d6",
-                        "nickname": "애쁠"
-                    },
-                    "date": "2024-05-04",
-                    "time": "22:58:17",
-                    "content": "꽃 예쁘네염"
-                },
-                {
-                    "id": 4,
-                    "author": {
-                        "email": "test@naver.comㅁ",
-                        "profile_picture": "http://localhost:3001/uploads/574d123298ae6bb723bae33ac3ad9cba",
-                        "nickname": "끼루룩"
-                    },
-                    "date": "2024-05-05",
-                    "time": "17:17:16",
-                    "content": "!!!?!?"
-                }
-            ]
-        },
-        {
-            "id": 14,
             "title": "안녕하십니까",
             "author": {
-                "email": "0504@naver.com",
-                "profile_picture": "http://localhost:3001/uploads/9b85a086a38c858393483e6d3b580b22",
-                "nickname": "그랜파"
+                "email": "ariel@naver.com",
+                "profile_picture": "http://localhost:3001/uploads/874210d416be7ba3cf4a3a8eb0c3ca9a",
+                "nickname": "ariel"
             },
-            "date": "2024-05-04",
-            "time": "22:57:16",
-            "image": null,
-            "content": "까아악",
-            "likes": 0,
-            "views": 0,
-            "comments": []
-        },
-        {
-            "id": 15,
-            "title": "ㅎㅇ",
-            "author": {
-                "email": "test@naver.com",
-                "profile_picture": "http://localhost:3001/uploads/bcc6cc7ea95ef510e59191594ea636d6",
-                "nickname": "애쁠"
-            },
-            "date": "2024-05-04",
-            "time": "22:58:54",
-            "image": "http://localhost:3001/uploads/7e64247d3188eadd80473d79bfe73b12",
-            "content": "나임",
+            "date": "2024-05-07",
+            "time": "10:27:32",
+            "image": "http://localhost:3001/uploads/308ef19afc6ed124d764a2d931c06476",
+            "content": "요요",
             "likes": 0,
             "views": 0,
             "comments": [
                 {
                     "id": 1,
                     "author": {
-                        "email": "test@naver.com",
-                        "profile_picture": "http://localhost:3001/uploads/bcc6cc7ea95ef510e59191594ea636d6",
-                        "nickname": "애쁠"
+                        "email": "ariel@naver.com",
+                        "profile_picture": "http://localhost:3001/uploads/874210d416be7ba3cf4a3a8eb0c3ca9a",
+                        "nickname": "ariel"
                     },
-                    "date": "2024-05-04",
-                    "time": "22:59:36",
-                    "content": "나 닉넴 프사 바꿈"
-                },
-                {
-                    "id": 2,
-                    "author": {
-                        "email": "test@naver.com",
-                        "profile_picture": "http://localhost:3001/uploads/bcc6cc7ea95ef510e59191594ea636d6",
-                        "nickname": "애쁠"
-                    },
-                    "date": "2024-05-04",
-                    "time": "22:59:39",
-                    "content": "ㅋㅋ"
-                }
-            ]
-        },
-        {
-            "id": 16,
-            "title": "게시글 수정!",
-            "author": {
-                "email": "test@naver.comㅁ",
-                "profile_picture": "http://localhost:3001/uploads/574d123298ae6bb723bae33ac3ad9cba",
-                "nickname": "끼루룩"
-            },
-            "date": "2024-05-05",
-            "time": "19:05:05",
-            "image": "http://localhost:3001/uploads/b3ac31331a1ecbac868fe6cbc1fac731",
-            "content": "내가 많네..",
-            "likes": 0,
-            "views": 0,
-            "comments": [
-                {
-                    "id": 1,
-                    "author": {
-                        "email": "test@naver.comㅁ",
-                        "profile_picture": "http://localhost:3001/uploads/574d123298ae6bb723bae33ac3ad9cba",
-                        "nickname": "끼루룩"
-                    },
-                    "date": "2024-05-05",
-                    "time": "19:06:19",
-                    "content": "갱!"
+                    "date": "2024-05-07",
+                    "time": "10:28:33",
+                    "content": "오"
                 }
             ]
         }

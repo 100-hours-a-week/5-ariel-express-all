@@ -75,6 +75,22 @@ const login = (req, res) => {
     });
 }
 
+// 로그아웃 요청 처리
+const logout = (req, res) => {
+    // 세션을 삭제하여 로그아웃 상태로 만듭니다.
+    req.session.destroy(err => {
+        if (err) {
+            console.error('Error destroying session:', err);
+            res.status(500).send('Error destroying session');
+        } else {
+            // 세션 삭제 후 로그아웃 완료 메시지를 클라이언트에 보냅니다.
+            res.clearCookie('loggedInUserID'); // 쿠키도 삭제
+            res.json({ success: true, message: 'Logout successful' });
+        }
+    });
+};
+
+
 // 회원가입 요청 처리
 const signUp = (req, res) => {
     const { email, password, confirmPassword, nickname } = req.body;
@@ -347,6 +363,7 @@ const currentUserEmailAndNickname = (req, res) => {
 export default {
     users,
     login,
+    logout,
     signUp,
     getProfileImage,
     updateProfile,
