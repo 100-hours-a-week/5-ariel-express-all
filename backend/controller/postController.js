@@ -46,7 +46,7 @@ const deletePost = (req, res) => {
 
             // 삭제된 게시글 이후의 게시글들의 ID 변경
             for (let i = postIndex; i < posts.posts.length; i++) {
-                posts.posts[i].id = i + 1; // 순서대로 1, 2, 3, ... 으로 변경
+                posts.posts[i].id = i+1; // 삭제된 게시글 다음부터 ID를 1씩 감소시킴
             }
 
             // 수정된 내용을 다시 JSON 파일에 씀
@@ -165,7 +165,7 @@ const updatePost = (req, res) => {
         if (index !== -1) {
             posts.posts[index].title = title;
             posts.posts[index].content = content;
-            
+
             // 파일이 첨부되었을 경우에만 이미지 경로 업데이트
             if (imageFile) {
                 // 서버의 호스트 및 포트 정보를 가져옴

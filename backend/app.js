@@ -29,7 +29,7 @@ app.use(cookieParser());
 app.use(cors(corsOptions));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // uploads 디렉토리를 정적 파일로 제공
 app.use(session({
-    secret: 'ariel', // 세션을 암호화하는 데 사용되는 비밀 키
+    secret: 'ariel_back', // 세션을 암호화하는 데 사용되는 비밀 키
     resave: false, // 요청이 왔을 때 세션을 항상 저장할지 여부
     saveUninitialized: false // 초기화되지 않은 세션을 저장소에 저장할지 여부
 }));

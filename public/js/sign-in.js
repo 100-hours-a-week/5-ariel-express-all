@@ -172,7 +172,6 @@ const loginUser = (email, password) => {
 }
 
 
-
 // 로그인 폼 제출 이벤트 핸들러
 document.getElementById("loginForm").addEventListener("submit", (event) => {
     event.preventDefault(); // 폼 제출 방지
@@ -192,37 +191,3 @@ document.getElementById("loginForm").addEventListener("submit", (event) => {
     // 사용자 로그인 함수 호출
     loginUser(email, password);
 });
-
-// 페이지 로드 시 실행되는 함수
-// window.addEventListener("load", () => {
-//     // 클라이언트 측에 설정된 세션 정보 가져오기
-//     const loggedInUser = sessionStorage.getItem('loggedInUser');
-    
-//     if (loggedInUser) {
-//         // 로그인된 사용자 정보를 서버로 전달
-//         fetch("http://localhost:3001/login", {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json"
-//             },
-//             body: JSON.stringify({ email: loggedInUser }), // 세션 정보를 서버로 전달
-//             credentials: 'include' // 쿠키를 포함시키기 위해 설정
-//         })
-//         .then(response => response.json())
-//         .then(data => {
-//             if (data.success) {
-//                 // 세션 정보를 서버로 전달한 후 로그인 성공 시 게시글 목록 페이지로 이동
-//                 redirectToPostListPage();
-//             } else {
-//                 // 로그인 실패 시 메시지 출력 또는 처리
-//                 console.log("로그인 실패");
-//             }
-//         })
-//         .catch(error => {
-//             console.error("Error:", error);
-//         });
-//     } else {
-//         // 세션 정보가 없는 경우, 로그인되지 않은 상태로 처리
-//         console.log("로그인되지 않음");
-//     }
-// });
