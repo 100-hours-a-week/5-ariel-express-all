@@ -10,5 +10,17 @@
         "password": "$2b$10$8.mzv5OqlZadWzC9n7SQIOu6JrnOA9j.MWbFAVTymEx/c0r5r8obW",
         "nickname": "소금빵",
         "profile_picture": "uploads/07b92d72014d92da81f63acbc2ddeb7f"
+    },
+    {
+        "email": "ariel@naver.com",
+        "password": "$2b$10$E6FNpA8ZtHktN223N/YGpu19rhR4H8Nmq.IsNFFCIc82e1wGFiByu",
+        "nickname": "인어공주",
+        "profile_picture": "uploads/316aaf8e3912f6ae8e0a809b0fa38161"
+    },
+    {
+        "email": "test@naver.com",
+        "password": "$2b$10$W6r98A9WndPn9UHzm.3VR.koihlduNNNn5LIFNSgJOrqJ6qU8QCle",
+        "nickname": "test",
+        "profile_picture": "uploads/1ebfe05bbc1b25dffc5a98275fc0801f"
     }
 ]

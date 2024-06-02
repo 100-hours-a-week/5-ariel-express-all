@@ -482,6 +482,45 @@
                     "content": "ㅋㅋㅋㅋㅋㅋㅋ"
                 }
             ]
+        },
+        {
+            "id": 10,
+            "title": "ㅎㅇ",
+            "author": {
+                "email": "salt@naver.com",
+                "profile_picture": "http://localhost:3001/uploads/07b92d72014d92da81f63acbc2ddeb7f",
+                "nickname": "소금빵"
+            },
+            "date": "2024-06-03",
+            "time": "00:26:12",
+            "image": null,
+            "content": "오랜만이에요",
+            "likes": 0,
+            "views": 0,
+            "comments": [
+                {
+                    "id": 1,
+                    "author": {
+                        "email": "salt@naver.com",
+                        "profile_picture": "http://localhost:3001/uploads/07b92d72014d92da81f63acbc2ddeb7f",
+                        "nickname": "소금빵"
+                    },
+                    "date": "2024-06-03",
+                    "time": "00:26:19",
+                    "content": "그러네용용"
+                },
+                {
+                    "id": 2,
+                    "author": {
+                        "email": "salt@naver.com",
+                        "profile_picture": "http://localhost:3001/uploads/07b92d72014d92da81f63acbc2ddeb7f",
+                        "nickname": "소금빵"
+                    },
+                    "date": "2024-06-03",
+                    "time": "00:26:25",
+                    "content": "아 자문자답 들켰네 ㅋㅋ"
+                }
+            ]
         }
     ]
 }
