@@ -18,6 +18,7 @@ const posts = async (req, res) => {
                 u.nickname AS author_nickname
             FROM post p
             JOIN user u ON p.user_id = u.user_id
+            ORDER BY p.created_at ASC
         `);
         res.json(rows);
     } catch (err) {
