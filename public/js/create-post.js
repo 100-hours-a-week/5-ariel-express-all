@@ -94,11 +94,9 @@ const createPost = () => {
     const formData = new FormData();
     formData.append('title', title);
     formData.append('content', content);
-    formData.append('image', imageFile);
-
-    console.log(formData.get('title'));
-    console.log(formData.get('content'));
-    console.log(formData.get('image'));
+    if (imageFile) {
+        formData.append('image', imageFile);
+    }
 
     // 서버에 새 게시글 정보 전송
     fetch('http://localhost:3001/create-post', {
@@ -108,9 +106,13 @@ const createPost = () => {
     })
     .then(response => response.json())
     .then(data => {
-        alert('게시글 작성 완료');
-        // 게시글 작성 성공 후 페이지 이동
-        window.location.href = "./list-of-posts";
+        if (data.success) {
+            alert('게시글 작성 완료');
+            // 게시글 작성 성공 후 페이지 이동
+            window.location.href = "./list-of-posts";
+        } else {
+            console.error('Failed to create post:', data.error);
+        }
     })
     .catch(error => {
         console.error('Error creating post:', error);

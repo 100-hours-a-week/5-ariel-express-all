@@ -9,6 +9,8 @@ const upload = multer({ dest: 'uploads/' });
 // posts.json 가져오기
 router.get('/posts', postController.posts);
 
+router.get('/posts/:id', postController.getPostById);
+
 // 게시글 목록 조회 페이지 요청
 router.get('/list-of-posts', postController.listOfPosts);
 

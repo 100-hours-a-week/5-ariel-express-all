@@ -51,23 +51,23 @@ const getPostIdFromUrl = () => {
 const renderPostDetails = (post) => {
     const postDetails = document.getElementById('postDetails');
 
-    const formattedViews = formatNumber(post.views);
+    const formattedViews = formatNumber(post.views_count);
     const formattedComments = formatNumber(post.comments.length);
 
     let postImageHTML = ''; // 이미지 HTML 초기화
 
     // post.image가 null이 아닌 경우에만 이미지 HTML을 생성
-    if (post.image !== null) {
-        postImageHTML = `<img src="${post.image}" class="post-image" alt="post-image">`;
+    if (post.post_image !== null) {
+        postImageHTML = `<img src="${post.post_image}" class="post-image" alt="post-image">`;
     }
 
     // 현재 로그인된 사용자의 이메일 가져오기
     const loggedInUserEmail = getLoggedInUserEmail();
 
     // 작성자 이메일과 현재 로그인된 사용자의 이메일 비교하여 수정 및 삭제 버튼 처리
-    const editButtonsHTML = (post.author.email === loggedInUserEmail) ? `
+    const editButtonsHTML = (post.author_email === loggedInUserEmail) ? `
         <div class="edit-buttons">
-            <a href="update-post?id=${post.id}"><button class="modify-button">수정</button></a>
+            <a href="update-post?id=${post.post_id}"><button class="modify-button">수정</button></a>
             <button class="delete-button" onclick="showPostDeleteModal()">삭제</button>
         </div>
     ` : '';
@@ -75,15 +75,15 @@ const renderPostDetails = (post) => {
     const postHTML = `
         <h1 class="post-title">${post.title}</h1>
         <div class="info1">
-            <div class="post-author-profile"><img src=${post.author.profile_picture} width="30px" height="30px"></div>
-            <div class="author-name"><small><b>${post.author.nickname}</b></small></div>
-            <div class="post-date"><small>${formatDateTime(post.date, post.time)}</small></div>
+            <div class="post-author-profile"><img src='http://localhost:3001/${post.author_profile_picture}' width="30px" height="30px"></div>
+            <div class="author-name"><small><b>${post.author_nickname}</b></small></div>
+            <div class="post-date"><small>${formatDateTime(post.created_at)}</small></div>
             ${editButtonsHTML} <!-- 수정, 삭제 버튼 HTML -->
         </div>
         <hr>
         <section class="body">
             ${postImageHTML} <!-- 이미지 HTML 삽입 -->
-            <div class="post-text">${post.content}</div>
+            <div class="post-text">${post.post_content}</div>
         </section>
         <section class="info2">
             <div class="info-hits">
@@ -112,14 +112,12 @@ const renderPostDetails = (post) => {
     fetchComments(post.comments);
 }
 
-
 // 게시글 ID를 가져와서 해당 게시글 정보를 요청하는 함수
 const fetchPostDetails = () => {
     const postId = getPostIdFromUrl(); // 게시글 id를 가져옴
-    fetch('http://localhost:3001/posts') // 게시글 정보 fetch
+    fetch(`http://localhost:3001/posts/${postId}`) // 게시글 정보 fetch
         .then(response => response.json())
-        .then(data => {
-            const post = data.posts.find(post => post.id === parseInt(postId));
+        .then(post => {
             if (post) {
                 renderPostDetails(post);
             } else {
@@ -131,38 +129,32 @@ const fetchPostDetails = () => {
 
 // 댓글을 가져와서 화면에 렌더링하는 함수
 const fetchComments = (comments) => {
-    // querySelector: 문서에서 클래스가 "comment-list-space"인 첫 번째 요소 반환
     const commentListSpace = document.querySelector('.comment-list-space');
 
     comments.forEach(comment => {
-        // 현재 로그인된 사용자의 이메일 가져오기
         const loggedInUserEmail = getLoggedInUserEmail();
 
-        // 작성자 이메일과 현재 로그인된 사용자의 이메일 비교하여 수정 및 삭제 버튼 생성 여부 결정
-        const editButtonsHTML = (comment.author.email === loggedInUserEmail) ? `
+        const editButtonsHTML = (comment.email === loggedInUserEmail) ? `
             <div class="edit-buttons">
-                <button class="modify-button" onclick="editComment('${comment.id}', '${comment.content}')">수정</button>
-                <button class="delete-button" onclick="showCommentDeleteModal('${comment.id}')">삭제</button>
+                <button class="modify-button" onclick="editComment('${comment.comment_id}', '${comment.comment_content}')">수정</button>
+                <button class="delete-button" onclick="showCommentDeleteModal('${comment.comment_id}')">삭제</button>
             </div>
         ` : '';
 
         const commentHTML = `
             <section class="current-comment-info">
-                <div class="comment-author-profile"><img src="${comment.author.profile_picture}" style="border-radius: 50%; width: 30px; height: 30px;"></div>
-                <div class="author-name"><small><b>${comment.author.nickname}</b></small></div>
-                <div class="post-date"><small>${formatDateTime(comment.date, comment.time)}</small></div>
+                <div class="comment-author-profile"><img src="${comment.profile_picture}" style="border-radius: 50%; width: 30px; height: 30px;"></div>
+                <div class="author-name"><small><b>${comment.nickname}</b></small></div>
+                <div class="post-date"><small>${formatDateTime(comment.created_at)}</small></div>
                 ${editButtonsHTML} <!-- 수정, 삭제 버튼 HTML -->
             </section>
             <section class="current-comment-text">
-                <div><small>${comment.content}</small></div>
+                <div><small>${comment.comment_content}</small></div>
             </section>
         `;
-        // insertAdjacentHTML: DOM에 HTML을 삽입하는 메서드
-        // beforeend: 선택한 요소의 마지막 자식 요소로 HTML을 삽입
         commentListSpace.insertAdjacentHTML('beforeend', commentHTML);
     });
 }
-
 
 // 페이지가 로드되면 해당 게시글 정보를 가져와서 렌더링
 window.onload = () => {
@@ -195,10 +187,8 @@ const showPostDeleteModal = () => {
     modalBackground.style.display = 'block';
     deleteModal.style.display = 'block';
 
-    // 백그라운드 스크롤 방지
     document.body.style.overflow = 'hidden';
 
-    // 삭제 버튼 클릭 시 confirmDeletePost 함수 호출
     document.getElementById('deletePostButton').addEventListener('click', () => {
         confirmDeletePost();
     });
@@ -212,7 +202,6 @@ const hidePostDeleteModal = () => {
     modalBackground.style.display = 'none';
     deleteModal.style.display = 'none';
 
-    // 백그라운드 스크롤 재개
     document.body.style.overflow = '';
 }
 
@@ -224,19 +213,14 @@ const showCommentDeleteModal = (commentId) => {
     modalBackground.style.display = 'block';
     deleteModal.style.display = 'block';
 
-    // 삭제할 댓글의 ID를 모달에 설정
     deleteModal.dataset.commentId = commentId;
 
-    // 게시글 ID 가져오기
     const postId = getPostIdFromUrl();
 
-    // 백그라운드 스크롤 방지
     document.body.style.overflow = 'hidden';
 
-    // confirmDeleteComment 함수 호출
     confirmDeleteComment(postId);
 }
-
 
 // 댓글 삭제 모달 숨기기
 const hideCommentDeleteModal = () => {
@@ -246,26 +230,23 @@ const hideCommentDeleteModal = () => {
     modalBackground.style.display = 'none';
     deleteModal.style.display = 'none';
 
-    // 백그라운드 스크롤 재개
     document.body.style.overflow = '';
 }
 
 const confirmDeletePost = () => {
-    const postId = getPostIdFromUrl(); // 게시글 ID 가져오기
+    const postId = getPostIdFromUrl();
 
-    // 삭제 요청을 보냄
     fetch('http://localhost:3001/delete-post', {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ postId }) // 게시글 ID를 전송
+        body: JSON.stringify({ postId })
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
             hidePostDeleteModal();
-            // location.reload(); // 예시로 페이지를 새로고침하는 방식 사용
             window.location.href = "list-of-posts";
             showToast('게시글이 삭제되었습니다.');
         } else {
@@ -277,130 +258,85 @@ const confirmDeletePost = () => {
 
 // 댓글 삭제 확인 모달에서 삭제 버튼 클릭 시 실행되는 함수
 const confirmDeleteComment = (postId) => {
-    // 삭제할 댓글의 ID를 모달에서 가져옴
     const commentId = document.getElementById('commentDeleteModal').dataset.commentId;
 
-    // 삭제 버튼을 클릭했을 때만 삭제 요청을 보냄
     const deleteButton = document.getElementById('deleteCommentButton');
     deleteButton.onclick =  () => {
-        // 서버에 해당 댓글을 삭제하는 요청을 보냄
         fetch('http://localhost:3001/delete-comment', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ postId, commentId }) // 게시글 ID와 삭제할 댓글의 ID를 전송
+            body: JSON.stringify({ postId, commentId })
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // 삭제가 성공했을 경우 화면에서 해당 댓글을 제거
-                    //removeCommentFromUI(commentId);
-                    // 댓글 삭제 모달을 숨김
-                    hideCommentDeleteModal();
-
-                    location.reload();
-                    fetchComments(postId.comments);
-                    showToast('댓글이 삭제되었습니다.');
-                } else {
-                    console.error('Failed to delete comment:', data.error);
-                }
-            })
-            .catch(error => console.error('Error deleting comment:', error));
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                hideCommentDeleteModal();
+                location.reload();
+                fetchComments(postId.comments);
+                showToast('댓글이 삭제되었습니다.');
+            } else {
+                console.error('Failed to delete comment:', data.error);
+            }
+        })
+        .catch(error => console.error('Error deleting comment:', error));
     };
 }
 
-// 댓글 삭제 모달에서 삭제 버튼 클릭 시 confirmDeleteComment 함수 호출
 document.getElementById('commentDeleteModalBackground').addEventListener('click', confirmDeleteComment);
 
-// 댓글 수정
 const editComment = (commentId, commentContent) => {
     const inputComment = document.querySelector('.input-comment');
     const registerButton = document.querySelector('.comment-register-button');
-    const postId = getPostIdFromUrl(); // 게시글 id를 가져옴
+    const postId = getPostIdFromUrl();
 
     inputComment.value = commentContent;
     registerButton.textContent = '댓글 수정';
 
     registerButton.onclick = () => {
-        // 댓글 수정 버튼 클릭 시 동작
         const updatedCommentContent = inputComment.value;
-        updateComment(postId, commentId, updatedCommentContent); // postId를 함께 전달
+        updateComment(postId, commentId, updatedCommentContent);
     };
 }
 
 // 댓글 업데이트
 const updateComment = (postId, commentId, updatedCommentContent) => {
-    // /backend/model/posts.json에서 댓글 정보 가져오기
-    fetch('http://localhost:3001/posts')
-        .then(response => response.json())
-        .then(data => {
-            // postId에 해당하는 게시글 찾기
-            const post = data.posts.find(post => post.id === parseInt(postId));
-            if (post) {
-                // 댓글 목록에서 commentId에 해당하는 댓글 찾기
-                const comment = post.comments.find(comment => comment.id === parseInt(commentId));
-                if (comment) {
-                    // 찾은 댓글의 내용 업데이트
-                    comment.content = updatedCommentContent;
-                    // 콘솔에 댓글 내용 출력
-                    console.log("게시글 ID:", postId);
-                    console.log("댓글 ID:", commentId);
-                    console.log("업데이트된 댓글 내용:", updatedCommentContent);
-
-                    // 서버에 댓글 업데이트를 요청합니다.
-                    fetch('http://localhost:3001/update-comment', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ postId, commentId, content: updatedCommentContent })
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                // 성공적으로 댓글이 업데이트된 경우
-                                // 리로드 & 댓글 목록을 다시 가져와서 렌더링
-                                location.reload();
-                                fetchComments(data.updatedComments);
-                            } else {
-                                console.error('Failed to update comment:', data.error);
-                            }
-                        })
-                        .catch(error => console.error('Error updating comment:', error));
-                } else {
-                    console.error('Comment not found');
-                }
-            } else {
-                console.error('Post not found');
-            }
-        })
-        .catch(error => console.error('Error updating comment:', error));
+    fetch('http://localhost:3001/update-comment', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ postId, commentId, content: updatedCommentContent })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            location.reload();
+            fetchComments(data.updatedComments);
+        } else {
+            console.error('Failed to update comment:', data.error);
+        }
+    })
+    .catch(error => console.error('Error updating comment:', error));
 }
 
-
-// 댓글 등록
 const registerComment = () => {
     const inputComment = document.querySelector('.input-comment');
     const registerButton = document.querySelector('.comment-register-button');
     const postId = getPostIdFromUrl();
 
-    // 댓글 수정 버튼이 댓글 등록 버튼으로 변경되었을 때
     if (registerButton.textContent === '댓글 수정') {
-        // 수정 중인 댓글을 업데이트합니다.
         const updatedCommentContent = inputComment.value;
-        // 수정된 댓글 내용과 함께 댓글 업데이트 함수를 호출합니다.
-        updateComment(commentId, updatedCommentContent);
+        updateComment(postId, commentId, updatedCommentContent);
     } else {
-        // 현재 로그인된 사용자의 정보 가져오기
         const loggedInUserNickname = getLoggedInUserNickname();
         const loggedInUserProfile = getLoggedInUserProfile();
 
-        // 현재 시간을 가져오는 함수
         const getCurrentDateTime = () => {
             const now = new Date();
             const year = now.getFullYear();
-            const month = (now.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
+            const month = (now.getMonth() + 1).toString().padStart(2, '0');
             const day = now.getDate().toString().padStart(2, '0');
             const hours = now.getHours().toString().padStart(2, '0');
             const minutes = now.getMinutes().toString().padStart(2, '0');
@@ -408,72 +344,57 @@ const registerComment = () => {
             return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
         }
 
-        // 새로운 댓글 객체 생성
         const newComment = {
-            id: null, // 서버에서 설정될 것이므로 일단 null로 설정
+            id: null,
             author: {
-                profile_picture: loggedInUserProfile, // 현재 로그인된 사용자의 프로필 이미지
-                nickname: loggedInUserNickname // 현재 로그인된 사용자의 닉네임
+                profile_picture: loggedInUserProfile,
+                nickname: loggedInUserNickname
             },
-            date: getCurrentDateTime().split(' ')[0], // 현재 날짜
-            time: getCurrentDateTime().split(' ')[1], // 현재 시간
-            content: inputComment.value // 입력한 댓글 내용
+            date: getCurrentDateTime().split(' ')[0],
+            time: getCurrentDateTime().split(' ')[1],
+            content: inputComment.value
         };
 
-        // 서버에 새로운 댓글 등록 요청 보내기
         fetch('http://localhost:3001/add-comment', {
             credentials: 'include',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ postId, content: newComment.content }) // 게시글 ID와 새로운 댓글 데이터 전송
+            body: JSON.stringify({ postId, content: newComment.content })
         })
-            .then(response => response.json())
-            .then(data => {
-                // 새로운 댓글 ID를 서버에서 받아와서 설정
-                newComment.id = data.commentId;
-                // 화면에 새로운 댓글 추가
-                // fetchComments(postId.comments);
-                // 입력란 비우기
-                inputComment.value = '';
+        .then(response => response.json())
+        .then(data => {
+            newComment.id = data.commentId;
+            inputComment.value = '';
+            location.reload();
+            fetchComments(postId.comments);
+        })
+        .catch(error => console.error('Error registering comment:', error));
 
-                location.reload();
-                fetchComments(postId.comments);
-            })
-            .catch(error => console.error('Error registering comment:', error));
-
-        // 입력란 비우기
         inputComment.value = '';
     }
 }
 
-// 현재 로그인된 사용자의 닉네임 가져오기
 const getLoggedInUserNickname = () => {
     return document.cookie.replace(/(?:(?:^|.*;\s*)loggedInUserNickname\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 }
 
-// 현재 로그인된 사용자의 프로필 이미지 가져오기
 const getLoggedInUserProfile = () => {
     return document.cookie.replace(/(?:(?:^|.*;\s*)loggedInUserProfile\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 }
 
-const formatDateTime = (date, time) => {
-    // 날짜와 시간을 공백으로 구분하여 ISO 8601 형식의 문자열로 변환
-    const isoDateTimeString = `${date}T${time}`;
+const formatDateTime = (isoDateTimeString) => {
     const dateTime = new Date(isoDateTimeString);
-    // 만약 날짜와 시간이 유효하지 않다면 빈 문자열 반환
     if (isNaN(dateTime.getTime())) {
         return '';
     }
-    // ISO 8601 형식에서 시간 정보를 추출하여 반환
     const year = dateTime.getFullYear();
     const month = String(dateTime.getMonth() + 1).padStart(2, '0');
     const day = String(dateTime.getDate()).padStart(2, '0');
     const hours = String(dateTime.getHours()).padStart(2, '0');
     const minutes = String(dateTime.getMinutes()).padStart(2, '0');
     const seconds = String(dateTime.getSeconds()).padStart(2, '0');
-    // YYYY-MM-DD HH:MM:SS 형식으로 반환
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
@@ -481,10 +402,9 @@ const showToast = (message) => {
     const toast = document.getElementById('toastMessage');
     if (toast) {
         toast.innerText = message;
-        toast.style.display = 'block'; // 토스트 메시지 보이기
+        toast.style.display = 'block';
 
-        // 3초 후에 토스트 메시지 숨기기
-        setTimeout( () => {
+        setTimeout(() => {
             toast.style.display = 'none';
         }, 3000);
     } else {
@@ -492,22 +412,15 @@ const showToast = (message) => {
     }
 }
 
-// 페이지 로드 시 실행되는 함수
 window.addEventListener("load", () => {
-    // 로그인 되지 않은 상태라면 접근 불가! 로그인 페이지로 이동
     if (!sessionStorage.getItem('loggedInUser')) {
         window.location.href = 'sign-in';
     }
-    // 서버에 요청을 보낼 때 쿠키를 포함시켜서 전송
     fetch('http://localhost:3001/get-profile-image', {
-        credentials: 'include' // 쿠키를 서버에 포함시키도록 설정
+        credentials: 'include'
     })
-    .then(response => response.json()) // 응답을 JSON으로 변환
+    .then(response => response.json())
     .then(data => {
-        // 서버에서 전달받은 프로필 이미지 경로를 콘솔에 출력
-        console.log("서버에서 전달받은 profileImagePath:", data.profileImagePath);
-
-        // 프로필 이미지를 업데이트
         const userProfileImage = document.getElementById("userProfileImage");
         userProfileImage.src = data.profileImagePath;
     })

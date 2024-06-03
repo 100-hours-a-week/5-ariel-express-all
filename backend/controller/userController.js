@@ -193,7 +193,7 @@ const currentUserEmailAndNickname = async (req, res) => {
     }
 }
 
-// 게시글과 댓글 정보 업데이트 함수
+// // 게시글과 댓글 정보 업데이트 함수
 // const updatePostsAndComments = (userEmail, newNickname, profileImage) => {
 //     fs.readFile(postsJsonPath, 'utf8', (err, data) => {
 //         if (err) {
@@ -235,14 +235,14 @@ const currentUserEmailAndNickname = async (req, res) => {
 // }
 
 // sql 버전. 우선 보류
-// const updatePostsAndComments = async (userId, newNickname, profileImagePath) => {
-//     try {
-//         await db.query('UPDATE posts SET author_nickname = ?, author_profile_picture = ? WHERE user_id = ?', [newNickname, profileImagePath, userId]);
-//         await db.query('UPDATE comments SET author_nickname = ?, author_profile_picture = ? WHERE user_id = ?', [newNickname, profileImagePath, userId]);
-//     } catch (err) {
-//         console.error('Error updating posts and comments:', err);
-//     }
-// }
+const updatePostsAndComments = async (userId, newNickname, profileImagePath) => {
+    // try {
+    //     await db.query('UPDATE posts SET author_nickname = ?, author_profile_picture = ? WHERE user_id = ?', [newNickname, profileImagePath, userId]);
+    //     await db.query('UPDATE comments SET author_nickname = ?, author_profile_picture = ? WHERE user_id = ?', [newNickname, profileImagePath, userId]);
+    // } catch (err) {
+    //     console.error('Error updating posts and comments:', err);
+    // }
+}
 
 export default {
     users,
