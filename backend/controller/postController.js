@@ -26,6 +26,60 @@ const posts = async (req, res) => {
     }
 };
 
+// 게시글 상세 조회
+const getPostById = async (req, res) => {
+    const postId = req.params.id;
+
+    try {
+        const [rows] = await db.query(`
+            SELECT 
+                p.post_id, 
+                p.title, 
+                p.created_at, 
+                p.post_image, 
+                p.post_content, 
+                p.likes_count, 
+                p.comments_count, 
+                p.views_count,
+                u.email AS author_email,
+                u.profile_picture AS author_profile_picture,
+                u.nickname AS author_nickname
+            FROM post p
+            JOIN user u ON p.user_id = u.user_id
+            WHERE p.post_id = ?
+        `, [postId]);
+
+        if (rows.length === 0) {
+            return res.status(404).json({ error: 'Post not found' });
+        }
+
+        // 댓글도 함께 가져오기
+        const [comments] = await db.query(`
+            SELECT 
+                c.comment_id, 
+                c.comment_content, 
+                c.created_at, 
+                u.email AS author_email,
+                u.profile_picture AS author_profile_picture, 
+                u.nickname AS author_nickname
+            FROM comment c
+            JOIN user u ON c.user_id = u.user_id
+            WHERE c.post_id = ?
+            ORDER BY c.created_at ASC
+        `, [postId]);
+
+        const post = rows[0];
+        post.comments = comments;
+        
+        res.json(post);
+    } catch (err) {
+        console.error('Error fetching post:', err);
+        res.status(500).send('Server error');
+    }
+};
+
+
+
 // 게시글 목록 조회 페이지 전송
 const listOfPosts = (req, res) => {
     const loggedInUser = req.session.loggedInUser;
@@ -117,5 +171,6 @@ export default {
     listOfPosts,
     deletePost,
     createPost,
-    updatePost
+    updatePost,
+    getPostById
 };
