@@ -40,6 +40,13 @@ const logout = () => {
     });
 }
 
+// URL에서 게시글 ID를 가져오는 함수
+const getPostIdFromUrl = () => {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    return urlParams.get('id');
+}
+
 // 페이지가 로드되면 해당 게시글 정보를 가져와서 렌더링
 window.onload = () => {
     fetchPostDetails();
@@ -47,10 +54,9 @@ window.onload = () => {
 
 const fetchPostDetails = () => {
     const postId = getPostIdFromUrl(); // 게시글 id를 가져옴
-    fetch('http://localhost:3001/posts')
+    fetch(`http://localhost:3001/posts/${postId}`) // 특정 게시글 ID에 대해 fetch
         .then(response => response.json())
-        .then(data => {
-            const post = data.posts.find(post => post.id === parseInt(postId));
+        .then(post => {
             if (post) {
                 renderPostDetails(post);
             } else {
@@ -61,17 +67,10 @@ const fetchPostDetails = () => {
 }
 
 const renderPostDetails = (post) => {
-    document.getElementById('postId').value = post.id;
+    document.getElementById('postId').value = post.post_id;
     document.getElementById('titleInput').value = post.title;
-    document.getElementById('contentInput').value = post.content;
-    document.getElementById('fileName').innerText = post.image.split('/').pop(); // 기존 파일 명 표시
-}
-
-// URL에서 게시글 ID를 가져오는 함수
-const getPostIdFromUrl = () => {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    return urlParams.get('id');
+    document.getElementById('contentInput').value = post.post_content;
+    document.getElementById('fileName').innerText = post.post_image ? post.post_image.split('/').pop() : ''; // 기존 파일 명 표시
 }
 
 // 수정하기 버튼 클릭 시 동작
@@ -86,44 +85,41 @@ document.getElementById('updateForm').addEventListener('submit', (event) => {
     const formData = new FormData(); // FormData 객체 생성
     formData.append('title', title);
     formData.append('content', content);
-    formData.append('image', imageFile); // 이미지 파일 추가
+    if (imageFile) {
+        formData.append('image', imageFile); // 이미지 파일 추가
+    }
 
     // 수정할 내용을 서버에 전송하고, 성공적으로 처리되면 페이지를 다시 불러옴
     fetch(`http://localhost:3001/update-post?id=${postId}`, { // PUT에서 POST로 수정
         method: 'POST', // PUT에서 POST로 수정
         body: formData
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('게시글 수정 완료');
-                // 성공적으로 수정되었을 때 해당 게시글 상세 조회 페이지로 이동
-                window.location.href = `post-details?id=${postId}`;
-            } else {
-                console.error('Failed to update post:', data.error);
-            }
-        })
-        .catch(error => console.error('Error updating post:', error));
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('게시글 수정 완료');
+            // 성공적으로 수정되었을 때 해당 게시글 상세 조회 페이지로 이동
+            window.location.href = `post-details?id=${postId}`;
+        } else {
+            console.error('Failed to update post:', data.error);
+        }
+    })
+    .catch(error => console.error('Error updating post:', error));
 });
-
-
 
 // 이미지 파일 선택 시 파일명 표시
 const displayFileName = () => {
-    console.log('함수 실행됨');
     const fileInput = document.getElementById('fileInput');
     const fileName = document.getElementById('fileName');
     if (fileInput.files.length > 0) {
         fileName.innerText = fileInput.files[0].name;
     } else {
-        // 파일 선택이 취소된 경우 기존 파일명 표시
         const postId = document.getElementById('postId').value;
-        fetch('http://localhost:3001/posts')
+        fetch(`http://localhost:3001/posts/${postId}`)
             .then(response => response.json())
-            .then(data => {
-                const post = data.posts.find(post => post.id === parseInt(postId));
+            .then(post => {
                 if (post) {
-                    fileName.innerText = post.image.split('/').pop(); // 기존 파일명
+                    fileName.innerText = post.post_image ? post.post_image.split('/').pop() : ''; // 기존 파일명
                 } else {
                     console.error('Post not found');
                 }
@@ -138,23 +134,15 @@ document.getElementById('fileButton').addEventListener('click', (event) => {
     document.getElementById('fileInput').click(); // 파일 선택 input 열기
 });
 
-// 페이지 로드 시 실행되는 함수
 window.addEventListener("load", () => {
-    // 로그인 되지 않은 상태라면 접근 불가! 로그인 페이지로 이동
     if (!sessionStorage.getItem('loggedInUser')) {
         window.location.href = 'sign-in';
     }
-    
-    // 서버에 요청을 보낼 때 쿠키를 포함시켜서 전송
     fetch('http://localhost:3001/get-profile-image', {
-        credentials: 'include' // 쿠키를 서버에 포함시키도록 설정
+        credentials: 'include'
     })
-    .then(response => response.json()) // 응답을 JSON으로 변환
+    .then(response => response.json())
     .then(data => {
-        // 서버에서 전달받은 프로필 이미지 경로를 콘솔에 출력
-        console.log("서버에서 전달받은 profileImagePath:", data.profileImagePath);
-
-        // 프로필 이미지를 업데이트
         const userProfileImage = document.getElementById("userProfileImage");
         userProfileImage.src = data.profileImagePath;
     })
