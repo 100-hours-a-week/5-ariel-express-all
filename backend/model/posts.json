@@ -57,7 +57,7 @@
                     },
                     "date": "2024-04-29",
                     "time": "10:30:09",
-                    "content": "쪼아yo"
+                    "content": "쪼아yo~"
                 },
                 {
                     "id": 5,
@@ -79,7 +79,7 @@
                     },
                     "date": "2024-05-04",
                     "time": "20:50:02",
-                    "content": "아 좋아요"
+                    "content": "아 좋아요!!"
                 },
                 {
                     "id": 7,
@@ -91,6 +91,17 @@
                     "date": "2024-05-06",
                     "time": "15:28:41",
                     "content": "쩝"
+                },
+                {
+                    "id": 8,
+                    "author": {
+                        "email": "test@naver.com",
+                        "profile_picture": "http://localhost:3001/uploads/1ebfe05bbc1b25dffc5a98275fc0801f",
+                        "nickname": "test"
+                    },
+                    "date": "2024-06-05",
+                    "time": "15:25:08",
+                    "content": "ㅎㅇㅎㅇ"
                 }
             ]
         },

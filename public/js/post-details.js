@@ -134,7 +134,7 @@ const fetchComments = (comments) => {
     comments.forEach(comment => {
         const loggedInUserEmail = getLoggedInUserEmail();
 
-        const editButtonsHTML = (comment.email === loggedInUserEmail) ? `
+        const editButtonsHTML = (comment.author_email === loggedInUserEmail) ? `
             <div class="edit-buttons">
                 <button class="modify-button" onclick="editComment('${comment.comment_id}', '${comment.comment_content}')">수정</button>
                 <button class="delete-button" onclick="showCommentDeleteModal('${comment.comment_id}')">삭제</button>
@@ -143,8 +143,8 @@ const fetchComments = (comments) => {
 
         const commentHTML = `
             <section class="current-comment-info">
-                <div class="comment-author-profile"><img src="${comment.profile_picture}" style="border-radius: 50%; width: 30px; height: 30px;"></div>
-                <div class="author-name"><small><b>${comment.nickname}</b></small></div>
+                <div class="comment-author-profile"><img src="http://localhost:3001/${comment.author_profile_picture}" style="border-radius: 50%; width: 30px; height: 30px;"></div>
+                <div class="author-name"><small><b>${comment.author_nickname}</b></small></div>
                 <div class="post-date"><small>${formatDateTime(comment.created_at)}</small></div>
                 ${editButtonsHTML} <!-- 수정, 삭제 버튼 HTML -->
             </section>
