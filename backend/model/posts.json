@@ -102,6 +102,17 @@
                     "date": "2024-06-05",
                     "time": "15:25:08",
                     "content": "ㅎㅇㅎㅇ"
+                },
+                {
+                    "id": 9,
+                    "author": {
+                        "email": "test@naver.com",
+                        "profile_picture": "http://localhost:3001/uploads/1ebfe05bbc1b25dffc5a98275fc0801f",
+                        "nickname": "test"
+                    },
+                    "date": "2024-06-06",
+                    "time": "15:25:56",
+                    "content": "new"
                 }
             ]
         },
