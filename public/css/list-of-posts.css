@@ -164,11 +164,12 @@ hr {
 }
 
 .author-profile {
-    width: 30px; /* 원하는 너비로 조정 */
-    height: 30px; /* 원하는 높이로 조정 */
-    background-size: cover; /* 배경 이미지를 영역에 꽉 채우도록 설정 */
-    background-position: center; /* 배경 이미지를 가운데 정렬 */
-    border-radius: 50%; /* 원형으로 이미지 모양을 만듭니다. */
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    background-position: center;
+    background-color: white;
+    border-radius: 50%;
 }
 
 /* 버튼에 마우스를 올렸을 때 */

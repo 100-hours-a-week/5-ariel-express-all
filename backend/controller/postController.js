@@ -12,8 +12,8 @@ const posts = async (req, res) => {
                 p.post_image, 
                 p.post_content, 
                 p.likes_count, 
-                p.comments_count, 
                 p.views_count,
+                (SELECT COUNT(*) FROM comment c WHERE c.post_id = p.post_id) AS comments_count,
                 u.profile_picture AS author_profile_picture,
                 u.nickname AS author_nickname
             FROM post p
@@ -40,8 +40,8 @@ const getPostById = async (req, res) => {
                 p.post_image, 
                 p.post_content, 
                 p.likes_count, 
-                p.comments_count, 
                 p.views_count,
+                (SELECT COUNT(*) FROM comment c WHERE c.post_id = p.post_id) AS comments_count,
                 u.email AS author_email,
                 u.profile_picture AS author_profile_picture,
                 u.nickname AS author_nickname
@@ -78,8 +78,6 @@ const getPostById = async (req, res) => {
         res.status(500).send('Server error');
     }
 };
-
-
 
 // 게시글 목록 조회 페이지 전송
 const listOfPosts = (req, res) => {
