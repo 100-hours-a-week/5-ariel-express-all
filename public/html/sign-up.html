@@ -11,17 +11,15 @@
 <body>
     <header>
         <a href="#" onclick="history.back()">
-            <div class="back-button">&lt;</div>
+            <img src="/assets/images/back-button.png" class="back-button" alt="back-button-image">
         </a>
         <img src="/assets/images/title.png" class="title-image" alt="title-image">
     </header>
-    <hr>
-
     <section class="signup-form">
-        <h1 class="title-signup">회원가입</h1>
+        <h1 class="title-signup"><img src="/assets/images/bubbles.png" class="icons" alt="img-bubbles">회원가입<img src="/assets/images/bubbles.png" class="icons" alt="img-bubbles"></h1>
         <form action="http://localhost:3001/signup" method="post" id="signupForm" enctype="multipart/form-data">
             <!-- 프로필 사진 입력 -->
-            <div class="input-titles" id="titleProfileImage"><b>프로필 사진*</b></div>
+            <div class="input-titles" id="titleProfileImage"><img src="/assets/images/whale.png" class="icons" alt="img-whale"><b> 프로필 사진* </b><img src="/assets/images/whale.png" class="icons" alt="img-whale"></div>
             <small class="helper-text" id="profileImageHelperText">* 프로필 사진을 추가해주세요.</small>
             <label class="circle-button" id="profileImage" for="profileImageInput">
                 <img id="profilePreview" src="/assets/images/button-add-profile-image.png" class="plus-sign" alt="plus-sign">
@@ -29,23 +27,23 @@
                     name="profile_picture">
             </label>
             <!-- 이메일 입력 -->
-            <p class="input-titles" id="titleEmail"><b>이메일*</b>
+            <p class="input-titles" id="titleEmail"><img src="/assets/images/fish.png" class="icons2" alt="img-fish"><b> 이메일* </b><img src="/assets/images/fish.png" class="icons2" alt="img-fish">
                 <input type="text" class="input-text" placeholder="이메일을 입력하세요" id="emailInput" name="email">
                 <small class="helper-text" id="emailHelperText">* 이메일을 입력해주세요.</small>
             </p>
             <!-- 비밀번호 입력 -->
-            <p class="input-titles"><b>비밀번호*</b>
+            <p class="input-titles"><img src="/assets/images/turtle.png" class="icons" alt="img-turtle"><b> 비밀번호* </b><img src="/assets/images/turtle.png" class="icons" alt="img-turtle">
                 <input type="password" class="input-text" id="passwordInput" placeholder="비밀번호를 입력하세요" name="password">
                 <small class="helper-text" id="passwordHelperText">* 비밀번호는 8자 이상, 20자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 합니다.</small>
             </p>
             <!-- 비밀번호 확인 입력 -->
-            <p class="input-titles"><b>비밀번호 확인*</b>
+            <p class="input-titles"><img src="/assets/images/clam.png" class="icons3" alt="img-clam"><b> 비밀번호 확인* </b><img src="/assets/images/clam.png" class="icons3" alt="img-clam">
                 <input type="password" class="input-text" id="confirmPasswordInput" placeholder="비밀번호를 한번 더 입력하세요"
                     name="confirmPassword">
                 <small class="helper-text" id="confirmPasswordHelperText">* 비밀번호를 한번 더 입력해주세요.</small>
             </p>
             <!-- 닉네임 입력 -->
-            <p class="input-titles"><b>닉네임*</b>
+            <p class="input-titles"><img src="/assets/images/shark.png" class="icons2" alt="img-shark"><b> 닉네임* </b><img src="/assets/images/shark.png" class="icons2" alt="img-shark">
                 <input type="text" class="input-text" placeholder="닉네임을 입력하세요" id="nicknameInput" name="nickname">
                 <small class="helper-text" id="nicknameHelperText">* 닉네임을 입력해주세요.</small>
             </p>

@@ -1,7 +1,6 @@
 body {
     justify-content: center;
     font-family: "Noto Sans KR", sans-serif;
-    /* background-color: #CEE3F6; */
     background-image: url('../assets/images/blue_background.avif');
     background-size: cover;
 }
@@ -13,6 +12,13 @@ header {
 .icons {
     position: relative;
     top: 5px;
+    width: 30px;
+}
+
+.icons2 {
+    position: relative;
+    top: 10px;
+    width: 30px;
 }
 
 .title-image {
