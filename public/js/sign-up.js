@@ -10,11 +10,19 @@ profileImageInput.addEventListener("change", (event) => {
         const reader = new FileReader(); // FileReader: 파일을 읽기 위한 객체
         reader.onload = (e) => { // 파일 로드가 완료되었을 때 이벤트 처리
             profilePreview.src = e.target.result; // 프로필 미리보기 이미지 변경
+            profilePreview.style.maxWidth = '100%'; // 이미지를 원래 크기로 표시
+            profilePreview.style.maxHeight = '100%';
+            profilePreview.style.left = '0%';
+            profilePreview.style.top = '0%';
         }
         reader.readAsDataURL(file); // 파일을 읽어 data URL로 변환하여 반환. (파일의 내용을 문자열로 표현)
         profileImageHelperText.style.visibility = 'hidden';
     } else {
         profilePreview.src = "../assets/images/button-add-profile-image.png"; // 파일이 선택되지 않았다면 기본 이미지로 복원
+        profilePreview.style.maxWidth = '40%'; // 이미지 크기를 조정
+        profilePreview.style.maxHeight = '40%';
+        profilePreview.style.left = '30%';
+        profilePreview.style.top = '30%';
     }
 });
 
@@ -218,10 +226,10 @@ const validateAllInputs = async () => {
     // 모든 input 값 유효성 통과: 버튼 색상 변경 + 활성화
     if (emailValid && passwordValid && confirmPasswordValid && nicknameValid) {
         signupButton.disabled = false;
-        signupButton.style.backgroundColor = '#7F6AEE';
+        signupButton.style.backgroundColor = '#4e9af7';
     } else {
         signupButton.disabled = true;
-        signupButton.style.backgroundColor = '#ACA0EB';
+        signupButton.style.backgroundColor = '#7fb3f3';
     }
 }
 
