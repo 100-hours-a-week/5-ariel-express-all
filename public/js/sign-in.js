@@ -10,12 +10,12 @@ const checkInputs = () => {
     const password = passwordInput.value.trim();
 
     if (validation(email, password) === '') {
-        loginButton.style.backgroundColor = "#7F6AEE";
+        loginButton.style.backgroundColor = "#4e9af7";
         document.getElementById('loginButton').disabled = false;
         helperText.style.visibility = 'hidden';
     }
     else {
-        loginButton.style.backgroundColor = "#ACA0EB";
+        loginButton.style.backgroundColor = "#7fb3f3";
         document.getElementById('loginButton').disabled = true;
         str = "* " + validation(email, password);
         helperText.textContent = str;

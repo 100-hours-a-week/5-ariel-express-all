@@ -193,47 +193,6 @@ const currentUserEmailAndNickname = async (req, res) => {
     }
 }
 
-// // 게시글과 댓글 정보 업데이트 함수
-// const updatePostsAndComments = (userEmail, newNickname, profileImage) => {
-//     fs.readFile(postsJsonPath, 'utf8', (err, data) => {
-//         if (err) {
-//             console.error('Error reading file:', err);
-//             return;
-//         }
-
-//         let postsData = JSON.parse(data);
-
-//         // 게시글 정보 업데이트
-//         postsData.posts.forEach(post => {
-//             if (post.author.email === userEmail) {
-//                 post.author.nickname = newNickname;
-//                 if (profileImage) {
-//                     post.author.profile_picture = 'http://localhost:3001/' + profileImage.path;
-//                 }
-//             }
-
-//             // 댓글 정보 업데이트
-//             post.comments.forEach(comment => {
-//                 if (comment.author.email === userEmail) {
-//                     comment.author.nickname = newNickname;
-//                     if (profileImage) {
-//                         comment.author.profile_picture = 'http://localhost:3001/' + profileImage.path;
-//                     }
-//                 }
-//             });
-//         });
-
-//         // 업데이트된 데이터 저장
-//         fs.writeFile(postsJsonPath, JSON.stringify(postsData, null, 4), 'utf8', (err) => {
-//             if (err) {
-//                 console.error('Error writing file:', err);
-//                 return;
-//             }
-//             console.log('Posts and comments updated successfully.');
-//         });
-//     });
-// }
-
 // sql 버전. 우선 보류
 const updatePostsAndComments = async (userId, newNickname, profileImagePath) => {
     // try {

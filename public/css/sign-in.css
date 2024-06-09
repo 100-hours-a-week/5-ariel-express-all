@@ -1,11 +1,18 @@
 body {
     justify-content: center;
     font-family: "Noto Sans KR", sans-serif;
-    background-color: #F4F5F7;
+    /* background-color: #CEE3F6; */
+    background-image: url('../assets/images/blue_background.avif');
+    background-size: cover;
 }
 
 header {
     display: flex;
+}
+
+.icons {
+    position: relative;
+    top: 5px;
 }
 
 .title-image {
@@ -48,10 +55,14 @@ input[type="text"], input[type="password"] {
     margin-top: 20px;
 }
 
+#emailInput, #passwordInput {
+    background-color: white;
+}
+
 #loginButton {
     width: 100%;
     color: white;
-    background-color: #ACA0EB;
+    background-color: #7fb3f3;
     height: 30px;
     border: none;
     /* 테두리 제거 */
