@@ -6,7 +6,12 @@ html::-webkit-scrollbar {
 body {
     justify-content: center;
     font-family: "Noto Sans KR", sans-serif;
-    background-color: #F4F5F7;
+    background-image: url('../assets/images/blue_background.avif');
+    background-size: cover;
+    background-repeat: repeat; /* 배경 이미지 반복 */
+    background-attachment: fixed; /* 배경 이미지 고정 */
+    margin: 0;
+    padding: 0;
 }
 
 header {
@@ -44,24 +49,33 @@ header {
 }
 
 .posts {
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    left: 43%;
-    transform: translate(-30%, 5%);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 70px auto;
 }
 
 .post {
     background-color: white;
-    margin-bottom: 20px;
-    width: 500px;
+    padding: 10px;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background-color 0.3s;
+}
+
+.post:hover {
+    background-color: #bbd9ff;
 }
 
 .create-post-button {
     width: 100px;
     color: white;
-    background-color: #ACA0EB;
+    background-color: #7fb3f3;
     height: 30px;
     border: none;
     /* 테두리 제거 */
@@ -86,7 +100,6 @@ a {
 .post-title {
     display: block;
     text-align: left;
-    padding-top: 15px;
     margin-left: 15px;
     font-size: 20px;
 }
@@ -101,8 +114,7 @@ a {
 }
 
 .post-date {
-    position: absolute;
-    right: 0;
+    text-align: left;
     margin-right: 15px;
 }
 
@@ -174,5 +186,5 @@ hr {
 
 /* 버튼에 마우스를 올렸을 때 */
 .create-post-button:hover {
-    background-color: #7F6AEE;
+    background-color: #4e9af7;
 }
