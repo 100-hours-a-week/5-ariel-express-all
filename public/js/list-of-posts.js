@@ -34,8 +34,7 @@ const renderPosts = (posts) => {
             <section class="post">
                 <a href="post-details?id=${post.post_id}">
                     <h1 class="post-title">${post.title}</h1>
-                    <p class="post-information"><span class="post-reaction">좋아요 ${formattedLikes} 댓글 ${formattedComments} 조회수 ${formattedViews}</span><span
-                            class="post-date">${formatDateTime(post.created_at)}</span></p>
+                    <p class="post-information"><div class="post-reaction"><small>좋아요 ${formattedLikes} 댓글 ${formattedComments} 조회수 ${formattedViews}</small></div></p>
                     <hr>
                     <div class="author">
                         <div class="author-profile" style="background-image: url('http://localhost:3001/${post.author_profile_picture}')"></div>
