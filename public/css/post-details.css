@@ -6,7 +6,12 @@ html::-webkit-scrollbar {
 body {
     justify-content: center;
     font-family: "Noto Sans KR", sans-serif;
-    background-color: #F4F5F7;
+    background-image: url('../assets/images/blue_background.avif');
+    background-size: cover;
+    background-repeat: repeat;
+    background-attachment: fixed; /* 배경 이미지 고정 */
+    margin: 0;
+    padding: 0;
 }
 
 header {
@@ -15,9 +20,9 @@ header {
 
 .main {
     position: absolute;
-    left: 50%;
+    left: 51%;
     transform: translate(-50%);
-    width: 400px;
+    width: 450px;
 }
 
 .title-image {
@@ -38,12 +43,22 @@ header {
 
 .back-button {
     color: black;
-    margin-top: 15px;
-    font-size: 20px;
+    margin-top: 13px;
+    width: 30px;
     position: absolute;
-    /* back-button 요소를 절대 위치로 설정합니다. */
     left: calc(50% - 200px);
-    /* title-image의 왼쪽에 50px 떨어뜨리려면, title-image의 가로 너비의 절반을 빼고, 50px를 더해야 합니다. */
+}
+
+.post-content {
+    background-image: url('../assets/images/sea2.jpeg');
+    /* text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7); */
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.post-title {
+    font-size: 20px;
 }
 
 .post-author-profile, .comment-author-profile {
@@ -75,13 +90,13 @@ header {
 
 .edit-buttons {
     position: absolute;
-    right: 0;
+    right: 20px;
 }
 
 .modify-button,
 .delete-button {
     border-radius: 5px;
-    border: 1px solid #ACA0EB;
+    border: 1px solid #4e9af7;
     background-color: transparent;
     padding: 3px 10px;
 }
@@ -115,7 +130,7 @@ a {
 .info-comments {
     text-align: center;
     margin: 20px 5px;
-    background-color: #D9D9D9;
+    background-color: #bbd9ff;
     width: 100px;
     padding: 10px 0;
     border-radius: 10px;
@@ -143,7 +158,7 @@ a {
 .comment-register-button {
     width: 100px;
     color: white;
-    background-color: #ACA0EB;
+    background-color: #7fb3f3;
     height: 30px;
     border: none;
     box-shadow: none;
@@ -170,15 +185,12 @@ a {
 .dropdown-content {
     display: none;
     position: absolute;
-    /* 부모 요소 .dropdown을 기준으로 절대 위치로 설정합니다. */
-    background-color: #D9D9D9;
+    background-color: #bbd9ff;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     top: 10%;
-    /* 부모 요소 .dropdown 바로 아래에 나타나도록 설정합니다. */
     left: 55%;
-    /* 부모 요소 .dropdown과 왼쪽 정렬됩니다. */
     text-align: center;
 }
 
@@ -190,7 +202,7 @@ a {
 }
 
 .dropdown-content a:hover {
-    background-color: #f1f1f1;
+    background-color: #7fb3f3;
 }
 
 .show {

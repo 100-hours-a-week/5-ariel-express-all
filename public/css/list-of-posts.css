@@ -69,7 +69,8 @@ header {
 }
 
 .post:hover {
-    background-color: #bbd9ff;
+    /* background-color: #bbd9ff; */
+    background-image: url('../assets/images/sea2.jpeg');
 }
 
 .create-post-button {
@@ -148,15 +149,12 @@ hr {
 .dropdown-content {
     display: none;
     position: absolute;
-    /* 부모 요소 .dropdown을 기준으로 절대 위치로 설정합니다. */
-    background-color: #D9D9D9;
+    background-color: #bbd9ff;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     top: 10%;
-    /* 부모 요소 .dropdown 바로 아래에 나타나도록 설정합니다. */
     left: 55%;
-    /* 부모 요소 .dropdown과 왼쪽 정렬됩니다. */
     text-align: center;
 }
 
@@ -168,7 +166,7 @@ hr {
 }
 
 .dropdown-content a:hover {
-    background-color: #f1f1f1;
+    background-color: #7fb3f3;
 }
 
 .show {
