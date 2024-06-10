@@ -63,13 +63,13 @@ const validate = () => {
         createPostHelperText.textContent = '* 제목, 내용을 모두 작성해주세요.';
         createPostHelperText.style.visibility = 'visible';
         document.getElementById('completeButton').disabled = true;
-        document.getElementById('completeButton').style.backgroundColor = "#ACA0EB";
+        document.getElementById('completeButton').style.backgroundColor = "#7fb3f3";
     }
     // 제목과 내용이 모두 입력된 경우, helper text 숨기기 + 버튼 활성화
     else {
         createPostHelperText.style.visibility = 'hidden';
         document.getElementById('completeButton').disabled = false;
-        document.getElementById('completeButton').style.backgroundColor = "#7F6AEE";
+        document.getElementById('completeButton').style.backgroundColor = "#4e9af7";
     }
 }
 

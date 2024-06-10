@@ -12,7 +12,7 @@
 <body>
     <header>
         <a href="#" onclick="history.back()">
-            <div class="back-button">&lt;</div>
+            <img src="/assets/images/back-button.png" class="back-button" alt="back-button-image">
         </a>
         <img src="/assets/images/title.png" class="title-image" alt="title-image">
         <div class="dropdown">
@@ -24,17 +24,16 @@
             </div>
         </div>
     </header>
-    <hr>
     <section class="create-post-form">
-        <h1 class="title-create-post">게시글 수정</h1>
+        <h1 class="title-create-post"><img src="/assets/images/bubbles.png" class="icons" alt="img-bubbles"> 게시글 수정 <img src="/assets/images/bubbles.png" class="icons" alt="img-bubbles"></h1>
         <form id="updateForm" method="POST">
             <input type="hidden" id="postId">
-            <p class="title-input-title"><b>제목*</b></p>
+            <p class="title-input-title"><img src="/assets/images/whale.png" class="icons" alt="img-whale"><b> 제목* </b><img src="/assets/images/whale.png" class="icons" alt="img-whale"></p>
             <!-- 제목 입력란 최대 26자 제한 -->
             <textarea class="input-title" id="titleInput" maxlength="26"></textarea>
-            <p class="title-input-content"><b>내용*</b></p>
+            <p class="title-input-content"><img src="/assets/images/turtle.png" class="icons" alt="img-turtle"><b> 내용* </b><img src="/assets/images/turtle.png" class="icons" alt="img-turtle"></p>
             <textarea class="input-content" id="contentInput"></textarea>
-            <p class="title-input-image"><b>이미지</b></p>
+            <p class="title-input-image"><img src="/assets/images/shark.png" class="icons2" alt="img-shark"><b> 이미지 </b><img src="/assets/images/shark.png" class="icons2" alt="img-shark"></p>
             <!-- 파일 선택 버튼 -->
             <!-- <p><button onclick="document.getElementById('fileInput').click()">파일 선택</button>&nbsp;&nbsp;<small
                     id="fileName">기존 파일명</small></p> -->
