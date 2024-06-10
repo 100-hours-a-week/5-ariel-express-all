@@ -73,27 +73,29 @@ const renderPostDetails = (post) => {
     ` : '';
 
     const postHTML = `
-        <h1 class="post-title">${post.title}</h1>
-        <div class="info1">
-            <div class="post-author-profile"><img src='http://localhost:3001/${post.author_profile_picture}' width="30px" height="30px"></div>
-            <div class="author-name"><small><b>${post.author_nickname}</b></small></div>
-            <div class="post-date"><small>${formatDateTime(post.created_at)}</small></div>
-            ${editButtonsHTML} <!-- 수정, 삭제 버튼 HTML -->
-        </div>
-        <hr>
-        <section class="body">
-            ${postImageHTML} <!-- 이미지 HTML 삽입 -->
-            <div class="post-text">${post.post_content}</div>
-        </section>
-        <section class="info2">
-            <div class="info-hits">
-                <div><b>${formattedViews}</b></div>
-                <div><b><small>조회수</small></b></div>
+        <section class="post-content">
+            <h1 class="post-title">${post.title}</h1>
+            <div class="info1">
+                <div class="post-author-profile"><img src='http://localhost:3001/${post.author_profile_picture}' width="30px" height="30px"></div>
+                <div class="author-name"><small><b>${post.author_nickname}</b></small></div>
+                <div class="post-date"><small>${formatDateTime(post.created_at)}</small></div>
+                ${editButtonsHTML} <!-- 수정, 삭제 버튼 HTML -->
             </div>
-            <div class="info-comments">
-                <div><b>${formattedComments}</b></div>
-                <div><b><small>댓글</small></b></div>
-            </div>
+            <hr>
+            <section class="body">
+                ${postImageHTML} <!-- 이미지 HTML 삽입 -->
+                <div class="post-text">${post.post_content}</div>
+            </section>
+            <section class="info2">
+                <div class="info-hits">
+                    <div><b>${formattedViews}</b></div>
+                    <div><b><small>조회수</small></b></div>
+                </div>
+                <div class="info-comments">
+                    <div><b>${formattedComments}</b></div>
+                    <div><b><small>댓글</small></b></div>
+                </div>
+            </section>
         </section>
         <hr>
         </section>
