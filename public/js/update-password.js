@@ -116,10 +116,10 @@ const validateAllInputs = async () => {
 
     if (passwordValid && confirmPasswordValid) {
         modifyButton.disabled = false;
-        modifyButton.style.backgroundColor = '#7F6AEE';
+        modifyButton.style.backgroundColor = '#4e9af7';
     } else {
         modifyButton.disabled = true;
-        modifyButton.style.backgroundColor = '#ACA0EB';
+        modifyButton.style.backgroundColor = '#7fb3f3';
     }
 }
 
